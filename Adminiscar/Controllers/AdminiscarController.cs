@@ -22,7 +22,12 @@ namespace Adminiscar.Controllers
             return "esse é minha pagina default action";
 
         }
-
+        /*
+         * no Aps.net os parametros da URL funciona desse jeito
+         * nomeDoDominio/Controller/actionName/parametrosDeles
+         * no arquivo _start/RouteConfig.cs vc define as routas da url
+         * 
+         **/
         public string Welcome() {
 
             return "esse é meu method Welcome action";
