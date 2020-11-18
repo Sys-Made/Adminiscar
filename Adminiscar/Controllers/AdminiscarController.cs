@@ -25,6 +25,14 @@ namespace Adminiscar.Controllers
 
         }
 
+        public ActionResult MenuInicial()
+        {
+
+            return View();
+
+
+        }
+
         /*public string Index() {
 
             return "esse é minha pagina default action";
