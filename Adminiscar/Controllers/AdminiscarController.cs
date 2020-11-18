@@ -17,6 +17,14 @@ namespace Adminiscar.Controllers
             
         }
 
+        public ActionResult Loadding()
+        {
+
+            return View();
+
+
+        }
+
         /*public string Index() {
 
             return "esse é minha pagina default action";

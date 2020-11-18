@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
+}
+
+@{
+    ViewBag.Title = "Adminiscar";
+}
+
+<div class="row justify-content-center bg-transpWhite">
+
+    <div class="col-8 my-4 text-center">
+
+        <img class="rounded imgTelaLoadding shadow" src="~/Img/Imagens/Audi.jpg" alt="imagem_de_um_carro" />
+
+    </div>
+
+    <div class="col-12">
+
+        <div class="progresso rounded my-2 shadow" id="myProgress">
+            <div class="barraPorcent rounded" id="myBar"></div>
+        </div>
+
+        <h5 class="text-center my-3 text-shadow text-white">Verificando a conta.....</h5>
+
+    </div>
+
+    <script>
+        var i = 0;
+
+        function move() {
+            if (i == 0) {
+                i = 1;
+                var elem = document.getElementById("myBar");
+                var width = 1;
+                var id = setInterval(frame, 10);
+                function frame() {
+                    if (width >= 100) {
+                        clearInterval(id);
+                        i = 0;
+                    } else {
+                        width++;
+                        elem.style.width = width + "%";
+                    }
+                }
+            }
+        } 
+    </script>
+
+</div>
+
+
