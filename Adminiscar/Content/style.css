@@ -1,0 +1,10 @@
+﻿/*background gradient*/
+.bg-degrader {
+    background-image: linear-gradient(#a75afa, #5762fe);
+    background-size: auto 1200px; /*largura esta auto e altura esta em 1200px*/
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.teste {
+    border: 1px solid #000;
+}
