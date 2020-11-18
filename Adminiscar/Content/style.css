@@ -1,10 +1,48 @@
-﻿/*background gradient*/
+﻿.teste {
+    border: 1px solid #000;
+}
+/*backgroundGradient*/
 .bg-degrader {
     background-image: linear-gradient(#a75afa, #5762fe);
     background-size: auto 1200px; /*largura esta auto e altura esta em 1200px*/
     background-position: center;
     background-repeat: no-repeat;
 }
-.teste {
-    border: 1px solid #000;
+.bg-transpWhite {
+    background-color: rgba(251,251,251,0.5);
 }
+/*fimBackgroundGradient*/
+
+.text-white {
+    color: #fbfbfb;
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 3px #000;
+}
+
+.butao{
+    max-height: 50px;
+    max-width: 120px;
+    height: 100%;
+    width: 100%;
+}
+.butao-version1 {
+    background-color: #fbfbfb;
+    box-shadow: 2px 2px 10px #000;
+}
+.butao-version1:hover {
+    box-shadow: none;
+    color: white !important;
+    background-color: #5762fe;
+}
+
+/*iconeDeLoginTelaDeLogin*/
+.iconeImgUser {
+    max-height: 150px;
+    max-width: 150px;
+    height: 100%;
+    width: 100%;
+}
+/*fimIconeDeLoginTelaDeLogin*/
+
