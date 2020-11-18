@@ -137,6 +137,7 @@
     <Content Include="Content\site.css" />
     <Content Include="Img\Icones\useAvatar02.png" />
     <Content Include="Img\Icones\userAvatar.png" />
+    <Content Include="Img\Imagens\Audi.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -165,6 +166,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Adminiscar\Index.cshtml" />
     <Content Include="Views\Shared\_HeaderAndFooter.cshtml" />
+    <Content Include="Views\Adminiscar\Loadding.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
