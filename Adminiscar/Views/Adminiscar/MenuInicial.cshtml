@@ -6,27 +6,42 @@
    ViewBag.Title = "Adminiscar";
 }
 
-<div class="row p-3 teste">
+<div class="row p-3">
     <!--nome/dateAndTime/lougot-->
-    <div class="col-12 my-2 teste">
-        <div class="teste dataHora d-inline-block p-2">
-            <p>01/10/2020 13:50</p>
-        </div>
+    <div class="col-12 my-2">
 
-        <div class="teste nomeFuncInicial d-inline-block p-2">
-            <p>Nome Do Funcionario</p>
-        </div>
+        <div class="row justify-content-center">
+            
+            <div class="col">
+                <div class="dataHora d-inline-block p-2 rounded">
+                    <p>01/10/2020 13:50</p>
+                </div>
+            </div>
 
-        <div class="teste butao d-inline-block p-2">
-            <div class="">Sair</div>
-        </div>
+            <div class="col text-center">
+                <div class="nomeFuncInicial d-inline-block p-2 rounded">
+                    <h5 class="text-white text-shadow font-weight-bold">Nome Do Funcionario</h5>
+                </div>
+            </div>
+
+            <div class="col text-right">
+                <div class="butao d-inline-block p-2 rounded text-center dataHora">
+                    <p>Sair</p>
+                </div>
+            </div>
+
+        </div>    
 
     </div>
     <!--fimNome/dateAndTime/lougot-->
 
     <!--logo-->
-    <div class="col-12 my-2 teste">
-        <img class="rounded teste" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_adminiscar" height="300" width="300"/>
+    <div class="col-12 my-2 text-center">
+        <!--<img class="rounded telaInicialLogo" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_adminiscar" />-->
+        <div class="divLogo p-2 d-inline-block rounded">
+            <img class="rounded telaInicialLogo" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_adminiscar" />
+        </div>
+
     </div>
     <!--fimLogo-->
 
