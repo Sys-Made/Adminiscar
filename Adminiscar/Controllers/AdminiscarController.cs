@@ -33,6 +33,11 @@ namespace Adminiscar.Controllers
 
         }
 
+        public ActionResult Cliente() {
+
+            return View();
+        }
+
         /*public string Index() {
 
             return "esse é minha pagina default action";
