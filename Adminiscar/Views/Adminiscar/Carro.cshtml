@@ -50,7 +50,7 @@
 <!--fimNavgacaoentreCadastrarAndConsultar-->
 
 <!--Cadastro-->
-<section class="row justify-content-center my-2 p-2">
+<section class="row justify-content-center my-2 p-2" style="display: none;">
     <!--nome/cpf/cnpj/cnh-->
     <div class="col-12 text-white">
         <form>
@@ -159,7 +159,7 @@
 <!--fimCadastro-->
 
 <!--Consulta-->
-<section class="row justify-content-center my-4" style="display: none;">
+<section class="row justify-content-center my-4">
     <div class="col-12 p-3 bg-light">
 
         <h2 class="text-center my-2 text-roxo">Pesquisa</h2>
@@ -167,7 +167,7 @@
         <form class="my-3">
             <div class="row p-2 justify-content-center">
                 <div class="col-7">
-                    <input type="text" class="form-control col-12 boxShadow2" placeholder="Faça sua pesquisa: Nome, Cpf ou cnpj">
+                    <input type="text" class="form-control col-12 boxShadow2" placeholder="">
                 </div>
                 <div class="col-2">
                     <button class="btn btn-secondary bg-branco rounded" type="reset">Buscar</button>
@@ -175,24 +175,29 @@
             </div>
 
             <div class="row p-2 justify-content-center text-roxo">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                    <label class="form-check-label" for="inlineCheckbox1">Nome</label>
+                <div class="my-1 mx-1">
+                    <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                        <option selected>Categoria</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
                 </div>
 
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label" for="inlineCheckbox2">CPF</label>
+                    <label class="form-check-label" for="inlineCheckbox2">Situação</label>
                 </div>
 
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                    <label class="form-check-label" for="inlineCheckbox3">CNH</label>
+                    <label class="form-check-label" for="inlineCheckbox3">Placa</label>
                 </div>
 
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                    <label class="form-check-label" for="inlineCheckbox3">CNPJ</label>
+                    <label class="form-check-label" for="inlineCheckbox3">Extra Teste</label>
                 </div>
             </div>
         </form>
@@ -200,55 +205,86 @@
 
     <div class="col-12 mt-4 pt-2">
         <table class="table mt-2 bg-light rounded">
-            <thead class="thead-dark">
+            <thead class="thead-dark text-center">
                 <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">CPF</th>
-                    <th scope="col">CNPJ</th>
-                    <th scope="col">CNH</th>
+                    <th scope="col">Nome Do Veiculo</th>
+                    <th scope="col">Renavam</th>
+                    <th scope="col">Placa</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
                 <tr>
-                    <td>Patric Alison</td>
-                    <td>501.236.789-55</td>
-                    <td>Não Tem</td>
-                    <td>45698713210</td>
+                    <td>Fiat</td>
+                    <td>0000000000</td>
+                    <td>KOP12356</td>
+                    <td>153.624.899-10</td>
+                    <td>
+                        <button class="btn btn-primary my-1">Detalhe</button>
+                        <button class="btn btn-primary my-1">Deletar</button>
+                        <button class="btn btn-primary my-1">Alterar</button>
+                    </td>
                 </tr>
 
                 <tr>
-                    <td>Patric Alison</td>
-                    <td>501.236.789-55</td>
-                    <td>Não Tem</td>
-                    <td>45698713210</td>
+                    <td>Fiat</td>
+                    <td>0000000000</td>
+                    <td>KOP12356</td>
+                    <td>153.624.899-10</td>
+                    <td>
+                        <button class="btn btn-primary my-1">Detalhe</button>
+                        <button class="btn btn-primary my-1">Deletar</button>
+                        <button class="btn btn-primary my-1">Alterar</button>
+                    </td>
                 </tr>
 
                 <tr>
-                    <td>Patric Alison</td>
-                    <td>501.236.789-55</td>
-                    <td>Não Tem</td>
-                    <td>45698713210</td>
+                    <td>Fiat</td>
+                    <td>0000000000</td>
+                    <td>KOP12356</td>
+                    <td>153.624.899-10</td>
+                    <td>
+                        <button class="btn btn-primary my-1">Detalhe</button>
+                        <button class="btn btn-primary my-1">Deletar</button>
+                        <button class="btn btn-primary my-1">Alterar</button>
+                    </td>
                 </tr>
 
                 <tr>
-                    <td>Patric Alison</td>
-                    <td>501.236.789-55</td>
-                    <td>Não Tem</td>
-                    <td>45698713210</td>
+                    <td>Fiat</td>
+                    <td>0000000000</td>
+                    <td>KOP12356</td>
+                    <td>153.624.899-10</td>
+                    <td>
+                        <button class="btn btn-primary my-1">Detalhe</button>
+                        <button class="btn btn-primary my-1">Deletar</button>
+                        <button class="btn btn-primary my-1">Alterar</button>
+                    </td>
                 </tr>
 
                 <tr>
-                    <td>Patric Alison</td>
-                    <td>501.236.789-55</td>
-                    <td>Não Tem</td>
-                    <td>45698713210</td>
+                    <td>Fiat</td>
+                    <td>0000000000</td>
+                    <td>KOP12356</td>
+                    <td>153.624.899-10</td>
+                    <td>
+                        <button class="btn btn-primary my-1">Detalhe</button>
+                        <button class="btn btn-primary my-1">Deletar</button>
+                        <button class="btn btn-primary my-1">Alterar</button>
+                    </td>
                 </tr>
 
                 <tr>
-                    <td>Patric Alison</td>
-                    <td>501.236.789-55</td>
-                    <td>Não Tem</td>
-                    <td>45698713210</td>
+                    <td>Fiat</td>
+                    <td>0000000000</td>
+                    <td>KOP12356</td>
+                    <td>153.624.899-10</td>
+                    <td>
+                        <button class="btn btn-primary my-1">Detalhe</button>
+                        <button class="btn btn-primary my-1">Deletar</button>
+                        <button class="btn btn-primary my-1">Alterar</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
