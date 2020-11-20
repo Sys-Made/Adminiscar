@@ -32,6 +32,7 @@
 
 </header>
 <!--fimHeader-->
+
 <!--navgacaoentreCadastrarAndConsultar-->
 <section class="row justify-content-center p-2 bg-light">
 
@@ -47,22 +48,23 @@
 
 </section>
 <!--fimNavgacaoentreCadastrarAndConsultar-->
+
 <!--Cadastro-->
 <section class="row justify-content-center my-2 p-2">
     <!--nome/cpf/cnpj/cnh-->
     <div class="col-12 text-white">
         <form>
-            <!--nome/cpf/cnpj/cnh-->
+            <!--nomeVeiculo/modelo/renavam/combustivel-->
             <div class="form-row">
 
                 <div class="col mt-1 mb-2">
-                    <label for="exampleInputEmail1">Nome:</label>
-                    <input type="text" class="form-control col-10" placeholder="Exemplo: Ana Clara De Almeida">
+                    <label for="exampleInputEmail1">Nome Do veiculo:</label>
+                    <input type="text" class="form-control col-10" placeholder="">
                 </div>
 
                 <div class="col mt-1 mb-2">
-                    <label for="exampleInputEmail1">CPF:</label>
-                    <input type="text" class="form-control col-10" placeholder="Exemplo: 123.654.798-50">
+                    <label for="exampleInputEmail1">Modelo:</label>
+                    <input type="text" class="form-control col-10" placeholder="">
                 </div>
 
             </div>
@@ -70,75 +72,81 @@
             <div class="form-row">
 
                 <div class="col my-1">
-                    <label for="exampleInputEmail1">CNPJ:</label>
-                    <input type="text" class="form-control col-10" placeholder="Coloca seu exemplo aqui">
+                    <label for="exampleInputEmail1">Renavam:</label>
+                    <input type="text" class="form-control col-10" placeholder="">
                 </div>
 
                 <div class="col my-1">
-                    <label for="exampleInputEmail1">CNH:</label>
-                    <input type="text" class="form-control col-10" placeholder="Coloca seu exemplo aqui">
+                    <label for="exampleInputEmail1">Combustivel:</label>
+                    <input type="text" class="form-control col-10" placeholder="">
                 </div>
 
             </div>
-            <!--fimNome/cpf/cnpj/cnh-->
-            <!--Edereço-->
-            <div class="form-row my-2">
+            <!--fimNomeVeiculo/modelo/renavam/combustivel-->
+            
+            <!--placaAndCartegoria-->
+            <div class="form-row border-top my-4">
 
                 <div class="col my-1">
-                    <label for="exampleInputEmail1">Endereço:</label>
-                    <input type="text" class="form-control col-10" placeholder="Exemplo: Rua charles chappin">
+                    <label for="exampleInputEmail1">Placa:</label>
+                    <input type="text" class="form-control col-10" placeholder="">
                 </div>
 
-                <div class="col-4 my-1">
-                    <label for="exampleInputEmail1">numero:</label>
-                    <input type="text" class="form-control col-8" placeholder="Exemplo: 14a">
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Categoria:</label>
+                    <input type="text" class="form-control col-8" placeholder="">
                 </div>
 
             </div>
 
-            <div class="form-row my-2">
+            <div class="form-row my-4 justify-content-center">
 
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Bairro:</label>
-                    <input type="text" class="form-control col-10" placeholder="Exemplo: Jardim Santana">
-                </div>
+                <div class="row p-2 justify-content-center text-white">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <label class="form-check-label" for="inlineCheckbox1">Nome</label>
+                    </div>
 
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Cidade:</label>
-                    <input type="text" class="form-control col-8" placeholder="Exemplo: São Paulo">
-                </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                        <label class="form-check-label" for="inlineCheckbox2">CPF</label>
+                    </div>
 
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Uf:</label>
-                    <br />
-                    <select class="custom-select col-5" id="inlineFormCustomSelect">
-                        <option selected>UF...</option>
-                        <option value="1">SP</option>
-                        <option value="2">RJ</option>
-                        <option value="3">ES</option>
-                    </select>
-                </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                        <label class="form-check-label" for="inlineCheckbox3">CNH</label>
+                    </div>
 
-            </div>
-            <!--fimEdereço-->
-
-            <!--contato-->
-            <div class="form-row my-2">
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Celular:</label>
-                    <input type="text" class="form-control col-10" placeholder="Exemplo: 11 98755-6321">
-                </div>
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Telefone Fixo:</label>
-                    <input type="text" class="form-control col-10" placeholder="Exemplo: 11 3968-5023">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                        <label class="form-check-label" for="inlineCheckbox3">CNPJ</label>
+                    </div>
                 </div>
 
             </div>
-            <!--fimContato-->
+            <!--fimPlacaAndCartegoria-->
 
-            <div class="form-row justify-content-center my-3">
+            <!--valores-->
+            <div class="form-row border-top border-bottom py-2 my-2">
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Valor Diario:</label>
+                    <input type="text" class="form-control col-10" placeholder="">
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Valor Semanal:</label>
+                    <input type="text" class="form-control col-8" placeholder="">
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Valor Mensal:</label>
+                    <input type="text" class="form-control col-10" placeholder="">
+                </div>
+            </div>
+            <!--fimValores-->
+
+            <div class="form-row justify-content-center my-5">
                 <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="button">Registrar</button>
 
                 <button class="butaoMeidan bg-branco mx-2 my-2 rounded" type="reset">Limpar</button>
