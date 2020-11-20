@@ -13,6 +13,12 @@
 }
 /*fimBackgroundGradient*/
 
+/*shadowBox*/
+.boxShadow {
+    box-shadow: 1px 1px 4px #000;
+}
+/*fimShadowBox*/
+
 .text-white {
     color: #fbfbfb;
 }
@@ -37,6 +43,15 @@
     color: white !important;
     background-color: #5762fe;
 }
+.butao-logout1 {
+    cursor: pointer;
+    background-color: #fbfbfb;
+    box-shadow: 2px 2px 8px #000;
+}
+    .butao-logout1:hover {
+        box-shadow: none;
+        border: 1px solid #cdcdcd;
+    }
 /*fimBotoes*/
 
 /*iconeDeLoginTelaDeLogin*/
@@ -75,7 +90,7 @@
 }
 /*fimDados*/
 
-/*LogoTelaInicial*/
+/*logoTelaInicial*/
 .divLogo {
     max-height: 400px;
     max-width: 500px;
@@ -88,3 +103,23 @@
     width: 100%;
     height: 100%;
 }
+/*fimLogoTelaInicial*/
+
+/*navegacaoDoSistema*/
+.functNav {
+    max-height: 130px;
+    max-width: 130px;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+.functNav:hover {
+    border: 1px solid #cdcdcd;
+    box-shadow: none;
+}
+.iconeNav {
+    height: 80%;
+    width: 80%;
+}
+
+/*fimNabegacaoDoSistema*/

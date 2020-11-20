@@ -14,7 +14,8 @@
             
             <div class="col">
                 <div class="dataHora d-inline-block p-2 rounded">
-                    <p>01/10/2020 13:50</p>
+                    <!--<p>01/10/2020 13:50</p>-->
+                    <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
                 </div>
             </div>
 
@@ -25,7 +26,7 @@
             </div>
 
             <div class="col text-right">
-                <div class="butao d-inline-block p-2 rounded text-center dataHora">
+                <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
                     <p>Sair</p>
                 </div>
             </div>
@@ -45,35 +46,35 @@
     </div>
     <!--fimLogo-->
 
-    <div class="col-12 my-2 teste">
-        <nav class="">
-            <div class="teste">
-                <img class="teste" src="~/Img/Icones/cliente.png" alt="menu_cliente" height="50" width="50"/>
+    <div class="col-12 my-2">
+        <nav class="text-center p-2 rounded bg-light shadow">
+            <div class="functNav d-inline-block m-2 rounded bg-light boxShadow p-2">
+                <img class="iconeNav" src="~/Img/Icones/cliente.png" alt="menu_cliente" />
                 <p>Cliente</p>
             </div>
 
-            <div class="teste">
-                <img class="teste" src="~/Img/Icones/carro.png" alt="menu_carro" height="50" width="50"/>
+            <div class="functNav d-inline-block m-2 rounded bg-light boxShadow p-2">
+                <img class="iconeNav" src="~/Img/Icones/carro.png" alt="menu_carro" />
                 <p>Carro</p>
             </div>
 
-            <div class="teste">
-                <img class="teste" src="~/Img/Icones/chaves.png" alt="menu_locacoes" height="50" width="50"/>
+            <div class="functNav d-inline-block m-2 rounded bg-light boxShadow p-2">
+                <img class="iconeNav" src="~/Img/Icones/chaves.png" alt="menu_locacoes" />
                 <p>Locações</p>
             </div>
 
-            <div class="teste">
-                <img class="teste" src="~/Img/Icones/Devolucao.png" alt="menu_devolucoes" height="50" width="50"/>
+            <div class="functNav d-inline-block m-2 rounded bg-light boxShadow p-2">
+                <img class="iconeNav" src="~/Img/Icones/Devolucao.png" alt="menu_devolucoes" />
                 <p>Devoluções</p>
             </div>
 
-            <div class="teste">
-                <img class="teste" src="~/Img/Icones/manutencao.png" alt="menu_manutencao" height="50" width="50"/>
+            <div class="functNav d-inline-block m-2 rounded bg-light boxShadow p-2">
+                <img class="iconeNav" src="~/Img/Icones/manutencao.png" alt="menu_manutencao" />
                 <p>Manutencão</p>
             </div>
 
-            <div class="teste">
-                <img class="teste" src="~/Img/Icones/cliente.png" alt="menu_teste" height="50" width="50"/>
+            <div class="functNav d-inline-block mx-2 rounded bg-light boxShadow p-2">
+                <img class="iconeNav" src="~/Img/Icones/cliente.png" alt="menu_teste" />
                 <p>testeExtra</p>
             </div>
         </nav>
