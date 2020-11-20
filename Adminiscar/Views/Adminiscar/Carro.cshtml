@@ -1,0 +1,268 @@
+﻿@{
+    Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
+}
+
+@{
+    ViewBag.Title = "Adminiscar";
+}
+
+<!--header-->
+<header class="navInfo mb-3">
+
+    <div class="row justify-content-center">
+        <div class="col">
+            <div class="dataHora d-inline-block p-2 rounded">
+                <!--<p>01/10/2020 13:50</p>-->
+                <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+            </div>
+        </div>
+
+        <div class="col text-center">
+            <div class="logoConteinerSmall d-inline-block p-2 rounded bg-light boxShadow">
+                <img class="logoSmall" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_empresa" />
+            </div>
+        </div>
+
+        <div class="col text-right">
+            <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
+                <p>Voltar</p>
+            </div>
+        </div>
+    </div>
+
+</header>
+<!--fimHeader-->
+<!--navgacaoentreCadastrarAndConsultar-->
+<section class="row justify-content-center p-2 bg-light">
+
+    <div class="col-12 my-3">
+        <h2 class="text-center font-weight-bold text-roxo">Carro</h2>
+    </div>
+
+    <div class="col-6 my-3 p-3 text-center rounded" style="background-color: #955cfb;">
+        <button class="butaoMedian butao-version2 mx-2  rounded butaoActive" type="button">Cadastrar</button>
+
+        <button class="butaoMedian butao-version2 bg-branco mx-2  rounded" type="button">Consultar</button>
+    </div>
+
+</section>
+<!--fimNavgacaoentreCadastrarAndConsultar-->
+<!--Cadastro-->
+<section class="row justify-content-center my-2 p-2">
+    <!--nome/cpf/cnpj/cnh-->
+    <div class="col-12 text-white">
+        <form>
+            <!--nome/cpf/cnpj/cnh-->
+            <div class="form-row">
+
+                <div class="col mt-1 mb-2">
+                    <label for="exampleInputEmail1">Nome:</label>
+                    <input type="text" class="form-control col-10" placeholder="Exemplo: Ana Clara De Almeida">
+                </div>
+
+                <div class="col mt-1 mb-2">
+                    <label for="exampleInputEmail1">CPF:</label>
+                    <input type="text" class="form-control col-10" placeholder="Exemplo: 123.654.798-50">
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">CNPJ:</label>
+                    <input type="text" class="form-control col-10" placeholder="Coloca seu exemplo aqui">
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">CNH:</label>
+                    <input type="text" class="form-control col-10" placeholder="Coloca seu exemplo aqui">
+                </div>
+
+            </div>
+            <!--fimNome/cpf/cnpj/cnh-->
+            <!--Edereço-->
+            <div class="form-row my-2">
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Endereço:</label>
+                    <input type="text" class="form-control col-10" placeholder="Exemplo: Rua charles chappin">
+                </div>
+
+                <div class="col-4 my-1">
+                    <label for="exampleInputEmail1">numero:</label>
+                    <input type="text" class="form-control col-8" placeholder="Exemplo: 14a">
+                </div>
+
+            </div>
+
+            <div class="form-row my-2">
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Bairro:</label>
+                    <input type="text" class="form-control col-10" placeholder="Exemplo: Jardim Santana">
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Cidade:</label>
+                    <input type="text" class="form-control col-8" placeholder="Exemplo: São Paulo">
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Uf:</label>
+                    <br />
+                    <select class="custom-select col-5" id="inlineFormCustomSelect">
+                        <option selected>UF...</option>
+                        <option value="1">SP</option>
+                        <option value="2">RJ</option>
+                        <option value="3">ES</option>
+                    </select>
+                </div>
+
+            </div>
+            <!--fimEdereço-->
+
+            <!--contato-->
+            <div class="form-row my-2">
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Celular:</label>
+                    <input type="text" class="form-control col-10" placeholder="Exemplo: 11 98755-6321">
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Telefone Fixo:</label>
+                    <input type="text" class="form-control col-10" placeholder="Exemplo: 11 3968-5023">
+                </div>
+
+            </div>
+            <!--fimContato-->
+
+            <div class="form-row justify-content-center my-3">
+                <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="button">Registrar</button>
+
+                <button class="butaoMeidan bg-branco mx-2 my-2 rounded" type="reset">Limpar</button>
+            </div>
+
+        </form>
+    </div>
+
+</section>
+<!--fimCadastro-->
+
+<!--Consulta-->
+<section class="row justify-content-center my-4" style="display: none;">
+    <div class="col-12 p-3 bg-light">
+
+        <h2 class="text-center my-2 text-roxo">Pesquisa</h2>
+
+        <form class="my-3">
+            <div class="row p-2 justify-content-center">
+                <div class="col-7">
+                    <input type="text" class="form-control col-12 boxShadow2" placeholder="Faça sua pesquisa: Nome, Cpf ou cnpj">
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-secondary bg-branco rounded" type="reset">Buscar</button>
+                </div>
+            </div>
+
+            <div class="row p-2 justify-content-center text-roxo">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">Nome</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox2">CPF</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <label class="form-check-label" for="inlineCheckbox3">CNH</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <label class="form-check-label" for="inlineCheckbox3">CNPJ</label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-12 mt-4 pt-2">
+        <table class="table mt-2 bg-light rounded">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">CNPJ</th>
+                    <th scope="col">CNH</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Patric Alison</td>
+                    <td>501.236.789-55</td>
+                    <td>Não Tem</td>
+                    <td>45698713210</td>
+                </tr>
+
+                <tr>
+                    <td>Patric Alison</td>
+                    <td>501.236.789-55</td>
+                    <td>Não Tem</td>
+                    <td>45698713210</td>
+                </tr>
+
+                <tr>
+                    <td>Patric Alison</td>
+                    <td>501.236.789-55</td>
+                    <td>Não Tem</td>
+                    <td>45698713210</td>
+                </tr>
+
+                <tr>
+                    <td>Patric Alison</td>
+                    <td>501.236.789-55</td>
+                    <td>Não Tem</td>
+                    <td>45698713210</td>
+                </tr>
+
+                <tr>
+                    <td>Patric Alison</td>
+                    <td>501.236.789-55</td>
+                    <td>Não Tem</td>
+                    <td>45698713210</td>
+                </tr>
+
+                <tr>
+                    <td>Patric Alison</td>
+                    <td>501.236.789-55</td>
+                    <td>Não Tem</td>
+                    <td>45698713210</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled text-roxo">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link text-roxo" href="#">1</a></li>
+                <li class="page-item"><a class="page-link text-roxo" href="#">2</a></li>
+                <li class="page-item"><a class="page-link text-roxo" href="#">3</a></li>
+                <li class="page-item"><a class="page-link text-roxo" href="#">4</a></li>
+                <li class="page-item"><a class="page-link text-roxo" href="#">5</a></li>
+                <li class="page-item">
+                    <a class="page-link text-roxo" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+</section>
+<!--fimConsulta-->
