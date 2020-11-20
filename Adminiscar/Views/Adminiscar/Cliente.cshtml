@@ -1,5 +1,126 @@
 ﻿@{
+
     Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
 }
 
 
+@{
+    ViewBag.Title = "Adminiscar";
+}
+
+<!--header-->
+<header class="navInfo mb-3">
+
+    <div class="row justify-content-center">
+        <div class="col">
+            <div class="dataHora d-inline-block p-2 rounded">
+                <!--<p>01/10/2020 13:50</p>-->
+                <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+            </div>
+        </div>
+
+        <div class="col text-center">
+            <div class="logoConteinerSmall d-inline-block p-2 rounded bg-light boxShadow">
+                <img class="logoSmall" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_empresa" />
+            </div>
+        </div>
+
+        <div class="col text-right">
+            <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
+                <p>Voltar</p>
+            </div>
+        </div>
+    </div>
+
+</header>
+<!--fimHeader-->
+
+<!--navgacaoentreCadastrarAndConsultar-->
+<section class="row justify-content-center teste p-2">
+
+    <div class="col-12 my-3">
+        <h2 class="text-center font-weight-bold text-white">Cliente</h2>
+    </div>
+
+    <div class="col-6 my-3 teste text-center">
+        <button class="btn btn-outline-secondary bg-light mx-3 my-2" type="button">Cadastrar</button>
+
+        <button class="btn btn-outline-secondary bg-light mx-3 my-2" type="button">Consultar</button>
+    </div>
+
+</section>
+<!--fimNavgacaoentreCadastrarAndConsultar-->
+
+<!--Cadastro-->
+<section class="row justify-content-center my-2 p-2">
+    <!--nome/cpf/cnpj/cnh-->
+    <div class="col-12 teste text-white">
+        <form>
+            <!--nome/cpf/cnpj/cnh-->
+            <div class="form-row">
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Nome:</label>
+                    <input type="text" class="form-control col-10" placeholder="Exemplo: Ana Clara De Almeida">
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">CPF:</label>
+                    <input type="text" class="form-control col-10" placeholder="Exemplo: 123.654.798-50">
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">CNPJ:</label>
+                    <input type="text" class="form-control col-10" placeholder="Coloca seu exemplo aqui">
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">CNH:</label>
+                    <input type="text" class="form-control col-10" placeholder="Coloca seu exemplo aqui">
+                </div>
+
+            </div>
+            <!--fimNome/cpf/cnpj/cnh-->
+            <!--Edereço-->
+            <div class="form-row my-2">
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Endereço:</label>
+                    <input type="text" class="form-control col-10" placeholder="Exemplo: Ana Clara De Almeida">
+                </div>
+
+                <div class="col-4 my-1">
+                    <label for="exampleInputEmail1">numero:</label>
+                    <input type="text" class="form-control col-8" placeholder="Exemplo: 123.654.798-50">
+                </div>
+
+            </div>
+
+            <div class="form-row my-2">
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Endereço:</label>
+                    <input type="text" class="form-control col-10" placeholder="Exemplo: Ana Clara De Almeida">
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">numero:</label>
+                    <input type="text" class="form-control col-8" placeholder="Exemplo: 123.654.798-50">
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">numero:</label>
+                    <input type="text" class="form-control col-8" placeholder="Exemplo: 123.654.798-50">
+                </div>
+
+            </div>
+            <!--fimEdereço-->
+        </form>
+    </div>
+    
+</section>
+<!--fimCadastro-->
