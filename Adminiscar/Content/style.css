@@ -4,7 +4,7 @@
 /*backgroundGradient*/
 .bg-degrader {
     background-image: linear-gradient(#a75afa, #5762fe);
-    background-size: auto 1400px; /*largura esta auto e altura esta em 1200px*/
+    /*background-size: auto auto; /*largura esta auto e altura esta em 1200px*/
     background-position: center;
     background-repeat: no-repeat;
 }
