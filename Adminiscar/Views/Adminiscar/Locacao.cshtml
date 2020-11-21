@@ -1,0 +1,52 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
+
+}
+
+@{
+    ViewBag.Title = "Adminiscar";
+}
+
+<!--header-->
+<header class="navInfo mb-3">
+
+    <div class="row justify-content-center">
+        <div class="col">
+            <div class="dataHora d-inline-block p-2 rounded">
+                <!--<p>01/10/2020 13:50</p>-->
+                <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+            </div>
+        </div>
+
+        <div class="col text-center">
+            <div class="logoConteinerSmall d-inline-block p-2 rounded bg-light boxShadow">
+                <img class="logoSmall" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_empresa" />
+            </div>
+        </div>
+
+        <div class="col text-right">
+            <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
+                <p>Voltar</p>
+            </div>
+        </div>
+    </div>
+
+</header>
+<!--fimHeader-->
+
+<!--navgacaoentreCadastrarAndConsultar-->
+<section class="row justify-content-center p-2 bg-light">
+
+    <div class="col-12 my-3">
+        <h2 class="text-center font-weight-bold text-roxo">Carro</h2>
+    </div>
+
+    <div class="col-6 my-3 p-3 text-center rounded" style="background-color: #955cfb;">
+        <button class="butaoMedian butao-version2 mx-2  rounded butaoActive" type="button">Cadastrar</button>
+
+        <button class="butaoMedian butao-version2 bg-branco mx-2  rounded" type="button">Consultar</button>
+    </div>
+
+</section>
+<!--fimNavgacaoentreCadastrarAndConsultar-->
