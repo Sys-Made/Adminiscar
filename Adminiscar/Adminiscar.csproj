@@ -177,6 +177,7 @@
     <Content Include="Views\Adminiscar\Cliente.cshtml" />
     <Content Include="Views\Adminiscar\Carro.cshtml" />
     <Content Include="Views\Adminiscar\Devolucao.cshtml" />
+    <Content Include="Views\Adminiscar\Locacao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
