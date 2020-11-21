@@ -50,6 +50,11 @@ namespace Adminiscar.Controllers
             return View();
         }
 
+        public ActionResult Locacao()
+        {
+
+            return View();
+        }
         /*public string Index() {
 
             return "esse é minha pagina default action";
