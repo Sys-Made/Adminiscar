@@ -1,4 +1,26 @@
-﻿/*FuncaoNavegacaoDoMenuinicial*/
+﻿/*LoaddingFucao*/
+var i = 0;
+
+var move = function() {
+    if (i == 0) {
+        i = 1;
+        var elem = document.getElementById("myBar");
+        var width = 1;
+        var id = setInterval(frame, 10);
+        function frame() {
+            if (width >= 100) {
+                clearInterval(id);
+                i = 0;
+            } else {
+                width++;
+                elem.style.width = width + "%";
+            }
+        }
+    }
+}
+/*fimLoadingFuncao*/
+
+/*FuncaoNavegacaoDoMenuinicial*/
 var NavFuncao = function (valueHtml) {
     //convertendo em numero ineteiro
     var valuePg = parseInt(valueHtml);
@@ -31,32 +53,39 @@ var NavFuncao = function (valueHtml) {
 };
 /*fimFuncaoNavegacaoDoMenuinicial*/
 
-/*LoaddingFucao*/
-var i = 0;
-
-function move() {
-    if (i == 0) {
-        i = 1;
-        var elem = document.getElementById("myBar");
-        var width = 1;
-        var id = setInterval(frame, 10);
-        function frame() {
-            if (width >= 100) {
-                clearInterval(id);
-                i = 0;
-            } else {
-                width++;
-                elem.style.width = width + "%";
-            }
-        }
-    }
-}
-/*fimLoadingFuncao*/
-
 /*NavegacaoCadCon*/
-function NavegacaoCadCon(value) {
+var NavegacaoCadCon = function (value) {
+    //declarando variaveis
+    var numSecaoInfo, btnCadastro, btnConsulta, guardaList,testeLocation;
 
-    alert("teste funfou " + value);
+    //convertendo para inteiro
+    numSecaoInfo = parseInt(value);
 
-}
-/*fimNavegacaoCadCon/
+    //colocando as classeNames em uma variavel
+    btnCadastro = document.getElementsByClassName("botaoCadastro");
+
+    if (numSecaoInfo == 1) {
+
+        testeLocation = btnCadastro[0].classList;
+
+        guardaList = testeLocation.toString();
+
+        alert(guardaList.indexOf("butaoActive"));
+
+        //alert(testeLocation.indexOf("wewe"));
+
+        /*guardaList = btnCadastro[0].classList;
+
+        testeLocation = guardaList.indexOf("butaoActive");*/
+
+
+        //alert(btnCadastro[0].classList);
+
+        //alert(testeLocation);
+
+    }
+
+    //alert("teste funfou " + value);
+
+};
+/*fimNavegacaoCadCon*/

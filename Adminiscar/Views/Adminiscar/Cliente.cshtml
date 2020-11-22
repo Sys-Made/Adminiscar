@@ -43,16 +43,16 @@
     </div>
 
     <div class="col-6 my-3 p-3 text-center rounded" style="background-color: #955cfb;">
-        <button class="butaoMedian butao-version2 mx-2  rounded butaoActive" type="button">Cadastrar</button>
+        <button class="butaoMedian butao-version2 mx-2 rounded botaoCadastro butaoActive" type="button" onclick="NavegacaoCadCon(1);">Cadastrar</button>
 
-        <button class="butaoMedian butao-version2 bg-branco mx-2  rounded" type="button">Consultar</button>
+        <button class="butaoMedian butao-version2 bg-branco mx-2  rounded" type="button" onclick="NavegacaoCadCon(2);">Consultar</button>
     </div>
 
 </section>
 <!--fimNavgacaoentreCadastrarAndConsultar-->
 
 <!--Cadastro-->
-<section class="row justify-content-center my-2 p-2" style="display: none;">
+<section class="row justify-content-center my-2 p-2">
     <!--nome/cpf/cnpj/cnh-->
     <div class="col-12 text-white">
         <form>
@@ -145,7 +145,7 @@
             <div class="form-row justify-content-center my-3">
                 <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="button">Registrar</button>
 
-                <button class="butaoMeidan bg-branco mx-2 my-2 rounded" type="reset">Limpar</button>
+                <button class="butaoMeidan bg-branco mx-2 my-2 rounded border-0" type="reset">Limpar</button>
             </div>
 
         </form>
@@ -155,7 +155,7 @@
 <!--fimCadastro-->
 
 <!--Consulta-->
-<section class="row justify-content-center my-4">
+<section class="row justify-content-center my-4 noVisive">
     <div class="col-12 p-3 bg-light">
 
         <h2 class="text-center my-2 text-roxo">Pesquisa</h2>
