@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        <div class="col text-right">
+        <div class="col text-right" onclick="NavFuncao(7);">
             <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
                 <p>Voltar</p>
             </div>
@@ -32,7 +32,6 @@
 
 </header>
 <!--fimHeader-->
-
 <!--navgacaoentreCadastrarAndConsultar-->
 <section class="row justify-content-center p-2 bg-light">
 
@@ -41,16 +40,15 @@
     </div>
 
     <div class="col-6 my-3 p-3 text-center rounded" style="background-color: #955cfb;">
-        <button class="butaoMedian butao-version2 mx-2  rounded butaoActive" type="button">Cadastrar</button>
+        <button class="butaoMedian butao-version2 mx-2 botaoCadastro rounded butaoActive" type="button" onclick="NavegacaoCadCon(1);">Cadastrar</button>
 
-        <button class="butaoMedian butao-version2 bg-branco mx-2  rounded" type="button">Consultar</button>
+        <button class="butaoMedian butao-version2 bg-branco mx-2 botaoConsulta rounded" type="button" onclick="NavegacaoCadCon(2);">Consultar</button>
     </div>
 
 </section>
 <!--fimNavgacaoentreCadastrarAndConsultar-->
-
 <!--Cadastro-->
-<section class="row justify-content-center my-2 p-2" style="display: none;">
+<section class="row justify-content-center my-2 p-2 cadastroSecao">
     <!--nome/cpf/cnpj/cnh-->
     <div class="col-12 text-white">
         <form>
@@ -83,7 +81,6 @@
 
             </div>
             <!--fimNomeVeiculo/modelo/renavam/combustivel-->
-            
             <!--placaAndCartegoria-->
             <div class="form-row border-top my-4">
 
@@ -125,7 +122,6 @@
 
             </div>
             <!--fimPlacaAndCartegoria-->
-
             <!--valores-->
             <div class="form-row border-top border-bottom py-2 my-2">
 
@@ -157,9 +153,8 @@
 
 </section>
 <!--fimCadastro-->
-
 <!--Consulta-->
-<section class="row justify-content-center my-4">
+<section class="row justify-content-center my-4 consultaSecao noVisive">
     <div class="col-12 p-3 bg-light">
 
         <h2 class="text-center my-2 text-roxo">Pesquisa</h2>
@@ -221,9 +216,9 @@
                     <td>KOP12356</td>
                     <td>153.624.899-10</td>
                     <td>
-                        <button class="btn btn-primary my-1">Detalhe</button>
-                        <button class="btn btn-primary my-1">Deletar</button>
-                        <button class="btn btn-primary my-1">Alterar</button>
+                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
+                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
+                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
                     </td>
                 </tr>
 
@@ -233,9 +228,9 @@
                     <td>KOP12356</td>
                     <td>153.624.899-10</td>
                     <td>
-                        <button class="btn btn-primary my-1">Detalhe</button>
-                        <button class="btn btn-primary my-1">Deletar</button>
-                        <button class="btn btn-primary my-1">Alterar</button>
+                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
+                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
+                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
                     </td>
                 </tr>
 
@@ -245,9 +240,9 @@
                     <td>KOP12356</td>
                     <td>153.624.899-10</td>
                     <td>
-                        <button class="btn btn-primary my-1">Detalhe</button>
-                        <button class="btn btn-primary my-1">Deletar</button>
-                        <button class="btn btn-primary my-1">Alterar</button>
+                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
+                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
+                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
                     </td>
                 </tr>
 
@@ -257,9 +252,9 @@
                     <td>KOP12356</td>
                     <td>153.624.899-10</td>
                     <td>
-                        <button class="btn btn-primary my-1">Detalhe</button>
-                        <button class="btn btn-primary my-1">Deletar</button>
-                        <button class="btn btn-primary my-1">Alterar</button>
+                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
+                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
+                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
                     </td>
                 </tr>
 
@@ -269,9 +264,9 @@
                     <td>KOP12356</td>
                     <td>153.624.899-10</td>
                     <td>
-                        <button class="btn btn-primary my-1">Detalhe</button>
-                        <button class="btn btn-primary my-1">Deletar</button>
-                        <button class="btn btn-primary my-1">Alterar</button>
+                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
+                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
+                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
                     </td>
                 </tr>
 
@@ -281,9 +276,9 @@
                     <td>KOP12356</td>
                     <td>153.624.899-10</td>
                     <td>
-                        <button class="btn btn-primary my-1">Detalhe</button>
-                        <button class="btn btn-primary my-1">Deletar</button>
-                        <button class="btn btn-primary my-1">Alterar</button>
+                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
+                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
+                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
                     </td>
                 </tr>
             </tbody>
@@ -310,3 +305,26 @@
     </div>
 </section>
 <!--fimConsulta-->
+
+<!--ModalInformações-->
+<!-- detalhesCarro -->
+<div class="modal fade" id="detalhe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Em Breve Dados</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h1 class="text-center">EM BREVE</h1>
+            </div>
+            <!--<div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>-->
+        </div>
+    </div>
+</div>
+<!--fimDetalhesClientes-->

@@ -3,8 +3,9 @@
 }
 /*backgroundGradient*/
 .bg-degrader {
+    height: auto;
     background-image: linear-gradient(#a75afa, #5762fe);
-    /*background-size: auto auto; /*largura esta auto e altura esta em 1200px*/
+    background-size: auto; /*largura esta auto e altura esta em 1200px*/
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -37,6 +38,12 @@
     text-shadow: 2px 2px 3px #000;
 }
 
+/*Nãovisivel*/
+.noVisive {
+    display: none;
+}
+/*fim*/
+
 /*botoes*/
 .butao{
     max-height: 50px;
@@ -49,6 +56,7 @@
     max-width: 140px;
     height: 50px;
     width: 110px;
+    border: none;
 }
 .butao-version2 {
     /*background-color: #fbfbfb;*/
