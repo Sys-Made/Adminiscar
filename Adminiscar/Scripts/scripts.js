@@ -1,7 +1,9 @@
 ﻿/*LoaddingFucao*/
-var i = 0;
 
-var move = function() {
+var move = function () {
+
+    var i = 0;
+
     if (i == 0) {
         i = 1;
         var elem = document.getElementById("myBar");
@@ -43,6 +45,10 @@ var NavFuncao = function (valueHtml) {
             location.href = "Devolucao";
             break;
 
+        case 7:
+            location.href = "MenuInicial";
+            break;
+
         default:
             alert("Error01!! NA FUNÇÃO -> NavFuncao() Ou essa Pagina não existe");
             break;
@@ -55,37 +61,72 @@ var NavFuncao = function (valueHtml) {
 
 /*NavegacaoCadCon*/
 var NavegacaoCadCon = function (value) {
-    //declarando variaveis
-    var numSecaoInfo, btnCadastro, btnConsulta, guardaList,testeLocation;
+    //declarando variaveis locais
+    var numSecaoInfo, btnCadastro, secaoCadastro, secaoConsulta, btnConsulta, guardaList, guardaItem,testeLocation;
 
     //convertendo para inteiro
     numSecaoInfo = parseInt(value);
 
-    //colocando as classeNames em uma variavel
+    //colocando as classeNames dos botoes em uma variavel
     btnCadastro = document.getElementsByClassName("botaoCadastro");
+    btnConsulta = document.getElementsByClassName("botaoConsulta");
+    secaoCadastro = document.getElementsByClassName("cadastroSecao");
+    secaoConsulta = document.getElementsByClassName("consultaSecao");
 
-    if (numSecaoInfo == 1) {
+    switch (numSecaoInfo) {
 
-        testeLocation = btnCadastro[0].classList;
+        case 1:
+            //fazendo uma lista de class name com o method classList
+            testeLocation = btnCadastro[0].classList;
 
-        guardaList = testeLocation.toString();
+            //Convertendo em String e buscando className especifico
+            guardaList = testeLocation.toString();
 
-        alert(guardaList.indexOf("butaoActive"));
+            guardaList = guardaList.indexOf("butaoActive");
 
-        //alert(testeLocation.indexOf("wewe"));
+            //Convertendo para numero inteiro
+            guardaItem = parseInt(guardaList);
 
-        /*guardaList = btnCadastro[0].classList;
+            //vereficando se tem o butaoActive
+            if (guardaItem == -1) {
 
-        testeLocation = guardaList.indexOf("butaoActive");*/
+                //mudando os nome da class de elemento para outro
+                btnCadastro[0].classList.add("butaoActive");
+                btnConsulta[0].classList.remove("butaoActive");
+                secaoCadastro[0].classList.remove("noVisive");
+                secaoConsulta[0].classList.add("noVisive");
 
+            }
+            break;
 
-        //alert(btnCadastro[0].classList);
+        case 2:
+            //fazendo uma lista de class name com o method classList
+            testeLocation = btnConsulta[0].classList;
 
-        //alert(testeLocation);
+            //Convertendo em String e buscando className especifico
+            guardaList = testeLocation.toString();
+
+            guardaList = guardaList.indexOf("butaoActive");
+
+            //Convertendo para numero inteiro
+            guardaItem = parseInt(guardaList);
+
+            //verificando se não existe o butonActive
+            if (guardaItem == -1) {
+
+                btnConsulta[0].classList.add("butaoActive");
+                btnCadastro[0].classList.remove("butaoActive");
+                secaoConsulta[0].classList.remove("noVisive");
+                secaoCadastro[0].classList.add("noVisive");
+
+            }
+            break;
+            
+
+        default:
+            alert("Erro02! Na Função -> NavegacaoCadCon");
 
     }
-
-    //alert("teste funfou " + value);
 
 };
 /*fimNavegacaoCadCon*/
