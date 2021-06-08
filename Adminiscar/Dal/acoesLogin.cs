@@ -15,7 +15,7 @@ namespace Adminiscar.Dal
         //criando a funcao que vai ser o usuario existe
         public void LogarUsuario(LoginACS usuario) {
 
-            MySqlCommand cmd = new MySqlCommand("SELECT NOME_FUNC, SENHA, NIVEL_ACESSO FROM FUNCIONARIO INNER JOIN LOGIN_SYS ON COD_FUNC_FK = 1 AND SENHA = 123456789;");
+            MySqlCommand cmd = new MySqlCommand("SELECT NOME_FUNC, SENHA, NIVEL_ACESSO FROM FUNCIONARIO INNER JOIN LOGIN_SYS ON COD_FUNC_FK = 1 AND SENHA = 123456789", con.MyConectorBd());
  
             //quando for pegar dados do usuario
             /*cmd.Parameters.Add("@usuario", MySqlDbType.VarChar).Value = user.usuario;

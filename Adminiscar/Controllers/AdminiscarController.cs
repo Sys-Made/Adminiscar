@@ -12,6 +12,11 @@ namespace Adminiscar.Controllers
     public class AdminiscarController : Controller
     {
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         //chamando o dal acoes do login
         acoesLogin acLg = new acoesLogin();
 
@@ -21,7 +26,8 @@ namespace Adminiscar.Controllers
             acLg.LogarUsuario(verLogin);    //pegando objeto login jogando os valores do method Logar
 
             //fazendo codição
-            if (verLogin.user != null && verLogin.pass != null) {
+            if (verLogin.user != null && verLogin.pass != null)
+            {
 
                 FormsAuthentication.SetAuthCookie(verLogin.user, false);    //ele não deve existir no cookie
                 Session["usuarioLog"] = verLogin.user.ToString();   //criando a sesssoes
@@ -34,19 +40,24 @@ namespace Adminiscar.Controllers
                     Session["tipoLogado"] = verLogin.tipoUser.ToString();
 
                 }
-                else {
+                else
+                {
 
                     Session["tipoLogado1"] = verLogin.tipoUser.ToString();
 
                 }
 
-                return RedirectToAction("MenuInicial", "Home");
+                return RedirectToAction("MenuInicial", "Adminiscar");
+
+            }
+            else {
+
+                ViewBag.msgLogar = "Usuário não encontrado. Verifique o nome do usuário e a senha";
+                Response.Write("<script>alert('Erro no Login!!!')</script>");
+                return View();
 
             }
 
-            return View();
-
-            
         }
 
         public ActionResult Loadding()
