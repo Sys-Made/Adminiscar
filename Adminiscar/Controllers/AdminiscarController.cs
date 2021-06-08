@@ -3,14 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Adminiscar.Models;
+using Adminiscar.Dal;
+using System.Web.Security;
 
 namespace Adminiscar.Controllers
 {
     public class AdminiscarController : Controller
     {
-        // GET: Adminiscar
-        public ActionResult Index()
+
+        //chamando o dal acoes do login
+        acoesLogin acLg = new acoesLogin();
+
+        [HttpPost]
+        public ActionResult Index(LoginACS verLogin)
         {
+            acLg.LogarUsuario(verLogin);    //pegando objeto login jogando os valores do method Logar
+
+            //fazendo codição
+            if (verLogin.user != null && verLogin.pass != null) {
+
+                FormsAuthentication.SetAuthCookie(verLogin.user, false);    //ele não deve existir no cookie
+                Session["usuarioLog"] = verLogin.user.ToString();   //criando a sesssoes
+                Session["senhaLogado"] = verLogin.user.ToString();
+
+                //criando o tipo
+                if (verLogin.tipoUser == "0")
+                {
+
+                    Session["tipoLogado"] = verLogin.tipoUser.ToString();
+
+                }
+                else {
+
+                    Session["tipoLogado1"] = verLogin.tipoUser.ToString();
+
+                }
+
+                return RedirectToAction("MenuInicial", "Home");
+
+            }
 
             return View();
 
