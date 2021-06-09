@@ -17,17 +17,57 @@ namespace Adminiscar.Dal
 
         Conexao con = new Conexao();    //inicioando o novo objeto da conexao
 
-        public void cadastroCli(Cliente cadCliente) {
-
+        public void cadastroCli(Cliente cliente) {
+            //variaveis locais
+            int codTell, codEnd;
             //telefone Cliente
             /*MySqlCommand cmd = new MySqlCommand("INSERT INTO telefone(TELL1, TELL2)VALUES('4002 - 8922','')", con.MyConectorBd());    //commando do banco pra inserir telefone
-            cmd.ExecuteNonQuery();*/
+            cmd.ExecuteNonQuery();
 
             //endereco Cliente
             MySqlCommand cmd1 = new MySqlCommand("INSERT INTO endereco(LOGRADURO, NUMERO, BAIRRO, CEP, CIDADE, ESTADO)VALUES('Rua tarantino santana','15', 'elitropolis','12365-456', 'elipes', 'elapezes')", con.MyConectorBd());
-            cmd1.ExecuteNonQuery();
+            cmd1.ExecuteNonQuery();*/
+
+            //busca tel e endereco
+            /*MySqlCommand cmdTell = new MySqlCommand("SELECT COD_TELL FROM TELEFONE WHERE COD_TELL = 3", con.MyConectorBd());    //busca cmdTell
+            MySqlCommand cmdEnd = new MySqlCommand("SELECT COD_ENDERECO FROM endereco WHERE COD_ENDERECO = 4;", con.MyConectorBd());   //busca cmdEnd
+
+            //buscando tell
+            MySqlDataReader leitorTell; //preparando o comando sql
+
+            leitorTell = cmdTell.ExecuteReader(); //executando sql
+
+            if (leitorTell.HasRows) {   //verificando se veio algo
+
+                while (leitorTell.Read()) { //lendo o resultado
+
+                    codTell = Convert.ToInt32(leitorTell["COD_TELL"]);
+                    
+                }
+
+            }
+
+            //busca end
+            MySqlDataReader leitorEnd; //preparando o comando sql
+
+            leitorEnd = cmdEnd.ExecuteReader(); //executando sql
+
+            if (leitorEnd.HasRows)
+            {   //verificando se veio algo
+
+                while (leitorEnd.Read())
+                { //lendo o resultado
+
+                    codEnd = Convert.ToInt32(leitorEnd["COD_ENDERECO"]);
+
+                }
+
+            }*/
 
             //cliente Cliente
+            MySqlCommand cmd2 = new MySqlCommand("INSERT INTO cliente(NOME_CLIENTE, CPF_CNPJ, CNH_CLIENTE, COD_TELL_FK, COD_ENDERECO_FK)VALUES('carol','444.555.666-89','0000000', 3, 4)", con.MyConectorBd());
+            cmd2.ExecuteNonQuery();
+
             con.MyCloseBd();
         }
 
