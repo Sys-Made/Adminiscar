@@ -124,11 +124,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminiscarController.cs" />
+    <Compile Include="Dal\acoesCli.cs" />
     <Compile Include="Dal\acoesLogin.cs" />
     <Compile Include="Dal\Conexao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\LoginACS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

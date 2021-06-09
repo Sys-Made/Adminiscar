@@ -14,7 +14,13 @@ namespace Adminiscar.Models
         public string cnpjCli { get; set; }
         public string cnhCli { get; set; }
         public string tellCli { get; set; }
-        public string endCli { get; set; }
+        public string tell2Cli { get; set; }
+        public string logaduraCli { get; set; }
+        public string numCli { get; set; }
+        public string bairroCli { get; set; }
+        public string cepCli { get; set; }
+        public string cidCli { get; set; }
+        public string estCli { get; set; }
 
     }
 }

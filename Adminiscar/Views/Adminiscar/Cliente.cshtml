@@ -1,4 +1,6 @@
-﻿@{
+﻿@model  Adminiscar.Models.Cliente
+
+@{
 
     Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
 }
@@ -55,102 +57,250 @@
 <section class="row justify-content-center my-2 p-2 cadastroSecao">
     <!--nome/cpf/cnpj/cnh-->
     <div class="col-12 text-white">
-        <form>
-            <!--nome/cpf/cnpj/cnh-->
-            <div class="form-row">
 
+        @using (Html.BeginForm("Cliente02", "Adminiscar", FormMethod.Post))
+        {
+            <div class="form-row">
                 <div class="col mt-1 mb-2">
                     <label for="exampleInputEmail1">Nome:</label>
-                    <input type="text" class="form-control col-10" placeholder="Exemplo: Ana Clara De Almeida">
+                    @Html.EditorFor(cli => cli.nomeCli, new {
+                   id = "exampleInputNome1",
+                   senha = "txtNomeCli",
+                   type = "text",
+                   @class = "form-control col-10",
+                   placehoder = "Exemplo: Ana Clara De Almeida",
+                   required = "required"
+               })
                 </div>
 
                 <div class="col mt-1 mb-2">
                     <label for="exampleInputEmail1">CPF:</label>
-                    <input type="text" class="form-control col-10" placeholder="Exemplo: 123.654.798-50">
+                    @Html.EditorFor(cli => cli.cpfCli, new {
+                   id = "exampleInputCpf1",
+                   senha = "txtCpfCli",
+                   type = "text",
+                   @class = "form-control col-10",
+                   placehoder = "Exemplo: 123.654.798-50",
+                   required = "required"
+               })
                 </div>
-
             </div>
 
             <div class="form-row">
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">CNPJ:</label>
-                    <input type="text" class="form-control col-10" placeholder="Coloca seu exemplo aqui">
+                <div class="col mt-1 mb-2">
+                    <label for="exampleInputCnpj1">CNPJ:</label>
+                    @Html.EditorFor(cli => cli.cnpjCli, new {
+                   id = "exampleInputCpf1",
+                   senha = "txtCnpjCli",
+                   type = "text",
+                   @class = "form-control col-10",
+                   placehoder = "Coloca seu exemplo aqui",
+                   required = "required"
+               })
                 </div>
 
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">CNH:</label>
-                    <input type="text" class="form-control col-10" placeholder="Coloca seu exemplo aqui">
+                <div class="col mt-1 mb-2">
+                    <label for="exampleInputCnpj1">CNPJ:</label>
+                    @Html.EditorFor(cli => cli.cnpjCli, new {
+                   id = "exampleInputCpf1",
+                   senha = "txtCnpjCli",
+                   type = "text",
+                   @class = "form-control col-10",
+                   placehoder = "Coloca seu exemplo aqui",
+                   required = "required"
+               })
                 </div>
 
             </div>
-            <!--fimNome/cpf/cnpj/cnh-->
-            <!--Edereço-->
-            <div class="form-row my-2">
 
+            <div class="form-row my-2">
                 <div class="col my-1">
                     <label for="exampleInputEmail1">Endereço:</label>
-                    <input type="text" class="form-control col-10" placeholder="Exemplo: Rua charles chappin">
+                    @Html.EditorFor(cli => cli.logaduraCli, new {
+                   id = "exampleInputCpf1",
+                   senha = "txtlogaduraCli",
+                   type = "text",
+                   @class = "form-control col-10",
+                   placehoder = "Exemplo: Rua charles chappin",
+                   required = "required"
+               })
                 </div>
 
-                <div class="col-4 my-1">
-                    <label for="exampleInputEmail1">numero:</label>
-                    <input type="text" class="form-control col-8" placeholder="Exemplo: 14a">
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Numero:</label>
+                    @Html.EditorFor(cli => cli.numCli, new {
+                   id = "exampleInputNum1",
+                   senha = "txtNumCli",
+                   type = "text",
+                   @class = "form-control col-8",
+                   placehoder = "Exemplo: Rua charles chappin",
+                   required = "required"
+               })
                 </div>
 
             </div>
 
             <div class="form-row my-2">
-
                 <div class="col my-1">
                     <label for="exampleInputEmail1">Bairro:</label>
-                    <input type="text" class="form-control col-10" placeholder="Exemplo: Jardim Santana">
+                    @Html.EditorFor(cli => cli.bairroCli, new {
+                  id = "exampleInputBairro1",
+                  senha = "txtbairroCli",
+                  type = "text",
+                  @class = "form-control col-10",
+                  placehoder = "Exemplo: Jardim Santana",
+                  required = "required"
+              })
                 </div>
 
                 <div class="col my-1">
                     <label for="exampleInputEmail1">Cidade:</label>
-                    <input type="text" class="form-control col-8" placeholder="Exemplo: São Paulo">
+                    @Html.EditorFor(cli => cli.cidCli, new {
+                   id = "exampleInputNum1",
+                   senha = "txtcidCli",
+                   type = "text",
+                   @class = "form-control col-8",
+                   placehoder = "Exemplo: Rua charles chappin",
+                   required = "required"
+               })
                 </div>
 
                 <div class="col my-1">
                     <label for="exampleInputEmail1">Uf:</label>
                     <br />
-                    <select class="custom-select col-5" id="inlineFormCustomSelect">
-                        <option selected>UF...</option>
-                        <option value="1">SP</option>
-                        <option value="2">RJ</option>
-                        <option value="3">ES</option>
-                    </select>
+                    @Html.DropDownList("UfType")
                 </div>
-
             </div>
-            <!--fimEdereço-->
 
-            <!--contato-->
             <div class="form-row my-2">
 
                 <div class="col my-1">
                     <label for="exampleInputEmail1">Celular:</label>
-                    <input type="text" class="form-control col-10" placeholder="Exemplo: 11 98755-6321">
+                    @Html.EditorFor(cli => cli.tellCli, new {
+                   id = "exampleInputNum1",
+                   senha = "txttellCli",
+                   type = "text",
+                   @class = "form-control col-10",
+                   placehoder = "Exemplo: 11 98755 - 6321",
+                   required = "required"
+               })
                 </div>
 
                 <div class="col my-1">
                     <label for="exampleInputEmail1">Telefone Fixo:</label>
-                    <input type="text" class="form-control col-10" placeholder="Exemplo: 11 3968-5023">
+                    @Html.EditorFor(cli => cli.tell2Cli, new {
+                   id = "exampleInputNum1",
+                   senha = "txttell2Cli",
+                   type = "text",
+                   @class = "form-control col-10",
+                   placehoder = "Exemplo: 11 98755 - 6321",
+                   required = "required"
+               })
+                </div>
+
+                <div class="form-row justify-content-center my-3">
+                    <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="submit">Registrar</button>
+
+                    <button class="butaoMeidan bg-branco mx-2 my-2 rounded border-0" type="reset">Limpar</button>
                 </div>
 
             </div>
-            <!--fimContato-->
 
-            <div class="form-row justify-content-center my-3">
-                <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="button">Registrar</button>
+        }
+        <!-- <form>
+        <!--nome/cpf/cnpj/cnh
+        <div class="form-row">
 
-                <button class="butaoMeidan bg-branco mx-2 my-2 rounded border-0" type="reset">Limpar</button>
+            <div class="col mt-1 mb-2">
+                <label for="exampleInputEmail1">Nome:</label>
+                <input type="text" class="form-control col-10" placeholder="Exemplo: Ana Clara De Almeida">
             </div>
 
-        </form>
+            <div class="col mt-1 mb-2">
+                <label for="exampleInputEmail1">CPF:</label>
+                <input type="text" class="form-control col-10" placeholder="Exemplo: 123.654.798-50">
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="col my-1">
+                <label for="exampleInputEmail1">CNPJ:</label>
+                <input type="text" class="form-control col-10" placeholder="Coloca seu exemplo aqui">
+            </div>
+
+            <div class="col my-1">
+                <label for="exampleInputEmail1">CNH:</label>
+                <input type="text" class="form-control col-10" placeholder="Coloca seu exemplo aqui">
+            </div>
+
+        </div>
+        <!--fimNome/cpf/cnpj/cnh
+
+        <!--Edereço
+        <div class="form-row my-2">
+
+            <div class="col my-1">
+                <label for="exampleInputEmail1">Endereço:</label>
+                <input type="text" class="form-control col-10" placeholder="Exemplo: Rua charles chappin">
+            </div>
+
+            <div class="col-4 my-1">
+                <label for="exampleInputEmail1">numero:</label>
+                <input type="text" class="form-control col-8" placeholder="Exemplo: 14a">
+            </div>
+
+        </div>
+
+        <div class="form-row my-2">
+
+            <div class="col my-1">
+                <label for="exampleInputEmail1">Bairro:</label>
+                <input type="text" class="form-control col-10" placeholder="Exemplo: Jardim Santana">
+            </div>
+
+            <div class="col my-1">
+                <label for="exampleInputEmail1">Cidade:</label>
+                <input type="text" class="form-control col-8" placeholder="Exemplo: São Paulo">
+            </div>
+
+            <div class="col my-1">
+                <label for="exampleInputEmail1">Uf:</label>
+                <br />
+                <select class="custom-select col-5" id="inlineFormCustomSelect">
+                    <option selected>UF...</option>
+                    <option value="1">SP</option>
+                    <option value="2">RJ</option>
+                    <option value="3">ES</option>
+                </select>
+            </div>
+
+        </div>
+        <!--fimEdereço
+        <!--contato
+        <div class="form-row my-2">
+
+            <div class="col my-1">
+                <label for="exampleInputEmail1">Celular:</label>
+                <input type="text" class="form-control col-10" placeholder="Exemplo: 11 98755-6321">
+            </div>
+
+            <div class="col my-1">
+                <label for="exampleInputEmail1">Telefone Fixo:</label>
+                <input type="text" class="form-control col-10" placeholder="Exemplo: 11 3968-5023">
+            </div>
+
+        </div>
+        <!--fimContato
+        <div class="form-row justify-content-center my-3">
+            <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="button">Registrar</button>
+
+            <button class="butaoMeidan bg-branco mx-2 my-2 rounded border-0" type="reset">Limpar</button>
+        </div>
+    </form>-->
     </div>
-    
+
 </section>
 <!--fimCadastro-->
 

@@ -12,6 +12,11 @@ namespace Adminiscar.Controllers
     public class AdminiscarController : Controller
     {
 
+        /**
+         * 
+         * indexInicio
+         * 
+         * */
         public ActionResult Index()
         {
             return View();
@@ -59,6 +64,7 @@ namespace Adminiscar.Controllers
             }
 
         }
+        //indexFim
 
         public ActionResult Loadding()
         {
@@ -76,23 +82,73 @@ namespace Adminiscar.Controllers
 
         }
 
+
+        /**
+         * 
+         * ClienteInicio
+         * 
+         * */
         public ActionResult Cliente() {
+        
+        //dropList
+            List<SelectListItem> items = new List<SelectListItem>();
+
+            items.Add(new SelectListItem { Text = "UF", Value = "0", Selected = true });
+
+            items.Add(new SelectListItem { Text = "SP", Value = "1" });
+
+            items.Add(new SelectListItem { Text = "RJ", Value = "2" });
+
+            items.Add(new SelectListItem { Text = "ES", Value = "3" });
+
+            ViewBag.UfType = items;
+        //fimDroplist
 
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Cliente02(Cliente cliente) {
+
+            acoesCli teste = new acoesCli();
+
+            teste.cadastroCli(cliente);
+
+            return RedirectToAction("Cliente", "Adminiscar");
+
+        }
+        //clienteFim
+
+
+        /**
+         * 
+         * carroInicio
+         * 
+         * */
         public ActionResult Carro()
         {
 
             return View();
         }
+        //carroFim
 
+        /**
+         * 
+         * devolucaoInicio
+         * 
+         * */
         public ActionResult Devolucao()
         {
 
             return View();
         }
+        //fimDevolucao
 
+        /**
+         * 
+         * locacaoInicio
+         * 
+         * */
         public ActionResult Locacao()
         {
 
