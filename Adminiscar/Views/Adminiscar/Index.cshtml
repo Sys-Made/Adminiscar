@@ -49,14 +49,14 @@
                                    required = "required"
                                }
                            })
-                                @Html.ValidationMessageFor(x => x.user, "", new { @class = "text-danger" });
+                                @Html.ValidationMessageFor(x => x.user, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="form-group text-shadow col-12">
                                 <label for="exampleInputPassword1">Senha:</label>
                                 @Html.EditorFor(x => x.user, new {
-                              htmlAtributes = new { id="exampleInputSenha1", senha="txtSenha", type="password", @class= "form-control col-1", required = "required"}})
-                                @Html.ValidationMessageFor(x => x.pass, "", new { @class = "text-danger" });
+                              htmlAtributes = new { id="exampleInputSenha1", senha="txtSenha", type="password", @class= "form-control col-12", required = "required"}})
+                                @Html.ValidationMessageFor(x => x.pass, "", new { @class = "text-danger" })
                             </div>
 
                             <center><button type="submit" class="btn butao butao-version1 text-dark">Entrar</button></center>
