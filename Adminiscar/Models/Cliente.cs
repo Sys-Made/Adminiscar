@@ -13,11 +13,11 @@ namespace Adminiscar.Models
         public string cpfCli { get; set; }
         public string cnpjCli { get; set; }
         public string cnhCli { get; set; }
-        public string codTellCli { get; set; }
+        public int codTellCli { get; set; }
         public string tellCli { get; set; }
         public string tell2Cli { get; set; }
-        public string codEndCli { get; set; }
-        public string logaduraCli { get; set; }
+        public int codEndCli { get; set; }
+        public string rualgCli { get; set; }
         public string numCli { get; set; }
         public string bairroCli { get; set; }
         public string cepCli { get; set; }

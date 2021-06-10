@@ -19,19 +19,25 @@ namespace Adminiscar.Dal
         Conexao con = new Conexao();    //inicioando o novo objeto da conexao
 
         public void cadastroCli(Cliente cliente) {
-            //variaveis locais
-            //int codTell, codEnd;
             //telefone Cliente
-            /*MySqlCommand cmd = new MySqlCommand("INSERT INTO telefone(TELL1, TELL2)VALUES('4002 - 8922','')", con.MyConectorBd());    //commando do banco pra inserir telefone
+            MySqlCommand cmd = new MySqlCommand("INSERT INTO telefone(TELL1, TELL2)VALUES('@tel','@tel1')", con.MyConectorBd());    //commando do banco pra inserir telefone
+            cmd.Parameters.Add("@tell", MySqlDbType.VarChar).Value = cliente.tellCli;
+            cmd.Parameters.Add("@tell1", MySqlDbType.VarChar).Value = cliente.tell2Cli;
             cmd.ExecuteNonQuery();
 
             //endereco Cliente
-            MySqlCommand cmd1 = new MySqlCommand("INSERT INTO endereco(LOGRADURO, NUMERO, BAIRRO, CEP, CIDADE, ESTADO)VALUES('Rua tarantino santana','15', 'elitropolis','12365-456', 'elipes', 'elapezes')", con.MyConectorBd());
-            cmd1.ExecuteNonQuery();*/
+            MySqlCommand cmd1 = new MySqlCommand("INSERT INTO endereco(LOGRADURO, NUMERO, BAIRRO, CEP, CIDADE, ESTADO)VALUES('@rua','@numero', '@bairro','@cep', '@cidade', '@estado')", con.MyConectorBd());
+            cmd1.Parameters.Add("@rua", MySqlDbType.VarChar).Value = cliente.rualgCli;
+            cmd1.Parameters.Add("@numero", MySqlDbType.VarChar).Value = cliente.numCli;
+            cmd1.Parameters.Add("@bairro", MySqlDbType.VarChar).Value = cliente.bairroCli;
+            cmd1.Parameters.Add("@cep", MySqlDbType.VarChar).Value = cliente.cepCli;
+            cmd1.Parameters.Add("@cidade", MySqlDbType.VarChar).Value = cliente.cidCli;
+            cmd1.Parameters.Add("@estado", MySqlDbType.VarChar).Value = cliente.estCli;
+            cmd1.ExecuteNonQuery();
 
             //busca tel e endereco
-            /*MySqlCommand cmdTell = new MySqlCommand("SELECT COD_TELL FROM TELEFONE WHERE COD_TELL = 3", con.MyConectorBd());    //busca cmdTell
-            MySqlCommand cmdEnd = new MySqlCommand("SELECT COD_ENDERECO FROM endereco WHERE COD_ENDERECO = 4;", con.MyConectorBd());   //busca cmdEnd
+            MySqlCommand cmdTell = new MySqlCommand("SELECT MAX(COD_TELL) FROM telefone", con.MyConectorBd());    //busca cmdTell
+            MySqlCommand cmdEnd = new MySqlCommand("SELECT MAX(COD_ENDERECO) FROM endereco", con.MyConectorBd());   //busca cmdEnd
 
             //buscando tell
             MySqlDataReader leitorTell; //preparando o comando sql
@@ -42,7 +48,7 @@ namespace Adminiscar.Dal
 
                 while (leitorTell.Read()) { //lendo o resultado
 
-                    codTell = Convert.ToInt32(leitorTell["COD_TELL"]);
+                    cliente.codTellCli = Convert.ToInt32(leitorTell["COD_TELL"]);
                     
                 }
 
@@ -59,14 +65,19 @@ namespace Adminiscar.Dal
                 while (leitorEnd.Read())
                 { //lendo o resultado
 
-                    codEnd = Convert.ToInt32(leitorEnd["COD_ENDERECO"]);
+                    cliente.codEndCli = Convert.ToInt32(leitorEnd["COD_ENDERECO"]);
 
                 }
 
-            }*/
+            }
 
             //cliente Cliente
-            MySqlCommand cmd2 = new MySqlCommand("INSERT INTO cliente(NOME_CLIENTE, CPF_CNPJ, CNH_CLIENTE, COD_TELL_FK, COD_ENDERECO_FK)VALUES('ana julia','111.333.258-79','0000000', 3, 4)", con.MyConectorBd());
+            MySqlCommand cmd2 = new MySqlCommand("INSERT INTO cliente(NOME_CLIENTE, CPF_CNPJ, CNH_CLIENTE, COD_TELL_FK, COD_ENDERECO_FK)VALUES('@nome','@cpfcnpj','@cnh', @codtell, @codend)", con.MyConectorBd());
+            cmd2.Parameters.Add("@nome", MySqlDbType.VarChar).Value = cliente.nomeCli;
+            cmd2.Parameters.Add("@cpfcnpj", MySqlDbType.VarChar).Value = cliente.cpfCli;
+            cmd2.Parameters.Add("@cnh", MySqlDbType.VarChar).Value = cliente.cnhCli;
+            cmd2.Parameters.Add("@codtell", MySqlDbType.Int32).Value = cliente.codTellCli;
+            cmd2.Parameters.Add("@codend", MySqlDbType.Int32).Value = cliente.codEndCli;
             cmd2.ExecuteNonQuery();
 
             con.MyCloseBd();

@@ -144,9 +144,9 @@ namespace Adminiscar.Controllers
         [HttpPost]  //cadastro do cliente
         public ActionResult Cliente02(Cliente cliente) {
 
-            acoesCli teste = new acoesCli();
+            acoesCli acoescli = new acoesCli();
 
-            teste.cadastroCli(cliente);
+            acoescli.cadastroCli(cliente);
 
             return RedirectToAction("Cliente", "Adminiscar");
 
