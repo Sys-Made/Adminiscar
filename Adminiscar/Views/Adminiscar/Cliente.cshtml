@@ -67,9 +67,11 @@
                    id = "exampleInputNome1",
                    senha = "txtNomeCli",
                    type = "text",
-                   @class = "form-control col-10",
-                   placehoder = "Exemplo: Ana Clara De Almeida",
-                   required = "required"
+                   htmlAttributes = new { @class = "form-control col-10",
+                       @readonly = "readonly",
+                       @placeholder = "Ana Carolina",
+                       @required = "required"
+                   }
                })
                 </div>
 
@@ -79,9 +81,13 @@
                    id = "exampleInputCpf1",
                    senha = "txtCpfCli",
                    type = "text",
-                   @class = "form-control col-10",
-                   placehoder = "Exemplo: 123.654.798-50",
-                   required = "required"
+                   htmlAttributes = new
+                   {
+                       @class = "form-control col-10",
+                       @readonly = "readonly",
+                       @placeholder = "Exemplo: 123.654.798-50",
+                       @required = "required"
+                   }
                })
                 </div>
             </div>
@@ -93,21 +99,29 @@
                    id = "exampleInputCpf1",
                    senha = "txtCnpjCli",
                    type = "text",
-                   @class = "form-control col-10",
-                   placehoder = "Coloca seu exemplo aqui",
-                   required = "required"
+                   htmlAttributes = new
+                   {
+                       @class = "form-control col-10",
+                       @readonly = "readonly",
+                       @placeholder = "Exemplo: 123.654.798-50",
+                       @required = "required"
+                   }
                })
                 </div>
 
                 <div class="col mt-1 mb-2">
-                    <label for="exampleInputCnpj1">CNPJ:</label>
-                    @Html.EditorFor(cli => cli.cnpjCli, new {
-                   id = "exampleInputCpf1",
-                   senha = "txtCnpjCli",
+                    <label for="exampleInputCnpj1">CNH:</label>
+                    @Html.EditorFor(cli => cli.cnhCli, new {
+                   id = "exampleInputCnh1",
+                   senha = "txtCnhCli",
                    type = "text",
-                   @class = "form-control col-10",
-                   placehoder = "Coloca seu exemplo aqui",
-                   required = "required"
+                   htmlAttributes = new
+                   {
+                       @class = "form-control col-10",
+                       @readonly = "readonly",
+                       @placeholder = "Exemplo: Seu CNH",
+                       @required = "required"
+                   }
                })
                 </div>
 
@@ -120,9 +134,13 @@
                    id = "exampleInputCpf1",
                    senha = "txtlogaduraCli",
                    type = "text",
-                   @class = "form-control col-10",
-                   placehoder = "Exemplo: Rua charles chappin",
-                   required = "required"
+                   htmlAttributes = new
+                   {
+                       @class = "form-control col-10",
+                       @readonly = "readonly",
+                       @placeholder = "Exemplo: Rua charles chappin",
+                       @required = "required"
+                   }
                })
                 </div>
 
@@ -132,9 +150,13 @@
                    id = "exampleInputNum1",
                    senha = "txtNumCli",
                    type = "text",
-                   @class = "form-control col-8",
-                   placehoder = "Exemplo: Rua charles chappin",
-                   required = "required"
+                   htmlAttributes = new
+                   {
+                       @class = "form-control col-8",
+                       @readonly = "readonly",
+                       @placeholder = "Exemplo: 14",
+                       @required = "required"
+                   }
                })
                 </div>
 
@@ -144,13 +166,17 @@
                 <div class="col my-1">
                     <label for="exampleInputEmail1">Bairro:</label>
                     @Html.EditorFor(cli => cli.bairroCli, new {
-                  id = "exampleInputBairro1",
-                  senha = "txtbairroCli",
-                  type = "text",
-                  @class = "form-control col-10",
-                  placehoder = "Exemplo: Jardim Santana",
-                  required = "required"
-              })
+                   id = "exampleInputBairro1",
+                   senha = "txtbairroCli",
+                   type = "text",
+                   htmlAttributes = new
+                   {
+                       @class = "form-control col-10",
+                       @readonly = "readonly",
+                       @placeholder = "Exemplo: Jardim Santana",
+                       @required = "required"
+                   }
+               })
                 </div>
 
                 <div class="col my-1">
@@ -159,9 +185,13 @@
                    id = "exampleInputNum1",
                    senha = "txtcidCli",
                    type = "text",
-                   @class = "form-control col-8",
-                   placehoder = "Exemplo: Rua charles chappin",
-                   required = "required"
+                   htmlAttributes = new
+                   {
+                       @class = "form-control col-8",
+                       @readonly = "readonly",
+                       @placeholder = "Exemplo: São Paulo",
+                       @required = "required"
+                   }
                })
                 </div>
 
@@ -180,9 +210,13 @@
                    id = "exampleInputNum1",
                    senha = "txttellCli",
                    type = "text",
-                   @class = "form-control col-10",
-                   placehoder = "Exemplo: 11 98755 - 6321",
-                   required = "required"
+                   htmlAttributes = new
+                   {
+                       @class = "form-control col-10",
+                       @readonly = "readonly",
+                       @placeholder = "Exemplo: 11 98755 - 6321",
+                       @required = "required"
+                   }
                })
                 </div>
 
@@ -192,18 +226,22 @@
                    id = "exampleInputNum1",
                    senha = "txttell2Cli",
                    type = "text",
-                   @class = "form-control col-10",
-                   placehoder = "Exemplo: 11 98755 - 6321",
-                   required = "required"
+                   htmlAttributes = new
+                   {
+                       @class = "form-control col-10",
+                       @readonly = "readonly",
+                       @placeholder = "Exemplo: 11 98755 - 6321",
+                       @required = "required"
+                   }
                })
                 </div>
 
-                <div class="form-row justify-content-center my-3">
-                    <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="submit">Registrar</button>
+            </div>
 
-                    <button class="butaoMeidan bg-branco mx-2 my-2 rounded border-0" type="reset">Limpar</button>
-                </div>
+            <div class="form-row justify-content-center my-3">
+                <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="submit">Registrar</button>
 
+                <button class="butaoMeidan bg-branco mx-2 my-2 rounded border-0" type="reset">Limpar</button>
             </div>
 
         }
