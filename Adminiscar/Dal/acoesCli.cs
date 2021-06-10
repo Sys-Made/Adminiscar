@@ -74,7 +74,7 @@ namespace Adminiscar.Dal
 
         public DataTable consultaCli() {
 
-            MySqlCommand cmd = new MySqlCommand("SELECT NOME_CLIENTE, CPF_CNPJ, CNH_CLIENTE FROM cliente", con.MyConectorBd()); //fazendo a consulta
+            MySqlCommand cmd = new MySqlCommand("SELECT COD_CLIENTE, NOME_CLIENTE, CPF_CNPJ, CNH_CLIENTE FROM cliente", con.MyConectorBd()); //fazendo a consulta
             MySqlDataAdapter data = new MySqlDataAdapter(cmd);
             DataTable consultClint = new DataTable();
             data.Fill(consultClint);
@@ -85,8 +85,9 @@ namespace Adminiscar.Dal
 
         public DataTable buscCli(Cliente clit) {
 
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM CLIENTE WHERE NOME_CLIENTE LIKE '%@nomeClit%'", con.MyConectorBd());
-            cmd.Parameters.AddWithValue("@nomeClit", clit.nomeCli);   //adicionando o parametro do codigo cliente
+            //MySqlCommand cmd = new MySqlCommand("SELECT * FROM cliente WHERE COD_CLIENTE = @cod", con.MyConectorBd());
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM cliente WHERE COD_CLIENTE = @cod", con.MyConectorBd());
+            cmd.Parameters.AddWithValue("@cod", clit.codCli);   //adicionando o parametro do codigo cliente
             MySqlDataAdapter data = new MySqlDataAdapter(cmd);
             DataTable consultClint = new DataTable();
             data.Fill(consultClint);

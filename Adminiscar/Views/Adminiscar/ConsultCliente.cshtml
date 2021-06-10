@@ -11,13 +11,13 @@
     <div class="col-7">
         @using (Html.BeginForm("ConsultCliente", "Adminiscar", FormMethod.Post, new { enctype = "multipart / form - data" }))
         {
-            @Html.EditorFor(cli => cli.nomeCli, new {
-           id = "exampleInputNome1",
-           senha = "txtNomeCli",
-           type = "text",
-           @class = "form-control col-10",
-           placehoder = "Exemplo: Ana Clara De Almeida",
-           required = "required"
+            @Html.EditorFor(cli => cli.codCli, new {
+                       id = "exampleInputNome1",
+                       senha = "txtcodCli",
+                       type = "text",
+                       @class = "form-control col-10",
+                       placehoder = "Exemplo: Ana Clara De Almeida",
+                       required = "required"
        })
             <div class="col-2">
                 <button class="btn btn-secondary bg-branco rounded" type="submit">Buscar</button>
