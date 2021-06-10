@@ -1,0 +1,32 @@
+﻿@model  Adminiscar.Models.Cliente
+
+@{
+    ViewBag.Title = "ConsultCliente";
+    Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
+}
+
+<h2>ConsultCliente</h2>
+
+<div class="row p-2 justify-content-center">
+    <div class="col-7">
+        @using (Html.BeginForm("ConsultCliente", "Adminiscar", FormMethod.Post, new { enctype = "multipart / form - data" }))
+        {
+            @Html.EditorFor(cli => cli.nomeCli, new {
+           id = "exampleInputNome1",
+           senha = "txtNomeCli",
+           type = "text",
+           @class = "form-control col-10",
+           placehoder = "Exemplo: Ana Clara De Almeida",
+           required = "required"
+       })
+            <div class="col-2">
+                <button class="btn btn-secondary bg-branco rounded" type="submit">Buscar</button>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="col-12 mt-4 pt-2">
+    @Html.Raw(ViewBag.GridViewString)
+</div>
+

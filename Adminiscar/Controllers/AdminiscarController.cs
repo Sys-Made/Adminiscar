@@ -121,6 +121,26 @@ namespace Adminiscar.Controllers
             return View();  //retornando a view
         }
 
+        [HttpPost] //consulta cliente
+        public ActionResult ConsultCliente(Cliente cli) {
+
+            acoesCli acsCli = new acoesCli();    //chamando classe methods
+
+            //Consulta do cliente
+            GridView dataGV = new GridView();   //Desenvolvendo instancia da tabela
+            dataGV.DataSource = acsCli.buscCli(cli); //Atribuir ao grid o resultado da consulta
+            dataGV.DataBind(); //confirmando o grid
+            StringWriter sw = new StringWriter();   //Comando para construção do Grid na tela
+            HtmlTextWriter htw = new HtmlTextWriter(sw);    //Comando para construção do Grid na tela
+            dataGV.RenderControl(htw);
+            ViewBag.GridViewString = sw.ToString(); //Comando para construção do Grid na tela
+
+
+            //return RedirectToAction("ConsultCliente", "Adminiscar");
+            return View();
+
+        }
+
         [HttpPost]  //cadastro do cliente
         public ActionResult Cliente02(Cliente cliente) {
 

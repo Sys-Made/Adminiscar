@@ -66,7 +66,7 @@ namespace Adminiscar.Dal
             }*/
 
             //cliente Cliente
-            MySqlCommand cmd2 = new MySqlCommand("INSERT INTO cliente(NOME_CLIENTE, CPF_CNPJ, CNH_CLIENTE, COD_TELL_FK, COD_ENDERECO_FK)VALUES('carol','444.555.666-89','0000000', 3, 4)", con.MyConectorBd());
+            MySqlCommand cmd2 = new MySqlCommand("INSERT INTO cliente(NOME_CLIENTE, CPF_CNPJ, CNH_CLIENTE, COD_TELL_FK, COD_ENDERECO_FK)VALUES('ana julia','111.333.258-79','0000000', 3, 4)", con.MyConectorBd());
             cmd2.ExecuteNonQuery();
 
             con.MyCloseBd();
@@ -79,6 +79,19 @@ namespace Adminiscar.Dal
             DataTable consultClint = new DataTable();
             data.Fill(consultClint);
             con.MyCloseBd();
+            return consultClint;
+
+        }
+
+        public DataTable buscCli(Cliente clit) {
+
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM CLIENTE WHERE NOME_CLIENTE LIKE '%@nomeClit%'", con.MyConectorBd());
+            cmd.Parameters.AddWithValue("@nomeClit", clit.nomeCli);   //adicionando o parametro do codigo cliente
+            MySqlDataAdapter data = new MySqlDataAdapter(cmd);
+            DataTable consultClint = new DataTable();
+            data.Fill(consultClint);
+            con.MyCloseBd();
+
             return consultClint;
 
         }
