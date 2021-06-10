@@ -350,7 +350,7 @@
 
         <!--Busca-->
             <div class="row p-2 justify-content-center">
-                <div class="col-7">
+                <div class="col-8">
                     @using (Html.BeginForm("ConsultCliente", "Adminiscar", FormMethod.Post, new { enctype = "multipart / form - data" }))
                     {
                         @Html.EditorFor(cli => cli.codCli, new {
@@ -358,13 +358,13 @@
                        senha = "txtcodCli",
                        type = "text",
                        htmlAttributes = new{
-                           @class = "form-control col-12 boxShadow2",
-                           placehoder = "Exemplo: Ana Clara De Almeida",
-                           required = "required"
+                           @class = "form-control col-10 mx-auto boxShadow2",
+                           @placeholder = "Exemplo: Ana Clara De Almeida",
+                           @required = "required"
                        }
 
                    })
-                        <div class="col-2">
+                        <div class="col-4 my-3 mx-auto text-center">
                             <button class="btn btn-secondary bg-branco rounded" type="submit">Buscar</button>
                         </div>
                     }
@@ -396,7 +396,7 @@
             </div>
         <!--Fim-->
 
-        <div class="col-12 mt-4 pt-2">
+        <div class="col-8 mx-auto text-center mt-4 pt-2">
             @Html.Raw(ViewBag.GridViewString)
         </div>    
 
