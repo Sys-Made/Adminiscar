@@ -310,7 +310,9 @@
 
         <h2 class="text-center my-2 text-roxo">Pesquisa</h2>
 
-        <form class="my-3">
+        @Html.Raw(ViewBag.GridViewString)
+
+        <!--<form class="my-3">
             <div class="row p-2 justify-content-center">
                 <div class="col-7">
                     <input type="text" class="form-control col-12 boxShadow2" placeholder="Faça sua pesquisa: Nome, Cpf ou cnpj">
@@ -430,7 +432,7 @@
             </tbody>
         </table>
 
-        
+
 
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
@@ -446,7 +448,7 @@
                     <a class="page-link text-roxo" href="#">Next</a>
                 </li>
             </ul>
-        </nav>
+        </nav>-->
 
     </div>
 </section>

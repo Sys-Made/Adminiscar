@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using Adminiscar.Models;
@@ -19,7 +20,7 @@ namespace Adminiscar.Dal
 
         public void cadastroCli(Cliente cliente) {
             //variaveis locais
-            int codTell, codEnd;
+            //int codTell, codEnd;
             //telefone Cliente
             /*MySqlCommand cmd = new MySqlCommand("INSERT INTO telefone(TELL1, TELL2)VALUES('4002 - 8922','')", con.MyConectorBd());    //commando do banco pra inserir telefone
             cmd.ExecuteNonQuery();
@@ -71,5 +72,15 @@ namespace Adminiscar.Dal
             con.MyCloseBd();
         }
 
+        public DataTable consultaCli() {
+
+            MySqlCommand cmd = new MySqlCommand("SELECT NOME_CLIENTE, CPF_CNPJ, CNH_CLIENTE FROM cliente", con.MyConectorBd()); //fazendo a consulta
+            MySqlDataAdapter data = new MySqlDataAdapter(cmd);
+            DataTable consultClint = new DataTable();
+            data.Fill(consultClint);
+            con.MyCloseBd();
+            return consultClint;
+
+        }
     }
 }

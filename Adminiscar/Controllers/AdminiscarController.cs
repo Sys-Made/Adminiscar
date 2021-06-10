@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using Adminiscar.Models;
 using Adminiscar.Dal;
 using System.Web.Security;
+using System.Web.UI.WebControls;
+using System.IO;
+using System.Web.UI;
 
 namespace Adminiscar.Controllers
 {
@@ -89,8 +92,10 @@ namespace Adminiscar.Controllers
          * 
          * */
         public ActionResult Cliente() {
-        
-        //dropList
+
+            acoesCli acsCli = new acoesCli();    //chamando classe methods
+
+            //dropList (Cadastro do cliente)
             List<SelectListItem> items = new List<SelectListItem>();
 
             items.Add(new SelectListItem { Text = "UF", Value = "0", Selected = true });
@@ -102,12 +107,21 @@ namespace Adminiscar.Controllers
             items.Add(new SelectListItem { Text = "ES", Value = "3" });
 
             ViewBag.UfType = items;
-        //fimDroplist
+            //fimDroplist
 
-            return View();
+            //Consulta do cliente
+            GridView dataGV = new GridView();   //Desenvolvendo instancia da tabela
+            dataGV.DataSource = acsCli.consultaCli(); //Atribuir ao grid o resultado da consulta
+            dataGV.DataBind(); //confirmando o grid
+            StringWriter sw = new StringWriter();   //Comando para construção do Grid na tela
+            HtmlTextWriter htw = new HtmlTextWriter(sw);    //Comando para construção do Grid na tela
+            dataGV.RenderControl(htw);
+            ViewBag.GridViewString = sw.ToString(); //Comando para construção do Grid na tela
+
+            return View();  //retornando a view
         }
 
-        [HttpPost]
+        [HttpPost]  //cadastro do cliente
         public ActionResult Cliente02(Cliente cliente) {
 
             acoesCli teste = new acoesCli();
