@@ -135,8 +135,6 @@ namespace Adminiscar.Controllers
             dataGV.RenderControl(htw);
             ViewBag.GridViewString = sw.ToString(); //Comando para construção do Grid na tela
 
-
-            //return RedirectToAction("ConsultCliente", "Adminiscar");
             return View();
 
         }

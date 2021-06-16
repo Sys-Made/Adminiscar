@@ -91,7 +91,7 @@ namespace Adminiscar.Dal
 
         public DataTable consultaCli() {
 
-            MySqlCommand cmd = new MySqlCommand("SELECT COD_CLIENTE, NOME_CLIENTE, CPF_CNPJ, CNH_CLIENTE FROM cliente", con.MyConectorBd()); //fazendo a consulta
+            MySqlCommand cmd = new MySqlCommand("SELECT cli.NOME_CLIENTE, cli.CPF_CNPJ, cli.CNH_CLIENTE, tell.TELL1, tell.TELL2 FROM cliente AS cli INNER JOIN telefone AS tell ON cli.COD_TELL_FK = tell.COD_TELL", con.MyConectorBd()); //fazendo a consulta
             MySqlDataAdapter data = new MySqlDataAdapter(cmd);
             DataTable consultClint = new DataTable();
             data.Fill(consultClint);
@@ -102,8 +102,7 @@ namespace Adminiscar.Dal
 
         public DataTable buscCli(Cliente clit) {
 
-            //MySqlCommand cmd = new MySqlCommand("SELECT * FROM cliente WHERE COD_CLIENTE = @cod", con.MyConectorBd());
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM cliente WHERE COD_CLIENTE = @cod", con.MyConectorBd());
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM cliente WHERE COD_CLIENTE = @cod", con.MyConectorBd());  //comando sql copm a conexao
             cmd.Parameters.AddWithValue("@cod", clit.codCli);   //adicionando o parametro do codigo cliente
             MySqlDataAdapter data = new MySqlDataAdapter(cmd);
             DataTable consultClint = new DataTable();

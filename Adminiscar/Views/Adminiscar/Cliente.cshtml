@@ -250,17 +250,8 @@
                 <div class="col-8">
                     @using (Html.BeginForm("ConsultCliente", "Adminiscar", FormMethod.Post, new { enctype = "multipart / form - data" }))
                     {
-                        @Html.EditorFor(cli => cli.codCli, new {
-                       id = "exampleInputNome1",
-                       senha = "txtcodCli",
-                       type = "text",
-                       htmlAttributes = new{
-                           @class = "form-control col-10 mx-auto boxShadow2",
-                           @placeholder = "Exemplo: Ana Clara De Almeida",
-                           @required = "required"
-                       }
-
-                   })
+                        @Html.EditorFor(cli => cli.nomeCli, new { htmlAttributes = new { @class = "form-control col-10 mx-auto boxShadow2", type = "text", placeholder = "Exemplo: Ana Clara Caroline", id = "buscCliNome", senha = "txtBuscCli" } })
+                    
                         <div class="col-4 my-3 mx-auto text-center">
                             <button class="btn btn-secondary bg-branco rounded" type="submit">Buscar</button>
                         </div>
@@ -291,44 +282,8 @@
                     <label class="form-check-label" for="inlineCheckbox3">CNPJ</label>
                 </div>
             </div>
-        <!--Fim-->
-
-        <div class="col-8 mx-auto text-center mt-4 pt-2">
-            @Html.Raw(ViewBag.GridViewString)
-        </div>    
-
-            <!--<form class="my-3">
-                <div class="row p-2 justify-content-center">
-                    <div class="col-7">
-                        <input type="text" class="form-control col-12 boxShadow2" placeholder="Faça sua pesquisa: Nome, Cpf ou cnpj">
-                    </div>
-                    <div class="col-2">
-                        <button class="btn btn-secondary bg-branco rounded" type="reset">Buscar</button>
-                    </div>
-                </div>
-
-                <div class="row p-2 justify-content-center text-roxo">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">Nome</label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">CPF</label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                        <label class="form-check-label" for="inlineCheckbox3">CNH</label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                        <label class="form-check-label" for="inlineCheckbox3">CNPJ</label>
-                    </div>
-                </div>
-            </form>
+        <!--Fim-->   
+           
         </div>
 
         <div class="col-12 mt-4 pt-2">
@@ -355,7 +310,7 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <!--<tr>
                         <td>Patric Alison</td>
                         <td>501.236.789-55</td>
                         <td>Não Tem</td>
@@ -413,7 +368,7 @@
                             <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
                             <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
                         </td>
-                    </tr>
+                    </tr>-->
                 </tbody>
             </table>
 
@@ -433,7 +388,7 @@
                         <a class="page-link text-roxo" href="#">Next</a>
                     </li>
                 </ul>
-            </nav>-->
+            </nav>
         </div>
 </section>
 <!--fimConsulta-->
