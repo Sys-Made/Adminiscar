@@ -292,22 +292,29 @@
                     <tr>
                         <th scope="col">Nome</th>
                         <th scope="col">CPF</th>
-                        <th scope="col">CNPJ</th>
+                        <!--<th scope="col">CNPJ</th>-->
                         <th scope="col">CNH</th>
-                        <th scope="col">Ações</th>
+                        <th scope="col">Celular</th>
+                        <th scope="col">Telefone Fixo</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Patric Alison</td>
-                        <td>501.236.789-55</td>
-                        <td>Não Tem</td>
-                        <td>45698713210</td>
-                        <td>
-                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                        </td>
+                        @foreach (var dados in ViewBag.ArrayTest)
+                        {
+
+                            <td>@dados</td>
+
+                        }
+                        <!--<td>Patric Alison</td>
+    <td>501.236.789-55</td>
+    <td>Não Tem</td>
+    <td>45698713210</td>
+    <td>
+        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
+        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
+        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
+    </td>-->
                     </tr>
 
                     <!--<tr>
@@ -374,7 +381,7 @@
 
 
 
-            <nav aria-label="Page navigation example">
+            <!--<nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     <li class="page-item disabled text-roxo">
                         <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
@@ -388,7 +395,7 @@
                         <a class="page-link text-roxo" href="#">Next</a>
                     </li>
                 </ul>
-            </nav>
+            </nav>-->
         </div>
 </section>
 <!--fimConsulta-->

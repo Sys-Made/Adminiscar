@@ -109,14 +109,13 @@ namespace Adminiscar.Controllers
             ViewBag.UfType = items;
             //fimDroplist
 
-            //Consulta do cliente
-            GridView dataGV = new GridView();   //Desenvolvendo instancia da tabela
-            dataGV.DataSource = acsCli.consultaCli(); //Atribuir ao grid o resultado da consulta
-            dataGV.DataBind(); //confirmando o grid
-            StringWriter sw = new StringWriter();   //Comando para construção do Grid na tela
-            HtmlTextWriter htw = new HtmlTextWriter(sw);    //Comando para construção do Grid na tela
-            dataGV.RenderControl(htw);
-            ViewBag.GridViewString = sw.ToString(); //Comando para construção do Grid na tela
+            //Consulta com array
+            //int testeNumAr = acsCli.consultaCli().Count();
+
+            ViewBag.ArrayTest = acsCli.consultaCli();
+            //ViewBag.testeNum = testeNumAr;
+
+            //fimArray
 
             return View();  //retornando a view
         }

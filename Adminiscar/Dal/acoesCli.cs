@@ -89,7 +89,7 @@ namespace Adminiscar.Dal
             con.MyCloseBd();
         }
 
-        public DataTable consultaCli() {
+        /*public DataTable consultaCli() {
 
             MySqlCommand cmd = new MySqlCommand("SELECT cli.NOME_CLIENTE, cli.CPF_CNPJ, cli.CNH_CLIENTE, tell.TELL1, tell.TELL2 FROM cliente AS cli INNER JOIN telefone AS tell ON cli.COD_TELL_FK = tell.COD_TELL", con.MyConectorBd()); //fazendo a consulta
             MySqlDataAdapter data = new MySqlDataAdapter(cmd);
@@ -98,7 +98,56 @@ namespace Adminiscar.Dal
             con.MyCloseBd();
             return consultClint;
 
+        }*/
+
+        //Teste consulta
+        public string[] consultaCli() {
+            //declarando a string
+            string[] dataCli = { };  //quanto campos pode ser
+
+            //chamano o objeto
+            Cliente cli = new Cliente();
+            
+            MySqlCommand cmd = new MySqlCommand("SELECT cli.NOME_CLIENTE, cli.CPF_CNPJ, cli.CNH_CLIENTE, tell.TELL1, tell.TELL2 FROM cliente AS cli INNER JOIN telefone AS tell ON cli.COD_TELL_FK = tell.COD_TELL", con.MyConectorBd()); //fazendo o comando sql com a conexao aberta
+
+            //preparando a variavel de leitura
+            MySqlDataReader leitor;
+
+            leitor = cmd.ExecuteReader();   //executando o sql
+
+            if (leitor.HasRows)
+            {
+
+                //guardando a busca
+                while (leitor.Read())
+                {
+
+                    //jogando no atributo do objeto
+                    cli.nomeCli = Convert.ToString(leitor["NOME_CLIENTE"]);
+                    cli.cpfCli = Convert.ToString(leitor["CPF_CNPJ"]);
+                    cli.cnhCli = Convert.ToString(leitor["CNH_CLIENTE"]);
+                    cli.tellCli = Convert.ToString(leitor["TELL1"]);
+                    cli.tell2Cli = Convert.ToString(leitor["TELL2"]);
+
+                    dataCli = new string[]{ cli.nomeCli, cli.cpfCli, cli.cnhCli, cli.tellCli, cli.tell2Cli };  //array pra guardar
+
+                }
+
+            }
+            else {
+
+                dataCli = new string[] { "Deu Ruim no array da consulta"};
+
+            }
+
+            //fechando a conexao
+            con.MyCloseBd();
+
+            return dataCli;
+
         }
+
+        
 
         public DataTable buscCli(Cliente clit) {
 
