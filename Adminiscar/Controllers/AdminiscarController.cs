@@ -109,11 +109,8 @@ namespace Adminiscar.Controllers
             ViewBag.UfType = items;
             //fimDroplist
 
-            //Consulta com array
-            //int testeNumAr = acsCli.consultaCli().Count();
-
-            ViewBag.ArrayTest = acsCli.consultaCli();
-            //ViewBag.testeNum = testeNumAr;
+            //Consulta cliente
+            /*ViewBag.ArrayResult = acsCli.consultaCli();*/
 
             //fimArray
 
