@@ -1,4 +1,6 @@
-﻿@{
+﻿@model  Adminiscar.Models.Cliente
+
+@{
 
     Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
 }
@@ -34,7 +36,6 @@
 
 </header>
 <!--fimHeader-->
-
 <!--navgacaoentreCadastrarAndConsultar-->
 <section class="row justify-content-center p-2 bg-light">
 
@@ -50,13 +51,97 @@
 
 </section>
 <!--fimNavgacaoentreCadastrarAndConsultar-->
-
 <!--Cadastro-->
 <section class="row justify-content-center my-2 p-2 cadastroSecao">
     <!--nome/cpf/cnpj/cnh-->
     <div class="col-12 text-white">
-        <form>
-            <!--nome/cpf/cnpj/cnh-->
+
+        @using (Html.BeginForm("Cliente02", "Adminiscar", FormMethod.Post))
+        {
+            <div class="form-row">
+                <div class="col mt-1 mb-2">
+                    <label for="exampleInputEmail1">Nome:</label>
+                    @Html.EditorFor(cli => cli.nomeCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Ana Clara Caroline", id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
+                </div>
+
+                <div class="col mt-1 mb-2">
+                    <label for="exampleInputEmail1">CPF:</label>
+                    @Html.EditorFor(cli => cli.cpfCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: 123.654.798 - 50", id = "inputCliCpf", senha = "txtCpfCli", required = "required" } })
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col mt-1 mb-2">
+                    <label for="exampleInputCnpj1">CNPJ:</label>
+                    @Html.EditorFor(cli => cli.cnpjCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: 123.654.798 - 50", id = "inputCliCnpj", senha = "txtCnpjCli" } })
+                </div>
+
+                <div class="col mt-1 mb-2">
+                    <label for="exampleInputCnpj1">CNH:</label>
+                    @Html.EditorFor(cli => cli.cnhCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Seu CNH", id = "inputCliCnh", senha = "txtCnhCli", required = "required" } })
+                </div>
+
+            </div>
+
+            <div class="form-row my-2">
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Endereço:</label>
+                    @Html.EditorFor(cli => cli.rualgCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Rua consorte da conceição", id = "inputCliRualg", senha = "txtRualgCli", required = "required" } })
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Numero:</label>
+                    @Html.EditorFor(cli => cli.numCli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: 14 ou 14ºA", id = "inputCliNum", senha = "txtNumCli", required = "required" } })
+                </div>
+
+            </div>
+
+            <div class="form-row my-2">
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Bairro:</label>
+                    @Html.EditorFor(cli => cli.bairroCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Pirituba", id = "inputCliBairro", senha = "txtBairroCli", required = "required" } })
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Cidade:</label>
+                    @Html.EditorFor(cli => cli.cidCli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: São Paulo", id = "inputCliCid", senha = "txtCidCli", required = "required" } })
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Cep:</label>
+                    @Html.EditorFor(cli => cli.cepCli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: 00000-000", id = "inputCliCep", senha = "txtCepCli", required = "required" } })
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Uf:</label>
+                    <br />
+                    @Html.DropDownList("UfType", null, new { @class = "custom-select col-6", id = "inlineFormCustomSelect" })
+                </div>
+            </div>
+
+            <div class="form-row my-2">
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Celular:</label>
+                    @Html.EditorFor(cli => cli.tellCli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: 11 98755 - 6321 ", id = "inputCliTell", senha = "txtTellCli", required = "required" } })
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Telefone Fixo:</label>
+                    @Html.EditorFor(cli => cli.tell2Cli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: 11 9875 - 6321 ", id = "inputCliTell2", senha = "txtTell2Cli", required = "required" } })
+                </div>
+
+            </div>
+
+            <div class="form-row justify-content-center my-3">
+                <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="submit">Registrar</button>
+
+                <button class="butaoMeidan bg-branco mx-2 my-2 rounded border-0" type="reset">Limpar</button>
+            </div>
+
+        }
+        <!-- <form>
+            <!--nome/cpf/cnpj/cnh
             <div class="form-row">
 
                 <div class="col mt-1 mb-2">
@@ -84,8 +169,9 @@
                 </div>
 
             </div>
-            <!--fimNome/cpf/cnpj/cnh-->
-            <!--Edereço-->
+            <!--fimNome/cpf/cnpj/cnh
+
+            <!--Edereço
             <div class="form-row my-2">
 
                 <div class="col my-1">
@@ -124,9 +210,8 @@
                 </div>
 
             </div>
-            <!--fimEdereço-->
-
-            <!--contato-->
+            <!--fimEdereço
+            <!--contato
             <div class="form-row my-2">
 
                 <div class="col my-1">
@@ -140,147 +225,100 @@
                 </div>
 
             </div>
-            <!--fimContato-->
-
+            <!--fimContato
             <div class="form-row justify-content-center my-3">
                 <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="button">Registrar</button>
 
                 <button class="butaoMeidan bg-branco mx-2 my-2 rounded border-0" type="reset">Limpar</button>
             </div>
-
-        </form>
+        </form>-->
     </div>
-    
+
 </section>
 <!--fimCadastro-->
-
 <!--Consulta-->
 <section class="row justify-content-center my-4 consultaSecao noVisive">
     <div class="col-12 p-3 bg-light">
 
         <h2 class="text-center my-2 text-roxo">Pesquisa</h2>
 
-        <form class="my-3">
-            <div class="row p-2 justify-content-center">
-                <div class="col-7">
-                    <input type="text" class="form-control col-12 boxShadow2" placeholder="Faça sua pesquisa: Nome, Cpf ou cnpj">
-                </div>
-                <div class="col-2">
-                    <button class="btn btn-secondary bg-branco rounded" type="reset">Buscar</button>
-                </div>
+        <!--Busca-->
+        <div class="row p-2 justify-content-center">
+            <div class="col-8">
+                @using (Html.BeginForm("ConsultCliente", "Adminiscar", FormMethod.Post, new { enctype = "multipart / form - data" }))
+                {
+                    @Html.EditorFor(cli => cli.nomeCli, new { htmlAttributes = new { @class = "form-control col-10 mx-auto boxShadow2", type = "text", placeholder = "Exemplo: Ana Clara Caroline", id = "buscCliNome", senha = "txtBuscCli" } })
+
+                    <div class="col-4 my-3 mx-auto text-center">
+                        <button class="btn btn-secondary bg-branco rounded" type="submit">Buscar</button>
+                    </div>
+                }
+
             </div>
 
-            <div class="row p-2 justify-content-center text-roxo">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                    <label class="form-check-label" for="inlineCheckbox1">Nome</label>
-                </div>
+        </div>
 
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label" for="inlineCheckbox2">CPF</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                    <label class="form-check-label" for="inlineCheckbox3">CNH</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                    <label class="form-check-label" for="inlineCheckbox3">CNPJ</label>
-                </div>
+        <div class="row p-2 justify-content-center text-roxo">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="form-check-label" for="inlineCheckbox1">Nome</label>
             </div>
-        </form>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                <label class="form-check-label" for="inlineCheckbox2">CPF</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                <label class="form-check-label" for="inlineCheckbox3">CNH</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                <label class="form-check-label" for="inlineCheckbox3">CNPJ</label>
+            </div>
+        </div>
+        <!--Fim-->
+
     </div>
 
     <div class="col-12 mt-4 pt-2">
+
+        @Html.Raw(ViewBag.GridViewString)
+
         <table class="table mt-2 bg-light rounded text-center">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Nome</th>
                     <th scope="col">CPF</th>
-                    <th scope="col">CNPJ</th>
+                    <!--<th scope="col">CNPJ</th>-->
                     <th scope="col">CNH</th>
-                    <th scope="col">Ações</th>
+                    <th scope="col">Celular</th>
+                    <th scope="col">Telefone Fixo</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Patric Alison</td>
-                    <td>501.236.789-55</td>
-                    <td>Não Tem</td>
-                    <td>45698713210</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
+                    @foreach (var dados in ViewBag.ArrayResult)
+                    {
 
-                <tr>
-                    <td>Patric Alison</td>
-                    <td>501.236.789-55</td>
-                    <td>Não Tem</td>
-                    <td>45698713210</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
+                        <td>@dados</td>
+                        <!--<td>Patric Alison</td>
+                        <td>501.236.789-55</td>
+                        <td>Não Tem</td>
+                        <td>45698713210</td>-->
 
-                <tr>
-                    <td>Patric Alison</td>
-                    <td>501.236.789-55</td>
-                    <td>Não Tem</td>
-                    <td>45698713210</td>
-                    <td>
+                    }
+                    <!--<td>
                         <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
                         <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
                         <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
+                    </td>-->
                 </tr>
-
-                <tr>
-                    <td>Patric Alison</td>
-                    <td>501.236.789-55</td>
-                    <td>Não Tem</td>
-                    <td>45698713210</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Patric Alison</td>
-                    <td>501.236.789-55</td>
-                    <td>Não Tem</td>
-                    <td>45698713210</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Patric Alison</td>
-                    <td>501.236.789-55</td>
-                    <td>Não Tem</td>
-                    <td>45698713210</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-            </tbody>
         </table>
 
-        
+
 
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
@@ -297,13 +335,10 @@
                 </li>
             </ul>
         </nav>
-
     </div>
 </section>
 <!--fimConsulta-->
-
 <!--ModalInformações-->
-
 <!-- detalhesCliente -->
 <div class="modal fade" id="detalhe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -325,4 +360,3 @@
     </div>
 </div>
 <!--fimDetalhesClientes-->
-
