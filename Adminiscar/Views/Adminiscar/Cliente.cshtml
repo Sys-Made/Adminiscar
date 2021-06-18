@@ -299,23 +299,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    @foreach (var dados in ViewBag.ArrayResult)
-                    {
 
-                        <td>@dados</td>
-                        <!--<td>Patric Alison</td>
-                        <td>501.236.789-55</td>
-                        <td>Não Tem</td>
-                        <td>45698713210</td>-->
+                @for (var i = 0; i < ViewBag.tlOfElemn; i++)
+                {
+                    <tr>
+                        @foreach (var dados in ViewBag.testeValue)
+                        {
+                            <td>@dados</td>
+                        }
+                    </tr>
+                }
+                <!--<h1>ViewBag.tlOfElemn</h1>-->
+                <!--<td>
+                    <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
+                    <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
+                    <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
+                </td>-->
 
-                    }
-                    <!--<td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>-->
-                </tr>
         </table>
 
 

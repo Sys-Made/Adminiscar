@@ -110,7 +110,9 @@ namespace Adminiscar.Controllers
             //fimDroplist
 
             //Consulta cliente
-            /*ViewBag.ArrayResult = acsCli.consultaCli();*/
+            //ViewBag.ArrayResult = acsCli.consultaCli();
+            ViewBag.testeValue = acsCli.consultaCli();
+            ViewBag.tlOfElemn = acsCli.consultaCli().Count();
 
             //fimArray
 

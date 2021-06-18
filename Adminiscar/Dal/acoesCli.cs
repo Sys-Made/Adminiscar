@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -87,6 +88,59 @@ namespace Adminiscar.Dal
             cmd2.ExecuteNonQuery();
 
             con.MyCloseBd();
+        }
+
+        //teste de consulta
+        /*
+        *
+        * aqui estou fazendo um metodo que retorna
+        * arraylist
+        * 
+        */
+        public List<string> consultaCli() {
+
+            //Criando o objeto cliente
+            Cliente cli = new Cliente();
+
+            //criando um arrayList
+            List<string> cliList = new List<string>();
+
+            //comando sql
+            MySqlCommand cmdSlct = new MySqlCommand("SELECT cli.NOME_CLIENTE, cli.CPF_CNPJ, cli.CNH_CLIENTE, tell.TELL1, tell.TELL2 FROM cliente AS cli INNER JOIN telefone AS tell ON cli.COD_TELL_FK = tell.COD_TELL", con.MyConectorBd());
+
+            MySqlDataReader leitor; //preparando o select
+
+            leitor = cmdSlct.ExecuteReader();   //executando no banco
+
+            //verificando se vem algo
+            if (leitor.HasRows) {
+
+                //passando por todos as busca
+                while (leitor.Read()) {
+
+                    cli.nomeCli = Convert.ToString(leitor["NOME_CLIENTE"]);
+                    cli.cpfCli = Convert.ToString(leitor["CPF_CNPJ"]);
+                    cli.cnhCli = Convert.ToString(leitor["CNH_CLIENTE"]);
+
+                    //jogando para arrayList
+                    cliList.Add(cli.nomeCli);
+                    cliList.Add(cli.cpfCli);
+                    cliList.Add(cli.cnhCli);
+
+                }
+
+            }else{
+
+                cli.nomeCli = "Null";
+
+                cliList.Add(cli.nomeCli);   //jogando para arrayList
+
+            }
+
+            con.MyCloseBd();
+
+            return cliList;
+
         }
 
         /*public string[] consultaCli() {
