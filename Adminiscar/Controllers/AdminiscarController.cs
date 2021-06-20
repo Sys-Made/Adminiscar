@@ -20,6 +20,10 @@ namespace Adminiscar.Controllers
          * indexInicio
          * 
          * */
+        List<ObjetoFuncTest> funcionarios = FuncServices.GetFuncionarios();
+        List<Cliente> clientes = acoesCli.consultaCli();
+
+
         public ActionResult Index()
         {
             return View();
@@ -94,6 +98,7 @@ namespace Adminiscar.Controllers
         public ActionResult Cliente() {
 
             acoesCli acsCli = new acoesCli();    //chamando classe methods
+            //List<Cliente> cliente = acsCli.consultaCli();
 
             //dropList (Cadastro do cliente)
             List<SelectListItem> items = new List<SelectListItem>();
@@ -111,16 +116,30 @@ namespace Adminiscar.Controllers
 
             //Consulta cliente
             //ViewBag.ArrayResult = acsCli.consultaCli();
-            ViewBag.testeValue = acsCli.consultaCli();
-            ViewBag.tlOfElemn = acsCli.consultaCli().Count();
+            //ViewBag.testeValue = acsCli.consultaCli();
+            //ViewBag.tlOfList = acsCli.consultaCli().Count();
 
             //fimArray
 
             return View();  //retornando a view
         }
 
+        //tabela : foreach
+        public ActionResult TabelaForeach()
+        {
+
+            return View(funcionarios);
+        }
+
+        public ActionResult ConsultaCliente() {
+
+
+            return View(clientes);
+
+        }
+
         [HttpPost] //consulta cliente
-        public ActionResult ConsultCliente(Cliente cli) {
+        public ActionResult ConsultCliente3(Cliente cli) {
 
             acoesCli acsCli = new acoesCli();    //chamando classe methods
 

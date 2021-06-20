@@ -97,13 +97,19 @@ namespace Adminiscar.Dal
         * arraylist
         * 
         */
-        public List<string> consultaCli() {
+        public static List<Cliente> consultaCli() {
 
-            //Criando o objeto cliente
-            Cliente cli = new Cliente();
+            //variaveis locais
+            //string nome = null;
+            //string cpf = null;
+            List<Cliente> listaClientes = new List<Cliente>();
+
+
+            //Cliente cli = new Cliente();
+            Conexao con = new Conexao();
 
             //criando um arrayList
-            List<string> cliList = new List<string>();
+            //List<string> cliList = new List<string>();
 
             //comando sql
             MySqlCommand cmdSlct = new MySqlCommand("SELECT cli.NOME_CLIENTE, cli.CPF_CNPJ, cli.CNH_CLIENTE, tell.TELL1, tell.TELL2 FROM cliente AS cli INNER JOIN telefone AS tell ON cli.COD_TELL_FK = tell.COD_TELL", con.MyConectorBd());
@@ -113,33 +119,35 @@ namespace Adminiscar.Dal
             leitor = cmdSlct.ExecuteReader();   //executando no banco
 
             //verificando se vem algo
-            if (leitor.HasRows) {
 
-                //passando por todos as busca
-                while (leitor.Read()) {
+            //passando por todos as busca
+            while (leitor.Read()) {
 
-                    cli.nomeCli = Convert.ToString(leitor["NOME_CLIENTE"]);
-                    cli.cpfCli = Convert.ToString(leitor["CPF_CNPJ"]);
-                    cli.cnhCli = Convert.ToString(leitor["CNH_CLIENTE"]);
+                /*nome = Convert.ToString(leitor["NOME_CLIENTE"]);
+                cpf = Convert.ToString(leitor["CPF_CNPJ"]);*/
 
-                    //jogando para arrayList
-                    cliList.Add(cli.nomeCli);
-                    cliList.Add(cli.cpfCli);
-                    cliList.Add(cli.cnhCli);
+                listaClientes = new List<Cliente>()
+                    {
+                        new Cliente {
+                            nomeCli = Convert.ToString(leitor["NOME_CLIENTE"]),
+                            cpfCli = Convert.ToString(leitor["CPF_CNPJ"]) },
 
-                }
+                        new Cliente{
+                            nomeCli = Convert.ToString(leitor["NOME_CLIENTE"]),
+                            cpfCli = Convert.ToString(leitor["CPF_CNPJ"]) },
+                       
+                        new Cliente{
+                            nomeCli = Convert.ToString(leitor["NOME_CLIENTE"]),
+                            cpfCli = Convert.ToString(leitor["CPF_CNPJ"])
+                        }
 
-            }else{
-
-                cli.nomeCli = "Null";
-
-                cliList.Add(cli.nomeCli);   //jogando para arrayList
+                    };
 
             }
 
             con.MyCloseBd();
 
-            return cliList;
+            return listaClientes;
 
         }
 
