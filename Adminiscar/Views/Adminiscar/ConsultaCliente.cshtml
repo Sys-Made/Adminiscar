@@ -5,36 +5,38 @@
     Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
 }
 
-<h2>ConsultaCliente</h2>
+<section class="row justify-content-center my-4 consultaSecao noVisive">
+    <h2>ConsultaCliente</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-           Nome
-        </th>
-        <th>
-            CPF
-        </th>
-        <th></th>
-    </tr>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table mt-2 bg-light rounded text-center">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">CPF</th>
+            </tr>
+        </thead>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nomeCli)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cpfCli)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nomeCli)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cpfCli)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+        </tbody>
 
-</table>
+    </table>
+</section>

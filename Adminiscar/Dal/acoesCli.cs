@@ -126,22 +126,23 @@ namespace Adminiscar.Dal
                 /*nome = Convert.ToString(leitor["NOME_CLIENTE"]);
                 cpf = Convert.ToString(leitor["CPF_CNPJ"]);*/
 
-                listaClientes = new List<Cliente>()
+                /*listaClientes = new List<Cliente>()
                     {
                         new Cliente {
                             nomeCli = Convert.ToString(leitor["NOME_CLIENTE"]),
-                            cpfCli = Convert.ToString(leitor["CPF_CNPJ"]) },
-
-                        new Cliente{
-                            nomeCli = Convert.ToString(leitor["NOME_CLIENTE"]),
-                            cpfCli = Convert.ToString(leitor["CPF_CNPJ"]) },
-                       
-                        new Cliente{
-                            nomeCli = Convert.ToString(leitor["NOME_CLIENTE"]),
                             cpfCli = Convert.ToString(leitor["CPF_CNPJ"])
                         }
+                            
 
-                    };
+                    };*/
+
+                listaClientes.Add(new Cliente
+                {
+
+                    nomeCli = leitor.GetString("NOME_CLIENTE"),
+                    cpfCli = leitor.GetString("CPF_CNPJ")
+
+                });
 
             }
 

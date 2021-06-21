@@ -133,7 +133,6 @@ namespace Adminiscar.Controllers
 
         public ActionResult ConsultaCliente() {
 
-
             return View(clientes);
 
         }
