@@ -45,8 +45,7 @@
 
     <div class="col-6 my-3 p-3 text-center rounded" style="background-color: #955cfb;">
         <button class="butaoMedian butao-version2 mx-2 rounded botaoCadastro butaoActive" type="button" onclick="NavegacaoCadCon(1);">Cadastrar</button>
-        @Html.ActionLink("Consultar", "ConsultaCliente", "Adminiscar")
-        @Html.ActionLink("Tabela Foreach", "TabelaForeach", "Adminiscar")
+        @Html.ActionLink("Consultar", "ConsultaCliente", "Adminiscar", null, new { @class= "btn btn-outline-primary" })
 
         <!--<button class="butaoMedian butao-version2 bg-branco mx-2 rounded botaoConsulta" type="button" onclick="NavegacaoCadCon(2);">Consultar</button>-->
     </div>
@@ -243,25 +242,4 @@
 <!--Consulta-->
 <!--fimConsulta-->
 
-<!--ModalInformações-->
-<!-- detalhesCliente -->
-<div class="modal fade" id="detalhe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Em Breve Dados</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h1 class="text-center">EM BREVE</h1>
-            </div>
-            <!--<div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>-->
-        </div>
-    </div>
-</div>
-<!--fimDetalhesClientes-->
+

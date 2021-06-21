@@ -123,25 +123,14 @@ namespace Adminiscar.Dal
             //passando por todos as busca
             while (leitor.Read()) {
 
-                /*nome = Convert.ToString(leitor["NOME_CLIENTE"]);
-                cpf = Convert.ToString(leitor["CPF_CNPJ"]);*/
-
-                /*listaClientes = new List<Cliente>()
-                    {
-                        new Cliente {
-                            nomeCli = Convert.ToString(leitor["NOME_CLIENTE"]),
-                            cpfCli = Convert.ToString(leitor["CPF_CNPJ"])
-                        }
-                            
-
-                    };*/
-
                 listaClientes.Add(new Cliente
                 {
 
                     nomeCli = leitor.GetString("NOME_CLIENTE"),
-                    cpfCli = leitor.GetString("CPF_CNPJ")
-
+                    cpfCli = leitor.GetString("CPF_CNPJ"),
+                    cnhCli = leitor.GetString("CNH_CLIENTE"),
+                    tellCli = leitor.GetString("TELL1"),
+                    tell2Cli = leitor.GetString("TELL2")
                 });
 
             }

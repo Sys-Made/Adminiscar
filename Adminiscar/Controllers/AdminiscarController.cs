@@ -20,9 +20,6 @@ namespace Adminiscar.Controllers
          * indexInicio
          * 
          * */
-        List<ObjetoFuncTest> funcionarios = FuncServices.GetFuncionarios();
-        List<Cliente> clientes = acoesCli.consultaCli();
-
 
         public ActionResult Index()
         {
@@ -95,6 +92,8 @@ namespace Adminiscar.Controllers
          * ClienteInicio
          * 
          * */
+        List<Cliente> clientes = acoesCli.consultaCli();    //lista da consulta
+
         public ActionResult Cliente() {
 
             acoesCli acsCli = new acoesCli();    //chamando classe methods
@@ -122,13 +121,6 @@ namespace Adminiscar.Controllers
             //fimArray
 
             return View();  //retornando a view
-        }
-
-        //tabela : foreach
-        public ActionResult TabelaForeach()
-        {
-
-            return View(funcionarios);
         }
 
         public ActionResult ConsultaCliente() {
