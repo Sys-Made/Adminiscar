@@ -86,6 +86,7 @@
         <table class="table mt-2 bg-light rounded text-center">
             <thead class="thead-dark">
                 <tr>
+                    <th scope="col">Cod</th>
                     <th scope="col">Nome</th>
                     <th scope="col">CPF</th>
                     <th scope="col">CNH</th>
@@ -99,6 +100,9 @@
                 @foreach (var item in Model)
                 {
                 <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.codCli)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.nomeCli)
                     </td>
@@ -115,7 +119,7 @@
                         @Html.DisplayFor(modelItem => item.tell2Cli)
                     </td>
                     <td>
-                        @Html.ActionLink("Detalhes", "DetalhesCliente", null, new { @class = "btn btn-primary my-1" })
+                        @Html.ActionLink("Detalhes", "DetalhesCliente", "Adminiscar", null, new { @class = "btn btn-primary my-1" })
                         @Html.ActionLink("Editar", "EditarClientes", null, new { @class = "btn btn-primary my-1" })
                         @Html.ActionLink("Deletar", "DeleteClientes", null, new { @class = "btn btn-primary my-1" })
                     </td>

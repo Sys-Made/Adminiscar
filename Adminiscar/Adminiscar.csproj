@@ -186,6 +186,7 @@
     <Content Include="Views\Adminiscar\Locacao.cshtml" />
     <Content Include="Views\Adminiscar\ConsultCliente3.cshtml" />
     <Content Include="Views\Adminiscar\ConsultaCliente.cshtml" />
+    <Content Include="Views\Adminiscar\DetalhesCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

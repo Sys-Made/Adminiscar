@@ -112,7 +112,7 @@ namespace Adminiscar.Dal
             //List<string> cliList = new List<string>();
 
             //comando sql
-            MySqlCommand cmdSlct = new MySqlCommand("SELECT cli.NOME_CLIENTE, cli.CPF_CNPJ, cli.CNH_CLIENTE, tell.TELL1, tell.TELL2 FROM cliente AS cli INNER JOIN telefone AS tell ON cli.COD_TELL_FK = tell.COD_TELL", con.MyConectorBd());
+            MySqlCommand cmdSlct = new MySqlCommand("SELECT cli.NOME_CLIENTE, cli.CPF_CNPJ, cli.CNH_CLIENTE, tell.TELL1, tell.TELL2, cli.COD_CLIENTE FROM cliente AS cli INNER JOIN telefone AS tell ON cli.COD_TELL_FK = tell.COD_TELL", con.MyConectorBd());
 
             MySqlDataReader leitor; //preparando o select
 
@@ -120,12 +120,12 @@ namespace Adminiscar.Dal
 
             //verificando se vem algo
 
-            //passando por todos as busca
+            //passando por todos as busca e colocando no list<objeto>
             while (leitor.Read()) {
 
                 listaClientes.Add(new Cliente
                 {
-
+                    codCli = leitor.GetString("COD_CLIENTE"),
                     nomeCli = leitor.GetString("NOME_CLIENTE"),
                     cpfCli = leitor.GetString("CPF_CNPJ"),
                     cnhCli = leitor.GetString("CNH_CLIENTE"),
@@ -140,56 +140,6 @@ namespace Adminiscar.Dal
             return listaClientes;
 
         }
-
-        /*public string[] consultaCli() {
-            //declarando uma array
-            string[] dtCliente = new string[] { };
-            string nomeCli, cpfCli, cnhCli, tellCli, cellCli;
-
-            //fazendo a consulta no banco
-            MySqlCommand cmd = new MySqlCommand("SELECT cli.NOME_CLIENTE, cli.CPF_CNPJ, cli.CNH_CLIENTE, tell.TELL1, tell.TELL2 FROM cliente AS cli INNER JOIN telefone AS tell ON cli.COD_TELL_FK = tell.COD_TELL", con.MyConectorBd());
-
-            MySqlDataReader leitor;
-
-            leitor = cmd.ExecuteReader();
-
-            if (leitor.HasRows) {
-
-
-                while (leitor.Read()) {
-
-
-                    nomeCli = Convert.ToString(leitor[0]);
-                    cpfCli = Convert.ToString(leitor[1]);
-                    cnhCli = Convert.ToString(leitor[2]); 
-                    tellCli = Convert.ToString(leitor[3]);
-                    cellCli = Convert.ToString(leitor[4]);
-
-                    dtCliente = new string[] {nomeCli, cpfCli, cnhCli, tellCli, cellCli};
-
-                }
-
-            }
-            else {
-
-                dtCliente = new string[] { "Deu erro" };
-
-            }
-
-            return dtCliente;
-
-        }*/
-
-        /*public DataTable consultaCli() {
-
-            MySqlCommand cmd = new MySqlCommand("SELECT cli.NOME_CLIENTE, cli.CPF_CNPJ, cli.CNH_CLIENTE, tell.TELL1, tell.TELL2 FROM cliente AS cli INNER JOIN telefone AS tell ON cli.COD_TELL_FK = tell.COD_TELL", con.MyConectorBd()); //fazendo a consulta
-            MySqlDataAdapter data = new MySqlDataAdapter(cmd);
-            DataTable consultClint = new DataTable();
-            data.Fill(consultClint);
-            con.MyCloseBd();
-            return consultClint;
-
-        }*/
         
         public DataTable buscCli(Cliente clit) {
 

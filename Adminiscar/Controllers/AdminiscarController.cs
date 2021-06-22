@@ -89,7 +89,7 @@ namespace Adminiscar.Controllers
 
         /**
          * 
-         * ClienteInicio
+         * Cliente
          * 
          * */
         List<Cliente> clientes = acoesCli.consultaCli();    //lista da consulta
@@ -97,7 +97,6 @@ namespace Adminiscar.Controllers
         public ActionResult Cliente() {
 
             acoesCli acsCli = new acoesCli();    //chamando classe methods
-            //List<Cliente> cliente = acsCli.consultaCli();
 
             //dropList (Cadastro do cliente)
             List<SelectListItem> items = new List<SelectListItem>();
@@ -113,19 +112,18 @@ namespace Adminiscar.Controllers
             ViewBag.UfType = items;
             //fimDroplist
 
-            //Consulta cliente
-            //ViewBag.ArrayResult = acsCli.consultaCli();
-            //ViewBag.testeValue = acsCli.consultaCli();
-            //ViewBag.tlOfList = acsCli.consultaCli().Count();
-
-            //fimArray
-
             return View();  //retornando a view
         }
 
         public ActionResult ConsultaCliente() {
 
             return View(clientes);
+
+        }
+
+        public ActionResult DetalhesCliente() {
+
+            return View();
 
         }
 
