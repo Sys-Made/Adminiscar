@@ -94,9 +94,9 @@ namespace Adminiscar.Dal
         /*
         *
         * aqui estou fazendo um metodo que retorna
-        * arraylist
+        * list<objeto>
         * 
-        */
+        **/
         public static List<Cliente> consultaCli() {
 
             //variaveis locais
@@ -140,7 +140,71 @@ namespace Adminiscar.Dal
             return listaClientes;
 
         }
-        
+
+        /*
+         * 
+         *Detalhes do cliente 
+         * 
+         * 
+         * */
+        public List<string> detalheCli(string cod) {
+            //criando a list local
+            List<string> listaClientes = new List<string>();
+            int codDtlhs;
+
+            //comando sql
+            codDtlhs = Convert.ToInt32(cod);
+            MySqlCommand cmd = new MySqlCommand("SELECT cli.COD_CLIENTE,cli.NOME_CLIENTE, cli.CPF_CNPJ, cli.CNH_CLIENTE, edn.LOGRADURO, NUMERO, BAIRRO, CEP, CIDADE, ESTADO, tell.TELL2, tell.TELL1 FROM cliente AS cli INNER JOIN telefone AS tell ON cli.COD_TELL_FK = tell.COD_TELL INNER JOIN endereco AS edn  ON cli.COD_ENDERECO_FK = edn.COD_ENDERECO WHERE cli.COD_CLIENTE = " + codDtlhs, con.MyConectorBd());
+
+            //add os parametros
+            //cmd.Parameters.AddWithValue("@codigo", cliente.codCli);
+            //cmd.Parameters.Add("@codigo", MySqlDbType.Int32).Value = cliente.codCli;
+
+            MySqlDataReader leitor; //preparando o select
+
+            leitor = cmd.ExecuteReader();   //executando no banco
+
+
+            //passando por todos as busca e colocando no list<objeto>
+            while (leitor.Read())
+            {
+                listaClientes.Add(leitor.GetString("COD_CLIENTE"));
+                listaClientes.Add(leitor.GetString("NOME_CLIENTE"));
+                listaClientes.Add(leitor.GetString("CPF_CNPJ"));
+                listaClientes.Add(leitor.GetString("CNH_CLIENTE"));
+                listaClientes.Add(leitor.GetString("LOGRADURO"));
+                listaClientes.Add(leitor.GetString("NUMERO"));
+                listaClientes.Add(leitor.GetString("BAIRRO"));
+                //listaClientes.Add(leitor.GetString("CEP"));
+                listaClientes.Add(leitor.GetString("CIDADE"));
+                //listaClientes.Add(leitor.GetString("ESTADO"));
+                listaClientes.Add(leitor.GetString("TELL1"));
+                listaClientes.Add(leitor.GetString("TELL2"));
+
+                /*listaClientes.Add(new string
+                {
+                    codCli = leitor.GetString("COD_CLIENTE"),
+                    nomeCli = leitor.GetString("NOME_CLIENTE"),
+                    cpfCli = leitor.GetString("CPF_CNPJ"),
+                    cnhCli = leitor.GetString("CNH_CLIENTE"),
+                    rualgCli = leitor.GetString("LOGRADURO"),
+                    numCli = leitor.GetString("NUMERO"),
+                    bairroCli = leitor.GetString("BAIRRO"),
+                    cepCli = leitor.GetString("CEP"),
+                    cidCli = leitor.GetString("CIDADE"),
+                    estCli = leitor.GetString("ESTADO"),
+                    tellCli = leitor.GetString("TELL1"),
+                    tell2Cli = leitor.GetString("TELL2")
+                });*/
+
+            }
+
+            con.MyCloseBd();
+
+            return listaClientes;
+
+        }
+
         public DataTable buscCli(Cliente clit) {
 
             MySqlCommand cmd = new MySqlCommand("SELECT * FROM cliente WHERE COD_CLIENTE = @cod", con.MyConectorBd());  //comando sql copm a conexao

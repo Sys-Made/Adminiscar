@@ -49,7 +49,7 @@
                     <input class="form-control col-10 mx-auto boxShadow2" type="text" placeholder="Exemplo: Ana Clara Caroline" id="buscCliNome" />
                     
                     <div class="col-4 my-3 mx-auto text-center">
-                        <button class="btn btn-secondary bg-branco rounded" type="submit">Buscar</button>
+                        <button class="btn btn-secondary rounded" type="submit">Buscar</button>
                     </div>
                 }
 
@@ -119,9 +119,11 @@
                         @Html.DisplayFor(modelItem => item.tell2Cli)
                     </td>
                     <td>
-                        @Html.ActionLink("Detalhes", "DetalhesCliente", "Adminiscar", null, new { @class = "btn btn-primary my-1" })
-                        @Html.ActionLink("Editar", "EditarClientes", null, new { @class = "btn btn-primary my-1" })
-                        @Html.ActionLink("Deletar", "DeleteClientes", null, new { @class = "btn btn-primary my-1" })
+                        @using (Html.BeginForm("DetalhesCliente", "Adminiscar", FormMethod.Post))
+                        {
+                            <input type="hidden" name="teste" value="@Html.DisplayFor(modelItem => item.codCli)" />
+                            <button class="btn btn-primary my-1" type="submit">Detalhes</button>
+                        }
                     </td>
                 </tr>
                 }

@@ -121,7 +121,15 @@ namespace Adminiscar.Controllers
 
         }
 
-        public ActionResult DetalhesCliente() {
+        //detalhesCliente
+        [HttpPost]
+        public ActionResult DetalhesCliente(string teste) {
+
+            acoesCli acsCli = new acoesCli();    //chamando classe methods do cliente
+
+            //ViewBag.numeroDeIten = acsCli.detalheCli(cliente).Count();
+            ViewBag.dadosCli = acsCli.detalheCli(teste);
+            //ViewBag.testeCliente = teste;
 
             return View();
 

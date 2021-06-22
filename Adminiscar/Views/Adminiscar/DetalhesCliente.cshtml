@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Adminiscar";
     Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
 }
@@ -45,23 +44,23 @@
 
     <article class="col-9 rounded">
         <div class="row justify-content-center rounded my-2 mx-1 bg-light">
-            <p class="col-3 m-2 border-bottom border-left rounded"><b>Nome:</b><br />Ana Julia Santana</p>
-            <p class="col-3 m-2 border-bottom border-left rounded"><b>CPF:</b><br />555.555.555-58</p>
-            <p class="col-3 m-2 border-bottom border-left rounded"><b>CNH:</b><br />000000000000</p>
+            <p class="col-3 m-2 border-bottom border-left rounded"><b>Nome:</b><br />@ViewBag.dadosCli[1]</p>
+            <p class="col-3 m-2 border-bottom border-left rounded"><b>CPF:</b><br />@ViewBag.dadosCli[2]</p>
+            <p class="col-3 m-2 border-bottom border-left rounded"><b>CNH:</b><br />@ViewBag.dadosCli[3]</p>
         </div>
 
         <div class="row justify-content-center bg-light rounded my-2 mx-1">
-            <p class="col-5 border-bottom border-left rounded m-2"><b>Endereço:</b><br />Rua Julieta Garcia</p>
-            <p class="col-2 border-bottom border-left rounded m-2"><b>Numero:</b><br />20ºa</p>
-            <p class="col-2 border-bottom border-left rounded m-2"><b>Bairro:</b><br />Pirituba</p>
-            <p class="col-3 border-bottom border-left rounded m-2"><b>Cidade:</b><br />São Paulo</p>
+            <p class="col-5 border-bottom border-left rounded m-2"><b>Endereço:</b><br />@ViewBag.dadosCli[4]</p>
+            <p class="col-2 border-bottom border-left rounded m-2"><b>Numero:</b><br />@ViewBag.dadosCli[5]</p>
+            <p class="col-2 border-bottom border-left rounded m-2"><b>Bairro:</b><br />@ViewBag.dadosCli[6]</p>
+            <p class="col-3 border-bottom border-left rounded m-2"><b>Cidade:</b><br />@ViewBag.dadosCli[7]</p>
             <p class="col-3 border-bottom border-left rounded m-2"><b>CEP:</b><br />00000-789</p>
             <p class="col-3 border-bottom border-left rounded m-2"><b>UF:</b><br />SP</p>
         </div>
 
         <div class="row justify-content-center rounded my-2 mx-1 bg-light">
-            <p class="col-5 border-bottom border-left rounded m-2"><b>Telefone:</b><br />11 3256-8741</p>
-            <p class="col-5 border-bottom border-left rounded m-2"><b>Celular:</b><br />11 98741-5896</p>
+            <p class="col-5 border-bottom border-left rounded m-2"><b>Telefone:</b><br />@ViewBag.dadosCli[8]</p>
+            <p class="col-5 border-bottom border-left rounded m-2"><b>Celular:</b><br />@ViewBag.dadosCli[9]</p>
         </div>
 
         <div class="row text-center mx-1 rounded bg-light">
