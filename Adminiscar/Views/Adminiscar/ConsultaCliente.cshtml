@@ -124,6 +124,18 @@
                             <input type="hidden" name="teste" value="@Html.DisplayFor(modelItem => item.codCli)" />
                             <button class="btn btn-primary my-1" type="submit">Detalhes</button>
                         }
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post))
+                        {
+                            <input type="hidden" name="teste" value="@Html.DisplayFor(modelItem => item.codCli)" />
+                            <button class="btn btn-primary my-1" type="submit">Editar</button>
+                        }
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post))
+                        {
+                            <input type="hidden" name="teste" value="@Html.DisplayFor(modelItem => item.codCli)" />
+                            <button class="btn btn-primary my-1" type="submit">Deletar</button>
+                        }
                     </td>
                 </tr>
                 }
