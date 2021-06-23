@@ -1,4 +1,6 @@
-﻿@{
+﻿@model  Adminiscar.Models.Carro
+
+@{
     Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
 }
 
@@ -41,28 +43,30 @@
 
     <div class="col-6 my-3 p-3 text-center rounded" style="background-color: #955cfb;">
         <button class="butaoMedian butao-version2 mx-2 botaoCadastro rounded butaoActive" type="button" onclick="NavegacaoCadCon(1);">Cadastrar</button>
-
-        <button class="butaoMedian butao-version2 bg-branco mx-2 botaoConsulta rounded" type="button" onclick="NavegacaoCadCon(2);">Consultar</button>
+        @Html.ActionLink("Consultar", "ConsultaCarro", "Adminiscar", null, new { @class = "btn btn-primary" })
+        <!--<button class="butaoMedian butao-version2 bg-branco mx-2 botaoConsulta rounded" type="button" onclick="NavegacaoCadCon(2);">Consultar</button>-->
     </div>
 
 </section>
 <!--fimNavgacaoentreCadastrarAndConsultar-->
 <!--Cadastro-->
 <section class="row justify-content-center my-2 p-2 cadastroSecao">
-    <!--nome/cpf/cnpj/cnh-->
+
     <div class="col-12 text-white">
-        <form>
+
+        @using (Html.BeginForm("CadastroCarro", "Adminiscar", FormMethod.Post))
+        {
             <!--nomeVeiculo/modelo/renavam/combustivel-->
             <div class="form-row">
 
                 <div class="col mt-1 mb-2">
                     <label for="exampleInputEmail1">Nome Do veiculo:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
+                    @Html.EditorFor(car => car.nomeCar, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Toyota Corolla", id = "inputCarNome", senha = "txtNomeCar", required = "required" } })
                 </div>
 
                 <div class="col mt-1 mb-2">
                     <label for="exampleInputEmail1">Modelo:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
+                    @Html.EditorFor(car => car.modeloCar, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Ana Clara Caroline", id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
                 </div>
 
             </div>
@@ -71,12 +75,12 @@
 
                 <div class="col my-1">
                     <label for="exampleInputEmail1">Renavam:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
+                    @Html.EditorFor(car => car.renavCar, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Ana Clara Caroline", id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
                 </div>
 
                 <div class="col my-1">
                     <label for="exampleInputEmail1">Combustivel:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
+                    @Html.EditorFor(car => car.combCar, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Ana Clara Caroline", id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
                 </div>
 
             </div>
@@ -86,12 +90,12 @@
 
                 <div class="col my-1">
                     <label for="exampleInputEmail1">Placa:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
+                    @Html.EditorFor(car => car.placaCar, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Ana Clara Caroline", id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
                 </div>
 
                 <div class="col my-1">
                     <label for="exampleInputEmail1">Categoria:</label>
-                    <input type="text" class="form-control col-8" placeholder="">
+                    @Html.EditorFor(car => car.categoriaCar, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: Ana Clara Caroline", id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
                 </div>
 
             </div>
@@ -132,23 +136,22 @@
 
                 <div class="col my-1">
                     <label for="exampleInputEmail1">Valor Semanal:</label>
-                    <input type="text" class="form-control col-8" placeholder="">
+                    @Html.EditorFor(car => car.modeloCar, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: Ana Clara Caroline", id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
                 </div>
 
                 <div class="col my-1">
                     <label for="exampleInputEmail1">Valor Mensal:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
+                    @Html.EditorFor(car => car.vlmensCar, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Ana Clara Caroline", id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
                 </div>
             </div>
             <!--fimValores-->
 
             <div class="form-row justify-content-center my-5">
-                <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="button">Registrar</button>
+                <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="submit">Registrar</button>
 
                 <button class="butaoMeidan bg-branco mx-2 my-2 rounded" type="reset">Limpar</button>
             </div>
-
-        </form>
+        }
     </div>
 
 </section>
@@ -305,7 +308,6 @@
     </div>
 </section>
 <!--fimConsulta-->
-
 <!--ModalInformações-->
 <!-- detalhesCarro -->
 <div class="modal fade" id="detalhe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

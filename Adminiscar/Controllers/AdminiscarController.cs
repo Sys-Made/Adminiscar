@@ -142,7 +142,7 @@ namespace Adminiscar.Controllers
 
             acoesCli acsCli = new acoesCli();    //chamando classe methods do cliente
 
-            List<Cliente> cliente = acsCli.buscaCli(buscaData); 
+            List<Cliente> cliente = acsCli.buscaCli(buscaData);
 
             return View(cliente);
 
@@ -157,7 +157,7 @@ namespace Adminiscar.Controllers
             ViewBag.dadosCli = acsCli.detalheCli(editarCli);
 
             return View();
-     
+
         }
 
         //fazendoUpdate
@@ -172,7 +172,7 @@ namespace Adminiscar.Controllers
         }
 
         //cadastro do cliente
-        [HttpPost] 
+        [HttpPost]
         public ActionResult Cliente02(Cliente cliente) {
 
             acoesCli acoescli = new acoesCli();
@@ -208,6 +208,27 @@ namespace Adminiscar.Controllers
         {
 
             return View();
+        }
+
+        //Cadastro carro
+        [HttpPost]
+        public ActionResult CadastroCarro(Carro carro) {    //recebendo o objeto do cadastroCarro
+
+            acoesCar acoescar = new acoesCar();
+
+            acoescar.cadastroCar(carro);
+
+            return RedirectToAction("Carro", "Adminiscar");
+        }
+
+        //Consulta carro
+        public ActionResult ConsultaCarro()
+        {
+
+            List<Carro> listCarro = acoesCar.consultaCar();    //lista da consulta
+
+            return View(listCarro);
+
         }
         //carroFim
 
