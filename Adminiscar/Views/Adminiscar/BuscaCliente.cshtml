@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Adminiscar.Models.Cliente>
 
 @{
-    ViewBag.Title = "ConsultaCliente";
+    ViewBag.Title = "BuscaCliente";
     Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
 }
 
@@ -31,9 +31,6 @@
 
 </header>
 <!--fimHeader-->
-
-
-
 <!--Consulta-->
 <section class="row justify-content-center my-4 consultaSecao">
 
@@ -47,7 +44,7 @@
                 @using (Html.BeginForm("BuscaCliente", "Adminiscar", FormMethod.Post))
                 {
                     <input class="form-control col-10 mx-auto boxShadow2" name="buscaData" type="text" placeholder="Exemplo: Ana Clara Caroline" id="buscCliNome" />
-                    
+
                     <div class="col-4 my-3 mx-auto text-center">
                         <button class="btn btn-secondary rounded" type="submit">Buscar</button>
                     </div>
@@ -99,45 +96,45 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.codCli)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.nomeCli)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.cpfCli)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.cnhCli)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tellCli)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tell2Cli)
-                    </td>
-                    <td>
-                        @using (Html.BeginForm("DetalhesCliente", "Adminiscar", FormMethod.Post))
-                        {
-                            <input type="hidden" name="teste" value="@Html.DisplayFor(modelItem => item.codCli)" />
-                            <button class="btn btn-primary my-1" type="submit">Detalhes</button>
-                        }
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.codCli)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nomeCli)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cpfCli)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cnhCli)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tellCli)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tell2Cli)
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("DetalhesCliente", "Adminiscar", FormMethod.Post))
+                            {
+                                <input type="hidden" name="teste" value="@Html.DisplayFor(modelItem => item.codCli)" />
+                                <button class="btn btn-primary my-1" type="submit">Detalhes</button>
+                            }
 
-                        @using (Html.BeginForm("EditarCliente", "Adminiscar", FormMethod.Post))
-                        {
-                            <input type="hidden" name="editarCli" value="@Html.DisplayFor(modelItem => item.codCli)" />
-                            <button class="btn btn-primary my-1" type="submit">Editar</button>
-                        }
+                            @using (Html.BeginForm("EditarCliente", "Adminiscar", FormMethod.Post))
+                            {
+                                <input type="hidden" name="editarCli" value="@Html.DisplayFor(modelItem => item.codCli)" />
+                                <button class="btn btn-primary my-1" type="submit">Editar</button>
+                            }
 
-                        @using (Html.BeginForm("DeletarCliente", "Adminiscar", FormMethod.Post))
-                        {
-                            <input type="hidden" name="delCli" value="@Html.DisplayFor(modelItem => item.codCli)" />
-                            <button class="btn btn-primary my-1" type="submit">Deletar</button>
-                        }
-                    </td>
-                </tr>
+                            @using (Html.BeginForm("DeletarCliente", "Adminiscar", FormMethod.Post))
+                            {
+                                <input type="hidden" name="delCli" value="@Html.DisplayFor(modelItem => item.codCli)" />
+                                <button class="btn btn-primary my-1" type="submit">Deletar</button>
+                            }
+                        </td>
+                    </tr>
                 }
             </tbody>
 

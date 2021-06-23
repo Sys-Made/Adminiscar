@@ -115,6 +115,7 @@ namespace Adminiscar.Controllers
             return View();  //retornando a view
         }
 
+        //consultaCliente
         public ActionResult ConsultaCliente() {
 
             return View(clientes);
@@ -135,25 +136,43 @@ namespace Adminiscar.Controllers
 
         }
 
-        [HttpPost] //consulta cliente
-        public ActionResult ConsultCliente3(Cliente cli) {
+        //busca cliente
+        [HttpPost]
+        public ActionResult BuscaCliente(string buscaData) {
 
-            acoesCli acsCli = new acoesCli();    //chamando classe methods
+            acoesCli acsCli = new acoesCli();    //chamando classe methods do cliente
 
-            //Consulta do cliente
-            GridView dataGV = new GridView();   //Desenvolvendo instancia da tabela
-            dataGV.DataSource = acsCli.buscCli(cli); //Atribuir ao grid o resultado da consulta
-            dataGV.DataBind(); //confirmando o grid
-            StringWriter sw = new StringWriter();   //Comando para construção do Grid na tela
-            HtmlTextWriter htw = new HtmlTextWriter(sw);    //Comando para construção do Grid na tela
-            dataGV.RenderControl(htw);
-            ViewBag.GridViewString = sw.ToString(); //Comando para construção do Grid na tela
+            List<Cliente> cliente = acsCli.buscaCli(buscaData); 
 
-            return View();
+            return View(cliente);
 
         }
 
-        [HttpPost]  //cadastro do cliente
+        //editarClienteView
+        [HttpPost]
+        public ActionResult EditarCliente(string editarCli) {
+            acoesCli acsCli = new acoesCli();    //chamando classe methods do cliente
+
+            ViewBag.codCli = editarCli;
+            ViewBag.dadosCli = acsCli.detalheCli(editarCli);
+
+            return View();
+     
+        }
+
+        //fazendoUpdate
+        public ActionResult UpdateCliente(Cliente cliente, string codCli) {
+
+            acoesCli acoescli = new acoesCli();
+
+            acoescli.EditarCli(cliente, codCli);
+
+            return RedirectToAction("ConsultaCliente", "Adminiscar");
+
+        }
+
+        //cadastro do cliente
+        [HttpPost] 
         public ActionResult Cliente02(Cliente cliente) {
 
             acoesCli acoescli = new acoesCli();
@@ -163,7 +182,21 @@ namespace Adminiscar.Controllers
             return RedirectToAction("Cliente", "Adminiscar");
 
         }
-        //clienteFim
+
+        //deletar o Cliente
+        [HttpPost]
+        public ActionResult DeletarCliente(string delCli) {
+
+            acoesCli acoescli = new acoesCli();
+
+            acoescli.DeleteCli(delCli);
+
+            return RedirectToAction("ConsultaCliente", "Adminiscar");
+
+        }
+        /**
+         * fimCliente
+         * */
 
 
         /**

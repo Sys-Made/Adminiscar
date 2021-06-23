@@ -1,0 +1,125 @@
+﻿@model  Adminiscar.Models.Cliente
+
+@{
+    ViewBag.Title = "EditarCliente";
+    Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
+}
+
+<!--header-->
+<header class="navInfo mb-3">
+
+    <div class="row justify-content-center">
+        <div class="col">
+            <div class="dataHora d-inline-block p-2 rounded">
+                <!--<p>01/10/2020 13:50</p>-->
+                <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+            </div>
+        </div>
+
+        <div class="col text-center">
+            <div class="logoConteinerSmall d-inline-block p-2 rounded bg-light boxShadow">
+                <img class="logoSmall" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_empresa" />
+            </div>
+        </div>
+
+        <div class="col text-right" onclick="NavFuncao(7);">
+            <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
+                <p>Voltar</p>
+            </div>
+        </div>
+    </div>
+
+</header>
+<!--fimHeader-->
+
+<h2>EditarCliente teste codigo @ViewBag.codCli</h2>
+
+<!-- Editar Dados -->
+<section class="row justify-content-center my-2 p-2 cadastroSecao">
+    <!--nome/cpf/cnpj/cnh-->
+    <div class="col-12 text-white">
+
+        @using (Html.BeginForm("UpdateCliente", "Adminiscar", FormMethod.Post))
+        {
+            <div class="form-row">
+                <div class="col mt-1 mb-2">
+                    <label for="exampleInputEmail1">Nome:</label>
+                    @Html.EditorFor(cli => cli.nomeCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Nome: " + ViewBag.dadosCli[1], id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
+                </div>
+
+                <div class="col mt-1 mb-2">
+                    <label for="exampleInputEmail1">CPF:</label>
+                    @Html.EditorFor(cli => cli.cpfCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Cpf: " + ViewBag.dadosCli[2], id = "inputCliCpf", senha = "txtCpfCli", required = "required" } })
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col mt-1 mb-2">
+                    <label for="exampleInputCnpj1">CNPJ:</label>
+                    @Html.EditorFor(cli => cli.cnpjCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Cnpj: 123.654.798 - 50", id = "inputCliCnpj", senha = "txtCnpjCli" } })
+                </div>
+
+                <div class="col mt-1 mb-2">
+                    <label for="exampleInputCnpj1">CNH:</label>
+                    @Html.EditorFor(cli => cli.cnhCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "CNH: " + ViewBag.dadosCli[3], id = "inputCliCnh", senha = "txtCnhCli", required = "required" } })
+                </div>
+
+            </div>
+
+            <div class="form-row my-2">
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Endereço:</label>
+                    @Html.EditorFor(cli => cli.rualgCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Rua: " + ViewBag.dadosCli[4], id = "inputCliRualg", senha = "txtRualgCli", required = "required" } })
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Numero:</label>
+                    @Html.EditorFor(cli => cli.numCli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Numero: " + ViewBag.dadosCli[5], id = "inputCliNum", senha = "txtNumCli", required = "required" } })
+                </div>
+
+            </div>
+
+            <div class="form-row my-2">
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Bairro:</label>
+                    @Html.EditorFor(cli => cli.bairroCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Bairro: " + ViewBag.dadosCli[6], id = "inputCliBairro", senha = "txtBairroCli", required = "required" } })
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Cidade:</label>
+                    @Html.EditorFor(cli => cli.cidCli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Cidade: " + ViewBag.dadosCli[7], id = "inputCliCid", senha = "txtCidCli", required = "required" } })
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Cep:</label>
+                    @Html.EditorFor(cli => cli.cepCli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Cep: 00000-000", id = "inputCliCep", senha = "txtCepCli", required = "required" } })
+                </div>
+
+            </div>
+
+            <div class="form-row my-2">
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Celular:</label>
+                    @Html.EditorFor(cli => cli.tellCli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Celular: " + ViewBag.dadosCli[8], id = "inputCliTell", senha = "txtTellCli", required = "required" } })
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Telefone Fixo:</label>
+                    @Html.EditorFor(cli => cli.tell2Cli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Telefone: " + ViewBag.dadosCli[9], id = "inputCliTell2", senha = "txtTell2Cli", required = "required" } })
+                </div>
+
+            </div>
+
+            <div class="form-row justify-content-center my-3">
+                <input type="hidden" name="codCli" value="@ViewBag.codCli" />
+                <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="submit">Registrar</button>
+
+                <button class="butaoMeidan bg-branco mx-2 my-2 rounded border-0" type="reset">Limpar</button>
+            </div>
+
+        }
+    </div>
+
+</section>
+<!--fimCadastro-->

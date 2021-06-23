@@ -131,7 +131,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cliente.cs" />
-    <Compile Include="Models\Codicao.cs" />
     <Compile Include="Models\LoginACS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -184,9 +183,10 @@
     <Content Include="Views\Adminiscar\Carro.cshtml" />
     <Content Include="Views\Adminiscar\Devolucao.cshtml" />
     <Content Include="Views\Adminiscar\Locacao.cshtml" />
-    <Content Include="Views\Adminiscar\ConsultCliente3.cshtml" />
     <Content Include="Views\Adminiscar\ConsultaCliente.cshtml" />
     <Content Include="Views\Adminiscar\DetalhesCliente.cshtml" />
+    <Content Include="Views\Adminiscar\EditarCliente.cshtml" />
+    <Content Include="Views\Adminiscar\BuscaCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
