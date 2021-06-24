@@ -78,5 +78,43 @@ namespace Adminiscar.Dal
 
         }
 
+        //detalhe carro
+        public List<string> detalheCar(string cod) {
+
+            //variavel local
+            int codCar;
+            List<string> listaCarro = new List<string>();
+            codCar = Convert.ToInt32(cod);  //o codigo do carro
+
+            //comando sql
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM carro WHERE COD_CAR = " + codCar,conect.MyConectorBd());
+
+            //preparando select
+            MySqlDataReader leitor;
+
+            leitor = cmd.ExecuteReader();
+
+            while (leitor.Read()) {
+
+                listaCarro.Add(leitor.GetString("COD_CAR"));
+                listaCarro.Add(leitor.GetString("NOME_CAR"));
+                listaCarro.Add(leitor.GetString("PLACA"));
+                listaCarro.Add(leitor.GetString("RENAVAM"));
+                listaCarro.Add(leitor.GetString("MODELO"));
+                listaCarro.Add(leitor.GetString("CATEGORIA"));
+                listaCarro.Add(leitor.GetString("COMBUTIVEL"));
+                listaCarro.Add(leitor.GetString("SITUACAO"));
+                listaCarro.Add(leitor.GetString("VALOR_SEMANAL"));
+                listaCarro.Add(leitor.GetString("VALOR_MENSAL"));
+                listaCarro.Add(leitor.GetString("SOM"));
+                listaCarro.Add(leitor.GetString("SOM_BT"));
+
+            }
+
+            conect.MyCloseBd();
+
+            return listaCarro;
+
+        }
     }
 }

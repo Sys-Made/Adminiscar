@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Adminiscar";
+    Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
+}
+
+<!--header-->
+<header class="navInfo mb-3">
+
+    <div class="row justify-content-center">
+        <div class="col">
+            <div class="dataHora d-inline-block p-2 rounded">
+                <!--<p>01/10/2020 13:50</p>-->
+                <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+            </div>
+        </div>
+
+        <div class="col text-center">
+            <div class="logoConteinerSmall d-inline-block p-2 rounded bg-light boxShadow">
+                <img class="logoSmall" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_empresa" />
+            </div>
+        </div>
+
+        <div class="col text-right" onclick="NavFuncao(7);">
+            <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
+                <p>Voltar</p>
+            </div>
+        </div>
+    </div>
+
+</header>
+<!--fimHeader-->
+
+<section class="row justify-content-center text-center">
+
+    <h2 class="col-12 bg-light py-3">Detalhes Do Cliente</h2>
+
+</section>
+
+<section class="row justify-content-center my-4 py-1">
+    <!--img do cliente-->
+    <div class="col-3">
+        <img src="~/Img/Imagens/Audi.jpg" class="img-thumbnail rounded my-2" />
+    </div>
+
+    <article class="col-9 rounded">
+        <div class="row justify-content-center rounded my-2 mx-1 bg-light">
+            <p class="col-3 m-2 border-bottom border-left rounded"><b>Nome Carro:</b><br />@ViewBag.dadosCar[1]</p>
+            <p class="col-4 m-2 border-bottom border-left rounded"><b>Placa:</b><br />@ViewBag.dadosCar[2]</p>
+            <p class="col-4 m-2 border-bottom border-left rounded"><b>Renavam:</b><br />@ViewBag.dadosCar[3]</p>
+        </div>
+
+        <div class="row justify-content-center bg-light rounded my-2 mx-1">
+            <p class="col-5 border-bottom border-left rounded m-2"><b>Modelo:</b><br />@ViewBag.dadosCar[4]</p>
+            <p class="col-5 border-bottom border-left rounded m-2"><b>Cartegoria:</b><br />@ViewBag.dadosCar[5]</p>
+        </div>
+
+        <div class="row justify-content-center bg-light my-2 mx-1">
+            <p class="col-5 border-bottom border-left rounded m-2"><b>Combustivel:</b><br />@ViewBag.dadosCar[6]</p>
+            <p class="col-5 border-bottom border-left rounded m-2"><b>Quilometragem:</b><br />0Km</p>
+        </div>
+
+        <div class="row justify-content-center rounded my-2 mx-1 bg-light">
+            <p class="col-3 border-bottom border-left rounded m-2"><b>Situação:</b><br />@ViewBag.dadosCar[7]</p>
+            <p class="col-4 border-bottom border-left rounded m-2"><b>Valor Semanal:</b><br />@ViewBag.dadosCar[8]</p>
+            <p class="col-4 border-bottom border-left rounded m-2"><b>Valor Mensal:</b><br />@ViewBag.dadosCar[9]</p>
+        </div>
+
+        <div class="row justify-content-center rounded my-2 mx-1 bg-light">
+            <p class="col-4 border-bottom border-left rounded m-2"><b>Som:</b><br />@ViewBag.dadosCar[10]</p>
+            <p class="col-4 border-bottom border-left rounded m-2"><b>Som bluetooth:</b><br />@ViewBag.dadosCar[11]</p>
+            <p class="col-3 border-bottom border-left rounded m-2"><b>GPS:</b><br />Sim</p>
+        </div>
+
+        <div class="row text-center mx-1 rounded bg-light">
+            @Html.ActionLink("Editar", null, null, new { @class = "btn btn-primary my-1 mx-auto btn-lg" })
+        </div>
+    </article>
+
+</section>

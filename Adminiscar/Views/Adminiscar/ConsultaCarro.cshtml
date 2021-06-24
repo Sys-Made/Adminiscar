@@ -112,9 +112,9 @@
                             @Html.DisplayFor(modelItem => item.modeloCar)
                         </td>
                         <td>
-                            @using (Html.BeginForm(null, null, FormMethod.Post))
+                            @using (Html.BeginForm("DetalheCarro", "Adminiscar", FormMethod.Post))
                             {
-                                <input type="hidden" name="teste" value="@Html.DisplayFor(modelItem => item.codCar)" />
+                                <input type="hidden" name="codCar" value="@Html.DisplayFor(modelItem => item.codCar)" />
                                 <button class="btn btn-primary my-1" type="submit">Detalhes</button>
                             }
 

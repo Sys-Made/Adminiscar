@@ -230,6 +230,18 @@ namespace Adminiscar.Controllers
             return View(listCarro);
 
         }
+
+        //Detalhes carro
+        [HttpPost]
+        public ActionResult DetalheCarro(string codCar) {
+
+            acoesCar acsCar = new acoesCar();   //chamando o method
+
+            ViewBag.dadosCar = acsCar.detalheCar(codCar);
+
+            return View();
+
+        }
         //carroFim
 
         /**
