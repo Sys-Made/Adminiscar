@@ -159,7 +159,6 @@ namespace Adminiscar.Controllers
             return View();
 
         }
-
         //fazendoEditandoDados
         public ActionResult UpdateCliente(Cliente cliente, string codCli) {
 
@@ -261,6 +260,17 @@ namespace Adminiscar.Controllers
             acoesCar acoescar = new acoesCar();
 
             acoescar.updateCar(car, codCar);
+
+            return RedirectToAction("ConsultaCarro", "Adminiscar");
+
+        }
+
+        //delatando carro
+        public ActionResult DeleteCarro(string deletarCar) {
+
+            acoesCar acsCar = new acoesCar();
+
+            acsCar.deletarCar(deletarCar);
 
             return RedirectToAction("ConsultaCarro", "Adminiscar");
 

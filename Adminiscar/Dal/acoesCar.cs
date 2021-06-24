@@ -146,5 +146,25 @@ namespace Adminiscar.Dal
             cmd.ExecuteNonQuery();
 
         }
+
+        //deletar carro
+        public void deletarCar(string cod) {
+
+            //variavel local
+            int codCar;
+
+            codCar = Convert.ToInt32(cod);
+
+            //comando sql
+            MySqlCommand cmd = new MySqlCommand("DELETE FROM carro WHERE COD_CAR =" + cod, conect.MyConectorBd());
+
+            //executando
+            cmd.ExecuteNonQuery();
+
+            //close conexao
+            conect.MyCloseBd();
+
+        }
+
     }
 }

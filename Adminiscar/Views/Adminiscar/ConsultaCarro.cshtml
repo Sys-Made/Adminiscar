@@ -124,9 +124,9 @@
                                 <button class="btn btn-primary my-1" type="submit">Editar</button>
                             }
 
-                            @using (Html.BeginForm(null, null, FormMethod.Post))
+                            @using (Html.BeginForm("DeleteCarro", "Adminiscar", FormMethod.Post))
                             {
-                                <input type="hidden" name="delCli" value="@Html.DisplayFor(modelItem => item.codCar)" />
+                                <input type="hidden" name="deletarCar" value="@Html.DisplayFor(modelItem => item.codCar)" />
                                 <button class="btn btn-primary my-1" type="submit">Deletar</button>
                             }
                         </td>
