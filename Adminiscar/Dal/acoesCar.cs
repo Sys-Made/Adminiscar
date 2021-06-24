@@ -116,5 +116,35 @@ namespace Adminiscar.Dal
             return listaCarro;
 
         }
+
+        //editar carro
+        public void updateCar(Carro car, string cod) {
+
+            //variavel local
+            int codCar;
+            codCar = Convert.ToInt32(cod);
+
+            //comando sql
+            //comando sql alterando o cliente
+            MySqlCommand cmd = new MySqlCommand("UPDATE carro SET NOME_CAR=@nomecarro, PLACA=@placa, RENAVAM=@renavam, MODELO=@modelo, CATEGORIA=@cat, COMBUTIVEL=@com, QUILOMETRAGEM=@khm, SITUACAO=@sts, VALOR_SEMANAL=@vls, VALOR_MENSAL=@vlm, SOM=@som, SOM_BT=@sbt, GPS=@gps WHERE COD_CAR = " + codCar, conect.MyConectorBd());
+
+            //add parametro para o update
+            cmd.Parameters.Add("@nomecarro", MySqlDbType.VarChar).Value = car.nomeCar;
+            cmd.Parameters.Add("@placa", MySqlDbType.VarChar).Value = car.placaCar;
+            cmd.Parameters.Add("@renavam", MySqlDbType.VarChar).Value = car.renavCar;
+            cmd.Parameters.Add("@modelo", MySqlDbType.VarChar).Value = car.modeloCar;
+            cmd.Parameters.Add("@cat", MySqlDbType.VarChar).Value = car.categoriaCar;
+            cmd.Parameters.Add("@com", MySqlDbType.VarChar).Value = car.combCar;
+            cmd.Parameters.Add("@khm", MySqlDbType.Int32).Value = car.KmhCar;
+            cmd.Parameters.Add("@sts", MySqlDbType.VarChar).Value = car.statusCar;
+            cmd.Parameters.Add("@vls", MySqlDbType.Double).Value = car.vlsmanlCar;
+            cmd.Parameters.Add("@vlm", MySqlDbType.Double).Value = car.vlsmanlCar;
+            cmd.Parameters.Add("@som", MySqlDbType.VarChar).Value = car.somCar;
+            cmd.Parameters.Add("@sbt", MySqlDbType.VarChar).Value = car.somBwCar;
+            cmd.Parameters.Add("@gps", MySqlDbType.VarChar).Value = car.gpsCar;
+
+            cmd.ExecuteNonQuery();
+
+        }
     }
 }

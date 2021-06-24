@@ -118,9 +118,9 @@
                                 <button class="btn btn-primary my-1" type="submit">Detalhes</button>
                             }
 
-                            @using (Html.BeginForm(null, null, FormMethod.Post))
+                            @using (Html.BeginForm("EditarCarro", "Adminiscar", FormMethod.Post))
                             {
-                                <input type="hidden" name="editarCli" value="@Html.DisplayFor(modelItem => item.codCar)" />
+                                <input type="hidden" name="editarCar" value="@Html.DisplayFor(modelItem => item.codCar)" />
                                 <button class="btn btn-primary my-1" type="submit">Editar</button>
                             }
 

@@ -160,7 +160,7 @@ namespace Adminiscar.Controllers
 
         }
 
-        //fazendoUpdate
+        //fazendoEditandoDados
         public ActionResult UpdateCliente(Cliente cliente, string codCli) {
 
             acoesCli acoescli = new acoesCli();
@@ -242,6 +242,30 @@ namespace Adminiscar.Controllers
             return View();
 
         }
+
+        //Editar carro
+        public ActionResult EditarCarro(string editarCar) {
+
+            acoesCar acsCar = new acoesCar();   //chamando o method
+
+            ViewBag.codCar = editarCar; //codigo do car
+            ViewBag.dadosCar = acsCar.detalheCar(editarCar); //dados do carro
+
+            return View();
+
+        }
+        //editandoCarro
+        [HttpPost]
+        public ActionResult UpdateCarro(Carro car, string codCar) {
+
+            acoesCar acoescar = new acoesCar();
+
+            acoescar.updateCar(car, codCar);
+
+            return RedirectToAction("ConsultaCarro", "Adminiscar");
+
+        }
+
         //carroFim
 
         /**

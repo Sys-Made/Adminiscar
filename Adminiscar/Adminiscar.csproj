@@ -191,6 +191,7 @@
     <Content Include="Views\Adminiscar\BuscaCliente.cshtml" />
     <Content Include="Views\Adminiscar\ConsultaCarro.cshtml" />
     <Content Include="Views\Adminiscar\DetalheCarro.cshtml" />
+    <Content Include="Views\Adminiscar\EditarCarro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
