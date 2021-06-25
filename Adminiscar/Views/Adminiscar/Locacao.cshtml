@@ -58,23 +58,18 @@
             <div class="form-row">
 
                 <div class="col mt-1 mb-2">
-                    <label for="exampleInputEmail1">Numero Do Pedido:</label>
+                    <label for="exampleInputEmail1">Nome Do Cliente:</label>
                     <input type="text" class="form-control col-10" placeholder="">
                 </div>
-
-                <div class="col mt-1 mb-2">
-                    <label for="exampleInputEmail1">Nome Da Empresa:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
-                </div>
-
-            </div>
-
-            <div class="form-row">
 
                 <div class="col my-1">
                     <label for="exampleInputEmail1">CNPJ:</label>
                     <input type="text" class="form-control col-10" placeholder="">
                 </div>
+
+            </div>
+
+            <div class="form-row mb-2">
 
                 <div class="col my-1">
                     <label for="exampleInputEmail1">CPF:</label>
@@ -87,30 +82,51 @@
                 </div>
 
             </div>
-            <!--fimNome/cpf/cnpj/cnh-->
-            <!--placaCarroNomeveiculo-->
-            <div class="form-row border-top my-4">
+
+            <div class="form-row border-top">
 
                 <div class="col my-1">
-                    <label for="exampleInputEmail1">Nome Do Veiculo:</label>
+                    <label for="exampleInputEmail1">Celular:</label>
                     <input type="text" class="form-control col-10" placeholder="">
                 </div>
 
                 <div class="col my-1">
+                    <label for="exampleInputEmail1">Telefone:</label>
+                    <input type="text" class="form-control col-10" placeholder="">
+                </div>
+
+            </div>
+            <!--fimNome/cpf/cnpj/cnh-->
+            <!--placaCarroNomeveiculo-->
+            <div class="form-row border-top my-4">
+
+                <div class="col-5 my-1 mx-auto">
+                    <label for="inlineFormCustomSelect">Nome Do Veiculo:</label>
+                    <br />
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                        <option selected>Veiculo</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+
+                <div class="col-5 my-1 mx-auto">
                     <label for="exampleInputEmail1">Categoria:</label>
-                    <input type="text" class="form-control col-8" placeholder="">
+                    <br />
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                        <option selected>Cartegoria</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
                 </div>
 
             </div>
 
             <div class="form-row my-4">
 
-                <div class="col-6 my-1">
-                    <label for="exampleInputEmail1">Placa Do Carro:</label>
-                    <input type="text" class="form-control col-8" placeholder="">
-                </div>
-
-                <div class="col py-4 align-content-center">
+                <div class="col-6 py-4 mx-auto text-center">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
                         <label class="form-check-label" for="inlineCheckbox1">Som</label>
@@ -133,13 +149,13 @@
             <div class="form-row border-top border-bottom py-2 my-2">
 
                 <div class="col my-1">
-                    <label for="exampleInputEmail1">Valor Base:</label>
+                    <label for="exampleInputEmail1">Valor Diario:</label>
                     <input type="text" class="form-control col-10" placeholder="">
                 </div>
 
                 <div class="col my-1">
                     <label for="exampleInputEmail1">Quantidade De Tempo:</label>
-                    <input type="text" class="form-control col-8" placeholder="">
+                    <input type="Date" class="form-control col-8" placeholder="">
                 </div>
 
                 <div class="col my-1">
@@ -313,7 +329,6 @@
     </div>
 </section>
 <!--fimConsulta-->
-
 <!--ModalInformações-->
 <!-- detalhesLocacao -->
 <div class="modal fade" id="detalhe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

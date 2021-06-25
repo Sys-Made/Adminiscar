@@ -126,6 +126,7 @@
     <Compile Include="Controllers\AdminiscarController.cs" />
     <Compile Include="Dal\acoesCar.cs" />
     <Compile Include="Dal\acoesCli.cs" />
+    <Compile Include="Dal\acoesLoc.cs" />
     <Compile Include="Dal\acoesLogin.cs" />
     <Compile Include="Dal\Conexao.cs" />
     <Compile Include="Global.asax.cs">
@@ -133,6 +134,7 @@
     </Compile>
     <Compile Include="Models\Carro.cs" />
     <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Locacao.cs" />
     <Compile Include="Models\LoginACS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
