@@ -297,26 +297,41 @@ namespace Adminiscar.Controllers
          * */
         public ActionResult Locacao()
         {
+            //istaciando acoesLoc
+            acoesLoc acsLoc = new acoesLoc();
+
+            /*DropListas de veiculos*/
+            int QtdItens = acsLoc.listVeiculoLoc().Count();
+            var ListVec = acsLoc.listVeiculoLoc();
+            var ListCod = acsLoc.listCodVecLoc();
+
+            List<SelectListItem> itensVec = new List<SelectListItem>();
+
+            itensVec.Add(new SelectListItem { Text = "Veiculo", Value = "0", Selected = true });
+
+            var i = 0;
+
+            while (i <= QtdItens - 1) {
+
+                itensVec.Add(new SelectListItem { Text = ListVec[i], Value = ListCod[i] });
+
+                i++;
+
+            }
+            /*FimDropListVeiculo*/
+
+            
+            ViewBag.Veiculos = itensVec;    //retornando na viewbag os dropList
 
             return View();
         }
-        /*public string Index() {
 
-            return "esse é minha pagina default action";
+        //confirmação da locação
+        public ActionResult AlugarConfirLoc() {
 
-        }*/
+            return View();
 
-        /*
-         * no Aps.net os parametros da URL funciona desse jeito
-         * nomeDoDominio/Controller/actionName/parametrosDeles
-         * no arquivo _start/RouteConfig.cs vc define as routas da url
-         * 
-         **/
+        }
 
-        /*public string Welcome() {
-
-            return "esse é meu method Welcome action";
-
-        }*/
     }
 }
