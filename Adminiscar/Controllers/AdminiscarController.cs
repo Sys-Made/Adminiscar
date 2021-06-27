@@ -320,13 +320,14 @@ namespace Adminiscar.Controllers
             }
             /*FimDropListVeiculo*/
 
-            
+
             ViewBag.Veiculos = itensVec;    //retornando na viewbag os dropList
 
             return View();
         }
 
         //confirmação da locação
+        [HttpPost]
         public ActionResult AlugarConfirLoc() {
 
             return View();
