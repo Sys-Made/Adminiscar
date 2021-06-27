@@ -328,7 +328,7 @@ namespace Adminiscar.Controllers
 
         //confirmação da locação
         [HttpPost]
-        public ActionResult AlugarConfirLoc() {
+        public ActionResult AlugarConfirLoc(string clienteLoc, string cnpjLoc, string cpfLoc, string cnhLoc, string TellLoc, string cellLoc, string Veiculos, string som, string somBt, string gps, string dateLoc) {
 
             return View();
 

@@ -69,6 +69,68 @@ namespace Adminiscar.Dal
 
         }
 
+        //locacao para alugar
+        public List<string> listLoc(string clienteLoc, string cnpjLoc, string cpfLoc, string cnhLoc, string cellLoc, string tellLoc, string Veiculos, string som, string somBt, string gps, string dateLoc) {
+            
+            //variavel Local
+            List<string> listaLocacao = new List<string>();
 
+            //parte do codigo para guardar na lista
+            if (clienteLoc == null || cpfLoc == null || cnhLoc == null)
+            {   //verificando esta vazio
+
+                //enviando um codigo para dizer que não tem nada
+                listaLocacao.Add("0");
+
+            }
+
+            //verificando se o cnpj veio com algo
+            if (cnpjLoc != null)
+            {
+                //adicionando a lista
+                listaLocacao.Add(clienteLoc);
+                listaLocacao.Add(cnpjLoc);
+                listaLocacao.Add(cpfLoc);
+                listaLocacao.Add(cnhLoc);
+
+            }
+            else {
+
+                //adicionando a lista
+                listaLocacao.Add(clienteLoc);
+                listaLocacao.Add("Não tem");
+                listaLocacao.Add(cpfLoc);
+                listaLocacao.Add(cnhLoc);
+
+            }
+
+            //verificando se tem um telefone ou celular
+            if (cellLoc == null || tellLoc != null)
+            {
+
+                listaLocacao.Add("Não tem celular");
+                listaLocacao.Add(tellLoc);
+
+            }
+
+            if (cellLoc != null || tellLoc == null)
+            {
+
+                listaLocacao.Add(cellLoc);
+                listaLocacao.Add("Não tem Telefone");
+
+            }
+            else {
+
+                listaLocacao.Add(cellLoc);
+                listaLocacao.Add(tellLoc);
+
+            }
+
+
+
+            return listaLocacao;
+
+        }
     }
 }

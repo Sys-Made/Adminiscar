@@ -46,8 +46,9 @@
     </div>-->
 
     <article class="col-9 rounded">
+        <!--Cliente-->
         <div class="row justify-content-center rounded-top mt-2 mx-1 bg-light">
-            <input type="hidden" name="nomCli" value="" />
+            <input type="hidden" name="nomeCli" value="" />
             <p class="col-5 m-2 border-bottom border-left rounded"><b>Nome Do Cliente:</b><br />Carlos Santos</p>
             <input type="hidden" name="cpfCli" value="" />
             <p class="col-5 m-2 border-bottom border-left rounded"><b>CPF:</b><br />333.333.333-20</p>
@@ -59,7 +60,23 @@
             <input type="hidden" name="cnhCli" value="" />
             <p class="col-5 m-2 border-bottom border-left rounded"><b>CNH:</b><br />00000000000</p>
         </div>
+        <!--fimCLiente-->
+        <!--Carro-->
+        <div class="row justify-content-center rounded-top mt-2 mx-1 bg-light">
+            <input type="hidden" name="nomCar" value="" />
+            <p class="col-5 m-2 border-bottom border-left rounded"><b>Veiculo:</b><br />Toyota</p>
+            <input type="hidden" name="cpfCar" value="" />
+            <p class="col-5 m-2 border-bottom border-left rounded"><b>Cartegoria:</b><br />Classico</p>
+        </div>
 
+        <div class="row justify-content-center rounded-bottom mb-2 mx-1 bg-light">
+            <input type="hidden" name="somCar" value="" />
+            <p class="col-5 m-2 border-bottom border-left rounded"><b>Som/Sombt:</b><br />sim</p>
+            <input type="hidden" name="gpsCar" value="" />
+            <p class="col-5 m-2 border-bottom border-left rounded"><b>Gps:</b><br />sim</p>
+        </div>
+        <!--fimCarro-->
+        <!--TelefoneContato-->
         <div class="row justify-content-center rounded my-2 mx-1 bg-light">
             <input type="hidden" name="tellCli" value="" />
             <p class="col-5 border-bottom border-left rounded m-2"><b>Telefone:</b><br />11 3323-0236</p>
@@ -73,15 +90,32 @@
             <input type="hidden" name="dateEnt" value="" />
             <p class="col-5 border-bottom border-left rounded m-2"><b>Data de entrega:</b><br />10/05/2021</p>
         </div>
-
+        <!--fimContato-->
+        <!--Total e o dias que vai ficar-->
         <div class="row justify-content-center rounded my-2 mx-1 bg-light">
+            <input type="hidden" name="valorBs" value="" />
             <p class="col-3 border-bottom border-left rounded m-2"><b>Valor base:</b><br />R$100.00</p>
+            <input type="hidden" name="valorTotal" value="" />
             <p class="col-3 border-bottom border-left rounded m-2"><b>Valor total:</b><br />R$300.00</p>
+            <input type="hidden" name="totalDias" value="" />
             <p class="col-3 border-bottom border-left rounded m-2"><b>Total de dias:</b><br />6</p>
         </div>
+        <!--fimTotal-->
+
+        <!--Total e o dias que vai ficar-->
+        <div class="row justify-content-center rounded my-2 mx-1 bg-light">
+            <input type="hidden" name="valorBs" value="" />
+            <p class="col-3 border-bottom border-left rounded m-2"><b>Valor base:</b><br />R$100.00</p>
+            <input type="hidden" name="valorTotal" value="" />
+            <p class="col-3 border-bottom border-left rounded m-2"><b>Valor total:</b><br />R$300.00</p>
+            <input type="hidden" name="totalDias" value="" />
+            <p class="col-3 border-bottom border-left rounded m-2"><b>Total de dias:</b><br />6</p>
+        </div>
+        <!--fimTotal-->
 
         <div class="row text-center mx-1 rounded bg-light">
-            @Html.ActionLink("confirmar locação", null, null, new { @class = "btn btn-primary my-1 mx-auto btn-lg" })
+            @Html.ActionLink("Confirmar", null, null, new { @class = "btn btn-primary my-1 mx-auto" })
+            @Html.ActionLink("Cancelar", null, null, new { @class = "btn btn-danger my-1 mx-auto" })
         </div>
     </article>
 
