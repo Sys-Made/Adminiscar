@@ -76,12 +76,12 @@ namespace Adminiscar.Dal
             List<string> listaLocacao = new List<string>();
             string nomeVeiculo = "";
             string dias = "";
-            string vlCompra;
-            double valorBs = 0;
-            double valorSm = 0;
-            double valorMs = 0;
-            int cod_car;
-            double valorCompra;
+            string vlCompra = "";
+            float valorBs = 0;
+            float valorSm = 0;
+            float valorMs = 0;
+            int cod_car = 0;
+            float valorCompra = 0;
 
             //parte do codigo para guardar na lista
             if (clienteLoc == null || cpfLoc == null || cnhLoc == null)
@@ -124,12 +124,13 @@ namespace Adminiscar.Dal
             while (leitor.Read()) {
 
                 nomeVeiculo = leitor.GetString("NOME_CAR");
-                valorBs = leitor.GetDouble("VALOR_DIARIO");
-                valorSm = leitor.GetDouble("VALOR_SEMANAL");
-                valorMs = leitor.GetDouble("VALOR_MENSAL");
+                valorBs = leitor.GetFloat("VALOR_DIARIO");
+                valorSm = leitor.GetFloat("VALOR_SEMANAL");
+                valorMs = leitor.GetFloat("VALOR_MENSAL");
 
             }
 
+            listaLocacao.Add(Convert.ToString(cod_car));
             listaLocacao.Add(nomeVeiculo);
 
             //verificando se vai ter som ou não
@@ -152,15 +153,13 @@ namespace Adminiscar.Dal
             }
 
             //verificando se tem um telefone ou celular
-            if (cellLoc == "" && tellLoc != "")
+            if (cellLoc == "" || cellLoc == null)
             {
 
                 listaLocacao.Add("Não tem celular");
                 listaLocacao.Add(tellLoc);
 
-            }
-
-            if (cellLoc != "" && tellLoc == "")
+            }else if (tellLoc == "" || tellLoc == null)
             {
 
                 listaLocacao.Add(cellLoc);
@@ -227,16 +226,16 @@ namespace Adminiscar.Dal
 
                 vlCompra = Convert.ToString(valorCompra);   //convertendo em string
 
-                listaLocacao.Add(vlCompra);
+            }
 
-            } else if (totalDias == 7) {
+            if (totalDias == 7) {
 
                 valorCompra = valorSm;
-                vlCompra = Convert.ToString(valorCompra);   //convertendo em string
+                vlCompra = Convert.ToString(valorCompra);   //convertendo em string         
 
-                listaLocacao.Add(vlCompra);
+            }
 
-            } else if (totalDias >= 29) {
+            if (totalDias >= 29) {
 
                 valorCompra = valorMs;
                 vlCompra = Convert.ToString(valorCompra);
@@ -245,15 +244,14 @@ namespace Adminiscar.Dal
 
             }
 
-            //codigo do carro
-            listaLocacao.Add(Veiculos);
+            listaLocacao.Add(vlCompra);
 
             return listaLocacao;
 
         }
 
         //alugando
-        public void finPedidoLoc(string nomecli, string cpfcli, string cnpjcli, string cnhcli, string codcar, string tellcli, string cellcli, string dateEnt, string valorTotal) {
+        public void finPedidoLoc(string nomecli, string cpfcli, string cnpjcli, string cnhcli, string codcar, string tellcli, string cellcli, string dateEnt, string valorTotal, string tipoPag) {
 
             //verificando se o cliente já tem cadastro
             MySqlCommand cmd = new MySqlCommand("SELECT NOME_CLIENTE, CPF_CNPJ FROM cliente WHERE CPF_CNPJ = '" + cpfcli + "'", conect.MyConectorBd());
@@ -263,10 +261,8 @@ namespace Adminiscar.Dal
             leitor = cmd.ExecuteReader();
 
             //verificando se existe cliente
-            if (!leitor.HasRows) {
-
-                //fechando primeiro a conexao
-                conect.MyCloseBd();
+            if (!leitor.HasRows)
+            {
 
                 Cliente cliente = new Cliente();    //chamando o objeto cliente
                 acoesCli acsCli = new acoesCli();   //chamando o method cliente
@@ -283,6 +279,82 @@ namespace Adminiscar.Dal
 
             }
 
+            conect.MyCloseBd();
+
+
+            //verificando qual foi o pagamento
+            if (tipoPag == "CDC") {
+
+                //objeto cliente
+                string codCliente = "";
+                int codCardCd = 0;
+                int codPag = 0;
+                string nomeCliente = "";
+                string cpfCliente = "";
+
+                //pegando o cliente
+                MySqlCommand slctCli = new MySqlCommand("SELECT COD_CLIENTE, NOME_CLIENTE, CPF_CNPJ FROM cliente WHERE CPF_CNPJ = '" + cpfcli + "'", conect.MyConectorBd());
+                
+                //preparando slct 
+                MySqlDataReader busc;
+
+                busc = slctCli.ExecuteReader(); //executando
+
+                while(busc.Read()) {
+
+                    codCliente = busc.GetString("COD_CLIENTE");
+                    nomeCliente = busc.GetString("NOME_CLIENTE");
+                    cpfCliente = busc.GetString("CPF_CNPJ");
+
+                }
+
+                conect.MyCloseBd();
+
+                //inserindo no cartão de credito
+                MySqlCommand insrtCd = new MySqlCommand("INSERT INTO cartao_cred(COD_CLIENTE_FK)VALUES("+ codCliente + ")", conect.MyConectorBd());
+                insrtCd.ExecuteNonQuery();
+
+                conect.MyCloseBd();
+
+                //buscando o codigo do cartão
+                MySqlCommand slctCd = new MySqlCommand("SELECT COD_CRED FROM cartao_cred INNER JOIN cliente ON COD_CLIENTE_FK = COD_CLIENTE WHERE COD_CLIENTE = " + codCliente, conect.MyConectorBd());
+                MySqlDataReader buscslctCd;
+                buscslctCd = slctCd.ExecuteReader();
+
+                while (buscslctCd.Read()) {
+
+                    codCardCd = buscslctCd.GetInt32("COD_CRED");
+
+                }
+
+                conect.MyCloseBd();
+
+                //inserindo no pagamento
+                MySqlCommand insrtPag = new MySqlCommand("INSERT INTO pagamento(VALOR, COD_CRED_FK, COD_CLIENTE_FK)VALUES("+Convert.ToDouble(valorTotal)+", "+ codCardCd + ", "+codCliente+")", conect.MyConectorBd());
+                insrtPag.ExecuteNonQuery();
+
+                conect.MyCloseBd();
+
+                //buscando o codigo do cartão
+                MySqlCommand slctPg = new MySqlCommand("SELECT MAX(COD_PAG) FROM pagamento INNER JOIN cliente ON COD_CLIENTE_FK = COD_CLIENTE WHERE COD_CLIENTE = " + 1, conect.MyConectorBd());
+                MySqlDataReader buscslctPg;
+                buscslctPg = slctPg.ExecuteReader();
+
+                while (buscslctPg.Read())
+                {
+
+                    codPag = buscslctCd.GetInt32("MAX(COD_PAG)");
+
+                }
+
+                conect.MyCloseBd();
+
+                //iserindo no pedido
+                MySqlCommand insrtPed = new MySqlCommand("INSERT INTO pedido(VALOR,DATA_RETIRADA,DATA_DEVOLUCAO, COD_CLI_FK, COD_PAG_FK, COD_CAR_FK)VALUES("+valorTotal+", '2021-06-28', '2021-07-28', "+codCliente+", "+codPag+ ", "+codcar+")", conect.MyConectorBd());
+                insrtPed.ExecuteNonQuery();
+
+                conect.MyCloseBd();
+            }
 
 
         }

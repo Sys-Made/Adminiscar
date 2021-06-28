@@ -342,11 +342,11 @@ namespace Adminiscar.Controllers
 
         //finalizando o pedido
         [HttpPost]
-        public ActionResult FinalizandoPedido(string nomeCli, string cpfCli, string cnpjCli, string cnhCli, string codCar, string TellCli, string cellCli, string dateEnt, string valorTotal) {
+        public ActionResult FinalizandoPedido(string nomeCli, string cpfCli, string cnpjCli, string cnhCli, string codCar, string TellCli, string cellCli, string dateEnt, string valorTotal, string typePag) {
             //chamando method locacao
             acoesLoc acsLoc = new acoesLoc();
 
-            acsLoc.finPedidoLoc(nomeCli, cpfCli, cnpjCli, cnhCli, codCar, TellCli, cellCli, dateEnt, valorTotal);
+            acsLoc.finPedidoLoc(nomeCli, cpfCli, cnpjCli, cnhCli, codCar, TellCli, cellCli, dateEnt, valorTotal, typePag);
 
             return RedirectToAction("Locacao", "Adminiscar");
 
