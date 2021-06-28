@@ -326,11 +326,29 @@ namespace Adminiscar.Controllers
             return View();
         }
 
-        //confirmação da locação
+        //pre Locacao do carro
         [HttpPost]
         public ActionResult AlugarConfirLoc(string clienteLoc, string cnpjLoc, string cpfLoc, string cnhLoc, string TellLoc, string cellLoc, string Veiculos, string som, string somBt, string gps, string dateLoc) {
 
+            //chamando a classe com os methods
+            acoesLoc acsLoc = new acoesLoc();
+
+            //exibindo os valores
+            ViewBag.dadosLoc = acsLoc.listLoc(clienteLoc, cnpjLoc, cpfLoc, cnhLoc, TellLoc, cellLoc, Veiculos, som, somBt, gps, dateLoc);
+
             return View();
+
+        }
+
+        //finalizando o pedido
+        [HttpPost]
+        public ActionResult FinalizandoPedido(string nomeCli, string cpfCli, string cnpjCli, string cnhCli, string codCar, string TellCli, string cellCli, string dateEnt, string valorTotal) {
+            //chamando method locacao
+            acoesLoc acsLoc = new acoesLoc();
+
+            acsLoc.finPedidoLoc(nomeCli, cpfCli, cnpjCli, cnhCli, codCar, TellCli, cellCli, dateEnt, valorTotal);
+
+            return RedirectToAction("Locacao", "Adminiscar");
 
         }
 
