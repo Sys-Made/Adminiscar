@@ -253,6 +253,13 @@ namespace Adminiscar.Dal
         //alugando
         public void finPedidoLoc(string nomecli, string cpfcli, string cnpjcli, string cnhcli, string codcar, string tellcli, string cellcli, string dateEnt, string valorTotal, string tipoPag) {
 
+            //variavel Local
+            string codCliente = "";
+            int codCardCd = 0;
+            int codPag = 0;
+            string nomeCliente = "";
+            string cpfCliente = "";
+
             //verificando se o cliente já tem cadastro
             MySqlCommand cmd = new MySqlCommand("SELECT NOME_CLIENTE, CPF_CNPJ FROM cliente WHERE CPF_CNPJ = '" + cpfcli + "'", conect.MyConectorBd());
 
@@ -284,13 +291,6 @@ namespace Adminiscar.Dal
 
             //verificando qual foi o pagamento
             if (tipoPag == "CDC") {
-
-                //objeto cliente
-                string codCliente = "";
-                int codCardCd = 0;
-                int codPag = 0;
-                string nomeCliente = "";
-                string cpfCliente = "";
 
                 //pegando o cliente
                 MySqlCommand slctCli = new MySqlCommand("SELECT COD_CLIENTE, NOME_CLIENTE, CPF_CNPJ FROM cliente WHERE CPF_CNPJ = '" + cpfcli + "'", conect.MyConectorBd());
@@ -335,22 +335,22 @@ namespace Adminiscar.Dal
 
                 conect.MyCloseBd();
 
-                //buscando o codigo do cartão
-                MySqlCommand slctPg = new MySqlCommand("SELECT MAX(COD_PAG) FROM pagamento INNER JOIN cliente ON COD_CLIENTE_FK = COD_CLIENTE WHERE COD_CLIENTE = " + 1, conect.MyConectorBd());
-                MySqlDataReader buscslctPg;
-                buscslctPg = slctPg.ExecuteReader();
+                //buscando o codigo do pagamento
+                MySqlCommand selectPg = new MySqlCommand("SELECT MAX(COD_PAG) FROM pagamento", conect.MyConectorBd());
+                MySqlDataReader buscPg;
+                buscPg = selectPg.ExecuteReader();
 
-                while (buscslctPg.Read())
+                while (buscPg.Read())
                 {
 
-                    codPag = buscslctCd.GetInt32("MAX(COD_PAG)");
+                    codPag = buscPg.GetInt32("MAX(COD_PAG)");
 
                 }
 
                 conect.MyCloseBd();
 
                 //iserindo no pedido
-                MySqlCommand insrtPed = new MySqlCommand("INSERT INTO pedido(VALOR,DATA_RETIRADA,DATA_DEVOLUCAO, COD_CLI_FK, COD_PAG_FK, COD_CAR_FK)VALUES("+valorTotal+", '2021-06-28', '2021-07-28', "+codCliente+", "+codPag+ ", "+codcar+")", conect.MyConectorBd());
+                MySqlCommand insrtPed = new MySqlCommand("INSERT INTO pedido(VALOR,DATA_RETIRADA,DATA_DEVOLUCAO, COD_CLI_FK, COD_PAG_FK, COD_CAR_FK)VALUES("+valorTotal+", '2021-06-28', '2021-07-28', "+codCliente+", "+codPag+", "+codcar+")", conect.MyConectorBd());
                 insrtPed.ExecuteNonQuery();
 
                 conect.MyCloseBd();
