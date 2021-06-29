@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<Adminiscar.Models.Locacao>
+
 @{
     ViewBag.Title = "ConsultaLocacao";
     Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
@@ -89,83 +90,40 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-                <tr>
-                    <td>000000000</td>
-                    <td>000.000.123-55</td>
-                    <td>KOP12356</td>
-                    <td>153.624.899-10</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.numPedLoc)</td>
+                        <td>@Html.DisplayFor(modelItem => item.cpfLoc)</td>
+                        <td>@Html.DisplayFor(modelItem => item.placCar)</td>
+                        <td>@Html.DisplayFor(modelItem => item.modeloLoc)</td>
+                        <td>
+                            @using (Html.BeginForm("DetalhesLocacao", "Adminiscar", FormMethod.Post))
+                            {
+                                <input type="hidden" name="teste" value="@Html.DisplayFor(modelItem => item.numPedLoc)" />
+                                <button class="btn btn-primary my-1" type="submit">Detalhes</button>
+                            }
 
-                <tr>
-                    <td>000000000</td>
-                    <td>000.000.123-55</td>
-                    <td>KOP12356</td>
-                    <td>153.624.899-10</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
+                            @using (Html.BeginForm(null, null, FormMethod.Post))
+                            {
+                                <input type="hidden" name="editarCli" value="@Html.DisplayFor(modelItem => item.numPedLoc)" />
+                                <button class="btn btn-primary my-1" type="submit">Editar</button>
+                            }
 
-                <tr>
-                    <td>000000000</td>
-                    <td>000.000.123-55</td>
-                    <td>KOP12356</td>
-                    <td>153.624.899-10</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>000000000</td>
-                    <td>000.000.123-55</td>
-                    <td>KOP12356</td>
-                    <td>153.624.899-10</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>000000000</td>
-                    <td>000.000.123-55</td>
-                    <td>KOP12356</td>
-                    <td>153.624.899-10</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>000000000</td>
-                    <td>000.000.123-55</td>
-                    <td>KOP12356</td>
-                    <td>153.624.899-10</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
+                            @using (Html.BeginForm(null, null, FormMethod.Post))
+                            {
+                                <input type="hidden" name="delCli" value="@Html.DisplayFor(modelItem => item.numPedLoc)" />
+                                <button class="btn btn-primary my-1" type="submit">Deletar</button>
+                            }
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
 
 
 
-        <nav aria-label="Page navigation example">
+        <!--<nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 <li class="page-item disabled text-roxo">
                     <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
@@ -179,7 +137,7 @@
                     <a class="page-link text-roxo" href="#">Next</a>
                 </li>
             </ul>
-        </nav>
+        </nav>-->
 
     </div>
 </section>

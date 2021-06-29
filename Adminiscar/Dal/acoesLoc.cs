@@ -69,6 +69,37 @@ namespace Adminiscar.Dal
 
         }
 
+        //consultaLocacao
+        public List<Locacao> consultaLocacaoLoc() {
+
+            //variavel local
+            List<Locacao> listaLocacao = new List<Locacao>();
+
+            //comando sql
+            MySqlCommand cmd = new MySqlCommand("select cli.COD_CLIENTE, cli.CPF_CNPJ, car.COD_CAR, car.PLACA, car.MODELO, ped.COD_PEDIDO FROM pedido AS ped INNER JOIN cliente AS cli ON ped.COD_CLI_FK = cli.COD_CLIENTE INNER JOIN carro AS car ON ped.COD_CAR_FK = car.COD_CAR", conect.MyConectorBd());
+
+            MySqlDataReader leitor; //preparando o select
+
+            leitor = cmd.ExecuteReader();   //executando no banco
+
+            while (leitor.Read()) {
+
+                listaLocacao.Add(new Locacao
+                {
+                    codcliLoc = leitor.GetString("COD_CLIENTE"),
+                    cpfLoc = leitor.GetString("CPF_CNPJ"),
+                    codCarLoc = leitor.GetString("COD_CAR"),
+                    placCar = leitor.GetString("PLACA"),
+                    modeloLoc = leitor.GetString("MODELO"),
+                    numPedLoc = leitor.GetString("COD_PEDIDO")
+                });
+
+            }
+
+            return listaLocacao;
+
+        }
+
         //pre locacao
         public List<string> listLoc(string clienteLoc, string cnpjLoc, string cpfLoc, string cnhLoc, string cellLoc, string tellLoc, string Veiculos, string som, string somBt, string gps, string dateLoc) {
             

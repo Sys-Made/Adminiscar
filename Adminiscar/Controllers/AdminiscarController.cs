@@ -159,6 +159,7 @@ namespace Adminiscar.Controllers
             return View();
 
         }
+        
         //fazendoEditandoDados
         public ActionResult UpdateCliente(Cliente cliente, string codCli) {
 
@@ -354,6 +355,18 @@ namespace Adminiscar.Controllers
 
         //Consulta Locacao
         public ActionResult ConsultaLocacao() {
+
+            acoesLoc acsLoc = new acoesLoc();
+
+            List<Locacao> listLocacao = acsLoc.consultaLocacaoLoc();    //retornando como lista
+
+            return View(listLocacao);
+
+        }
+
+        //detalhes Locacao
+        public ActionResult DetalhesLocacao() {
+
 
             return View();
 
