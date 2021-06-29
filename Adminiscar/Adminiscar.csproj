@@ -197,6 +197,7 @@
     <Content Include="Views\Adminiscar\AlugarConfirLoc.cshtml" />
     <Content Include="Views\Adminiscar\ConsultaLocacao.cshtml" />
     <Content Include="Views\Adminiscar\DetalhesLocacao.cshtml" />
+    <Content Include="Views\Adminiscar\BuscaLocacao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

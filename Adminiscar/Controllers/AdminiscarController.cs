@@ -159,7 +159,7 @@ namespace Adminiscar.Controllers
             return View();
 
         }
-        
+
         //fazendoEditandoDados
         public ActionResult UpdateCliente(Cliente cliente, string codCli) {
 
@@ -372,6 +372,18 @@ namespace Adminiscar.Controllers
             ViewBag.dadosLoc = acsLoc.detalheLocacaoLoc(codPedido);
 
             return View();
+
+        }
+
+        //buscaLocacao
+        [HttpPost]
+        public ActionResult BuscaLocacao(string buscLocacao) {
+
+            acoesLoc acsLoc = new acoesLoc();
+
+            List<Locacao> listLocacao = acsLoc.buscaLocacaoLoc(buscLocacao);    //retornando como lista
+
+            return View(listLocacao);
 
         }
     }

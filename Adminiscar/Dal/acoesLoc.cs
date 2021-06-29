@@ -121,17 +121,42 @@ namespace Adminiscar.Dal
                 listaDetalhe.Add(leitor.GetString("NOME_CLIENTE"));
                 listaDetalhe.Add(leitor.GetString("CPF_CNPJ"));
                 listaDetalhe.Add(leitor.GetString("CNH_CLIENTE"));
-                /*listaDetalhe.Add(leitor.GetString("CNPJ_CLI"));
+                
+                //verificando se o valor não é null
+                if (leitor.IsDBNull(3))
+                {
+
+                    listaDetalhe.Add("Não Possui Cnpj");
+
+                }
+                else {
+
+                    listaDetalhe.Add(leitor.GetString("CNPJ_CLI"));
+
+                }
                 listaDetalhe.Add(leitor.GetString("NOME_CAR"));
                 listaDetalhe.Add(leitor.GetString("PLACA"));
-                listaDetalhe.Add(leitor.GetString("MODELO"));
                 listaDetalhe.Add(leitor.GetString("CATEGORIA"));
+                listaDetalhe.Add(leitor.GetString("MODELO"));
                 listaDetalhe.Add(leitor.GetString("SITUACAO"));
+                listaDetalhe.Add(Convert.ToString(codPd));
                 listaDetalhe.Add(leitor.GetString("DATA_RETIRADA"));
-                listaDetalhe.Add(leitor.GetString("DATA_DEVOLUCAO"));*/
-                /*leitor.GetInt32("COD_CRED_FK");
-                leitor.GetInt32("COD_DEB_FK");
-                leitor.GetInt32("COD_TRANSFERENCIA_FL");*/
+                listaDetalhe.Add(leitor.GetString("DATA_DEVOLUCAO"));
+                if (leitor.IsDBNull(9) && leitor.IsDBNull(10)) {
+
+                    listaDetalhe.Add(leitor.GetString("transferencia bancaria"));
+
+                }
+                if (leitor.IsDBNull(10) && leitor.IsDBNull(11)) {
+
+                    listaDetalhe.Add("Cartão de credito");
+
+                }
+                if (leitor.IsDBNull(11) && leitor.IsDBNull(9)) {
+
+                    listaDetalhe.Add(leitor.GetString("Cartão de debito"));
+
+                }
 
             }
 
@@ -568,5 +593,39 @@ namespace Adminiscar.Dal
 
 
         }
+
+        //busca
+        public List<Locacao> buscaLocacaoLoc(string cpf)
+        {
+
+            //variavel local
+            List<Locacao> listaLocacao = new List<Locacao>();
+
+            //comando sql
+            MySqlCommand cmd = new MySqlCommand("select cli.COD_CLIENTE, cli.CPF_CNPJ, car.COD_CAR, car.PLACA, car.MODELO, ped.COD_PEDIDO FROM pedido AS ped INNER JOIN cliente AS cli ON ped.COD_CLI_FK = cli.COD_CLIENTE INNER JOIN carro AS car ON ped.COD_CAR_FK = car.COD_CAR WHERE CPF_CNPJ = '"+cpf+"'", conect.MyConectorBd());
+
+            MySqlDataReader leitor; //preparando o select
+
+            leitor = cmd.ExecuteReader();   //executando no banco
+
+            while (leitor.Read())
+            {
+
+                listaLocacao.Add(new Locacao
+                {
+                    codcliLoc = leitor.GetString("COD_CLIENTE"),
+                    cpfLoc = leitor.GetString("CPF_CNPJ"),
+                    codCarLoc = leitor.GetString("COD_CAR"),
+                    placCar = leitor.GetString("PLACA"),
+                    modeloLoc = leitor.GetString("MODELO"),
+                    numPedLoc = leitor.GetString("COD_PEDIDO")
+                });
+
+            }
+
+            return listaLocacao;
+
+        }
+
     }
 }
