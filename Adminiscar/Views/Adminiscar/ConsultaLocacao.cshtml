@@ -106,14 +106,8 @@
 
                             @using (Html.BeginForm(null, null, FormMethod.Post))
                             {
-                                <input type="hidden" name="editarCli" value="@Html.DisplayFor(modelItem => item.numPedLoc)" />
-                                <button class="btn btn-primary my-1" type="submit">Editar</button>
-                            }
-
-                            @using (Html.BeginForm(null, null, FormMethod.Post))
-                            {
                                 <input type="hidden" name="delCli" value="@Html.DisplayFor(modelItem => item.numPedLoc)" />
-                                <button class="btn btn-primary my-1" type="submit">Deletar</button>
+                                <button class="btn btn-primary my-1" type="submit">Cancelar</button>
                             }
                         </td>
                     </tr>

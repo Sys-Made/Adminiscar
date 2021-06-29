@@ -100,6 +100,19 @@ namespace Adminiscar.Dal
 
         }
 
+        //detalhe locacao
+        public List<string> detalheLocacaoLoc(string codPed) {
+
+            //variavel local
+            List<string> listaDetalhe = new List<string>();
+
+
+
+            return listaDetalhe;
+
+
+        }
+
         //pre locacao
         public List<string> listLoc(string clienteLoc, string cnpjLoc, string cpfLoc, string cnhLoc, string cellLoc, string tellLoc, string Veiculos, string som, string somBt, string gps, string dateLoc) {
             
