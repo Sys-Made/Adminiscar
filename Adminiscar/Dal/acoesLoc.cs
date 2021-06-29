@@ -294,13 +294,13 @@ namespace Adminiscar.Dal
 
                 //pegando o cliente
                 MySqlCommand slctCli = new MySqlCommand("SELECT COD_CLIENTE, NOME_CLIENTE, CPF_CNPJ FROM cliente WHERE CPF_CNPJ = '" + cpfcli + "'", conect.MyConectorBd());
-                
+
                 //preparando slct 
                 MySqlDataReader busc;
 
                 busc = slctCli.ExecuteReader(); //executando
 
-                while(busc.Read()) {
+                while (busc.Read()) {
 
                     codCliente = busc.GetString("COD_CLIENTE");
                     nomeCliente = busc.GetString("NOME_CLIENTE");
@@ -311,7 +311,7 @@ namespace Adminiscar.Dal
                 conect.MyCloseBd();
 
                 //inserindo no cartão de credito
-                MySqlCommand insrtCd = new MySqlCommand("INSERT INTO cartao_cred(COD_CLIENTE_FK)VALUES("+ codCliente + ")", conect.MyConectorBd());
+                MySqlCommand insrtCd = new MySqlCommand("INSERT INTO cartao_cred(COD_CLIENTE_FK)VALUES(" + codCliente + ")", conect.MyConectorBd());
                 insrtCd.ExecuteNonQuery();
 
                 conect.MyCloseBd();
@@ -330,7 +330,7 @@ namespace Adminiscar.Dal
                 conect.MyCloseBd();
 
                 //inserindo no pagamento
-                MySqlCommand insrtPag = new MySqlCommand("INSERT INTO pagamento(VALOR, COD_CRED_FK, COD_CLIENTE_FK)VALUES("+Convert.ToDouble(valorTotal)+", "+ codCardCd + ", "+codCliente+")", conect.MyConectorBd());
+                MySqlCommand insrtPag = new MySqlCommand("INSERT INTO pagamento(VALOR, COD_CRED_FK, COD_CLIENTE_FK)VALUES(" + Convert.ToDouble(valorTotal) + ", " + codCardCd + ", " + codCliente + ")", conect.MyConectorBd());
                 insrtPag.ExecuteNonQuery();
 
                 conect.MyCloseBd();
@@ -350,10 +350,148 @@ namespace Adminiscar.Dal
                 conect.MyCloseBd();
 
                 //iserindo no pedido
-                MySqlCommand insrtPed = new MySqlCommand("INSERT INTO pedido(VALOR,DATA_RETIRADA,DATA_DEVOLUCAO, COD_CLI_FK, COD_PAG_FK, COD_CAR_FK)VALUES("+valorTotal+", '2021-06-28', '2021-07-28', "+codCliente+", "+codPag+", "+codcar+")", conect.MyConectorBd());
+                MySqlCommand insrtPed = new MySqlCommand("INSERT INTO pedido(VALOR,DATA_RETIRADA,DATA_DEVOLUCAO, COD_CLI_FK, COD_PAG_FK, COD_CAR_FK)VALUES(" + valorTotal + ", '2021-06-28', '2021-07-28', " + codCliente + ", " + codPag + ", " + codcar + ")", conect.MyConectorBd());
                 insrtPed.ExecuteNonQuery();
 
                 conect.MyCloseBd();
+
+            } else if (tipoPag == "CDD") {
+
+                //pegando o cliente
+                MySqlCommand slctCli = new MySqlCommand("SELECT COD_CLIENTE, NOME_CLIENTE, CPF_CNPJ FROM cliente WHERE CPF_CNPJ = '" + cpfcli + "'", conect.MyConectorBd());
+
+                //preparando slct 
+                MySqlDataReader busc;
+
+                busc = slctCli.ExecuteReader(); //executando
+
+                while (busc.Read())
+                {
+
+                    codCliente = busc.GetString("COD_CLIENTE");
+                    nomeCliente = busc.GetString("NOME_CLIENTE");
+                    cpfCliente = busc.GetString("CPF_CNPJ");
+
+                }
+
+                conect.MyCloseBd();
+
+                //inserindo no cartão de credito
+                MySqlCommand insrtCdb = new MySqlCommand("INSERT INTO cartao_deb(COD_CLIENTE_FK)VALUES(" + codCliente + ")", conect.MyConectorBd());
+                insrtCdb.ExecuteNonQuery();
+
+                conect.MyCloseBd();
+
+                //buscando o codigo do cartão
+                MySqlCommand slctCdb = new MySqlCommand("SELECT COD_DEB FROM cartao_deb INNER JOIN cliente ON COD_CLIENTE_FK = COD_CLIENTE WHERE COD_CLIENTE = " + codCliente, conect.MyConectorBd());
+                MySqlDataReader buscslctCdb;
+                buscslctCdb = slctCdb.ExecuteReader();
+
+                while (buscslctCdb.Read())
+                {
+
+                    codCardCd = buscslctCdb.GetInt32("COD_DEB");
+
+                }
+
+                conect.MyCloseBd();
+
+                //inserindo no pagamento
+                MySqlCommand insrtPag = new MySqlCommand("INSERT INTO pagamento(VALOR, COD_DEB_FK, COD_CLIENTE_FK)VALUES(" + Convert.ToDouble(valorTotal) + ", " + codCardCd + ", " + codCliente + ")", conect.MyConectorBd());
+                insrtPag.ExecuteNonQuery();
+
+                conect.MyCloseBd();
+
+                //buscando o codigo do pagamento
+                MySqlCommand selectPg = new MySqlCommand("SELECT MAX(COD_PAG) FROM pagamento", conect.MyConectorBd());
+                MySqlDataReader buscPg;
+                buscPg = selectPg.ExecuteReader();
+
+                while (buscPg.Read())
+                {
+
+                    codPag = buscPg.GetInt32("MAX(COD_PAG)");
+
+                }
+
+                conect.MyCloseBd();
+
+                //iserindo no pedido
+                MySqlCommand insrtPed = new MySqlCommand("INSERT INTO pedido(VALOR,DATA_RETIRADA,DATA_DEVOLUCAO, COD_CLI_FK, COD_PAG_FK, COD_CAR_FK)VALUES(" + valorTotal + ", '2021-06-28', '2021-07-28', " + codCliente + ", " + codPag + ", " + codcar + ")", conect.MyConectorBd());
+                insrtPed.ExecuteNonQuery();
+
+                conect.MyCloseBd();
+
+
+            } else if (tipoPag == "TB") {
+
+                //pegando o cliente
+                MySqlCommand slctCli = new MySqlCommand("SELECT COD_CLIENTE, NOME_CLIENTE, CPF_CNPJ FROM cliente WHERE CPF_CNPJ = '" + cpfcli + "'", conect.MyConectorBd());
+
+                //preparando slct 
+                MySqlDataReader busc;
+
+                busc = slctCli.ExecuteReader(); //executando
+
+                while (busc.Read())
+                {
+
+                    codCliente = busc.GetString("COD_CLIENTE");
+                    nomeCliente = busc.GetString("NOME_CLIENTE");
+                    cpfCliente = busc.GetString("CPF_CNPJ");
+
+                }
+
+                conect.MyCloseBd();
+
+                //inserindo no cartão de credito
+                MySqlCommand insrtCdb = new MySqlCommand("INSERT INTO tranferencia_banck(COD_CLIENTE_FK)VALUES(" + codCliente + ")", conect.MyConectorBd());
+                insrtCdb.ExecuteNonQuery();
+
+                conect.MyCloseBd();
+
+                //buscando o codigo do cartão
+                MySqlCommand slctTb = new MySqlCommand("SELECT COD_TRANSFERENCIA FROM tranferencia_banck INNER JOIN cliente ON COD_CLIENTE_FK = COD_CLIENTE WHERE COD_CLIENTE = " + codCliente, conect.MyConectorBd());
+                MySqlDataReader buscslctTb;
+                buscslctTb = slctTb.ExecuteReader();
+
+                while (buscslctTb.Read())
+                {
+
+                    codCardCd = buscslctTb.GetInt32("COD_TRANSFERENCIA");
+
+                }
+
+                conect.MyCloseBd();
+
+                //inserindo no pagamento
+                MySqlCommand insrtPag = new MySqlCommand("INSERT INTO pagamento(VALOR, COD_TRANSFERENCIA_FL, COD_CLIENTE_FK)VALUES(" + Convert.ToDouble(valorTotal) + ", " + codCardCd + ", " + codCliente + ")", conect.MyConectorBd());
+                insrtPag.ExecuteNonQuery();
+
+                conect.MyCloseBd();
+
+                //buscando o codigo do pagamento
+                MySqlCommand selectPg = new MySqlCommand("SELECT MAX(COD_PAG) FROM pagamento", conect.MyConectorBd());
+                MySqlDataReader buscPg;
+                buscPg = selectPg.ExecuteReader();
+
+                while (buscPg.Read())
+                {
+
+                    codPag = buscPg.GetInt32("MAX(COD_PAG)");
+
+                }
+
+                conect.MyCloseBd();
+
+                //iserindo no pedido
+                MySqlCommand insrtPed = new MySqlCommand("INSERT INTO pedido(VALOR,DATA_RETIRADA,DATA_DEVOLUCAO, COD_CLI_FK, COD_PAG_FK, COD_CAR_FK)VALUES(" + valorTotal + ", '2021-06-28', '2021-07-28', " + codCliente + ", " + codPag + ", " + codcar + ")", conect.MyConectorBd());
+                insrtPed.ExecuteNonQuery();
+
+                conect.MyCloseBd();
+
+
+
             }
 
 
