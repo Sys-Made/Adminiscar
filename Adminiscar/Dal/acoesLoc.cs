@@ -103,13 +103,41 @@ namespace Adminiscar.Dal
         //detalhe locacao
         public List<string> detalheLocacaoLoc(string codPed) {
 
-            //variavel local
+            //variaveis local
             List<string> listaDetalhe = new List<string>();
+            int codPd = 0;
 
+            //convertendo para int
+            codPd = Convert.ToInt32(codPed);
 
+            //comando sql
+            MySqlCommand cmd = new MySqlCommand("SELECT cli.NOME_CLIENTE, cli.CPF_CNPJ, cli.CNH_CLIENTE, cli.CNPJ_CLI, car.NOME_CAR, car.PLACA, car.MODELO, car.CATEGORIA, car.SITUACAO, pag.COD_CRED_FK, pag.COD_DEB_FK, pag.COD_TRANSFERENCIA_FL, ped.DATA_RETIRADA, ped.DATA_DEVOLUCAO FROM pedido AS ped INNER JOIN cliente AS cli ON ped.COD_CLI_FK = cli.COD_CLIENTE INNER JOIN carro AS car ON ped.COD_CAR_FK = car.COD_CAR INNER JOIN pagamento AS pag ON ped.COD_PAG_FK = pag.COD_PAG WHERE ped.COD_PEDIDO = " + codPd, conect.MyConectorBd());
+            MySqlDataReader leitor;
+            leitor = cmd.ExecuteReader();
+
+            //guardando na lista e nas variaveis
+            while (leitor.Read()) {
+
+                listaDetalhe.Add(leitor.GetString("NOME_CLIENTE"));
+                listaDetalhe.Add(leitor.GetString("CPF_CNPJ"));
+                listaDetalhe.Add(leitor.GetString("CNH_CLIENTE"));
+                /*listaDetalhe.Add(leitor.GetString("CNPJ_CLI"));
+                listaDetalhe.Add(leitor.GetString("NOME_CAR"));
+                listaDetalhe.Add(leitor.GetString("PLACA"));
+                listaDetalhe.Add(leitor.GetString("MODELO"));
+                listaDetalhe.Add(leitor.GetString("CATEGORIA"));
+                listaDetalhe.Add(leitor.GetString("SITUACAO"));
+                listaDetalhe.Add(leitor.GetString("DATA_RETIRADA"));
+                listaDetalhe.Add(leitor.GetString("DATA_DEVOLUCAO"));*/
+                /*leitor.GetInt32("COD_CRED_FK");
+                leitor.GetInt32("COD_DEB_FK");
+                leitor.GetInt32("COD_TRANSFERENCIA_FL");*/
+
+            }
+
+            conect.MyCloseBd();
 
             return listaDetalhe;
-
 
         }
 

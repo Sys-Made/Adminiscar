@@ -365,8 +365,11 @@ namespace Adminiscar.Controllers
         }
 
         //detalhes Locacao
-        public ActionResult DetalhesLocacao() {
+        public ActionResult DetalhesLocacao(string codPedido) {
 
+            acoesLoc acsLoc = new acoesLoc();   //chamando o method
+
+            ViewBag.dadosLoc = acsLoc.detalheLocacaoLoc(codPedido);
 
             return View();
 

@@ -100,7 +100,7 @@
                         <td>
                             @using (Html.BeginForm("DetalhesLocacao", "Adminiscar", FormMethod.Post))
                             {
-                                <input type="hidden" name="teste" value="@Html.DisplayFor(modelItem => item.numPedLoc)" />
+                                <input type="hidden" name="codPedido" value="@Html.DisplayFor(modelItem => item.numPedLoc)" />
                                 <button class="btn btn-primary my-1" type="submit">Detalhes</button>
                             }
 
