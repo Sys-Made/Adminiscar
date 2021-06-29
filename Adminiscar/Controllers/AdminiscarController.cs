@@ -352,5 +352,11 @@ namespace Adminiscar.Controllers
 
         }
 
+        //Consulta Locacao
+        public ActionResult ConsultaLocacao() {
+
+            return View();
+
+        }
     }
 }
