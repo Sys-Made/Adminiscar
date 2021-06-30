@@ -1,6 +1,6 @@
 ﻿/*LoaddingFucao*/
 
-var move = function () {
+/*var move = function () {
 
     var i = 0;
 
@@ -19,7 +19,7 @@ var move = function () {
             }
         }
     }
-}
+}*/
 /*fimLoadingFuncao*/
 
 /*FuncaoNavegacaoDoMenuinicial*/
@@ -131,9 +131,55 @@ var NavegacaoCadCon = function (value) {
 };
 /*fimNavegacaoCadCon*/
 
-function teste() {
-
-    alert("funfou");
+//validacões
 
 
+/*validandoCpf*/
+function validaCpf(cpf) {
+    //declarando variaveis locais
+    var valido;
+
+    /**
+     * 
+     * fazendo teste da função sendo chamado pela outra
+     * 
+     * */
+
+    //verificando cpf
+    cpf = cpf.trim();
+    cpf = cpf.replace(/[^\d]+/g, ""); //expressão regular para tirar . e o - do cpf
+    cpf = cpf.length;
+    cpf = parseInt(cpf);
+
+    //vendo se o cpf tem 11 caracteres
+    if (cpf == 11) {
+
+        valido = true;
+
+    } else {
+        valido = false;
+    }
+
+    return valido;
+
+}
+/*fim*/
+
+function validacaoCliente() {
+    var cpf, pass;
+
+    //atribuindo valor no cpf
+    cpf = document.getElementById('inputCliCpf').value;
+
+    //fazendo a verificação
+    if (validaCpf(cpf) == false) {
+
+        alert("Esse cpf é invalido, por favor coloca um nesse padrão 000.000.000-00");
+
+        pass = false;
+
+    }
+
+    return pass;
+    
 }

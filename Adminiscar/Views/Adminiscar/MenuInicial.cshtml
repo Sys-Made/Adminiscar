@@ -3,7 +3,7 @@
 }
 
 @{
-   ViewBag.Title = "Adminiscar";
+    ViewBag.Title = "Adminiscar";
 }
 
 <div class="row p-3">
@@ -21,7 +21,7 @@
 
             <div class="col text-center">
                 <div class="nomeFuncInicial d-inline-block p-2 rounded">
-                    <h5 class="text-white text-shadow font-weight-bold">Nome Do Funcionario</h5>
+                    <h5 class="text-white text-shadow font-weight-bold">@Session["usuarioLog"].ToString()</h5>
                 </div>
             </div>
 
@@ -44,7 +44,6 @@
 
     </div>
     <!--fimLogo-->
-
     <!--NavegaçãoFunctions-->
     <div class="col-12 my-2">
         <nav class="text-center p-2 rounded bg-light shadow">
@@ -82,3 +81,5 @@
     <!--fimNavegaçãoFunctions-->
 
 </div>
+
+

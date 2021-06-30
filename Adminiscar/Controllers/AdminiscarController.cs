@@ -26,7 +26,6 @@ namespace Adminiscar.Controllers
             return View();
         }
 
-        //chamando o dal acoes do login
         acoesLogin acLg = new acoesLogin();
 
         [HttpPost]
@@ -70,19 +69,11 @@ namespace Adminiscar.Controllers
         }
         //indexFim
 
-        public ActionResult Loadding()
-        {
-
-            return View();
-
-
-        }
 
         public ActionResult MenuInicial()
         {
 
             return View();
-
 
         }
 

@@ -76,7 +76,6 @@ C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\pt-br\System.Web.Razor
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\pt-br\System.Web.WebPages.resources.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\pt-br\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\pt-br\System.Web.WebPages.Razor.resources.dll
-C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\obj\Debug\Adminiscar.csprojAssemblyReference.cache
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\obj\Debug\Adminiscar.csproj.CoreCompileInputs.cache
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\obj\Debug\Adminiscar.csproj.CopyComplete
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\obj\Debug\Adminiscar.dll
@@ -97,3 +96,4 @@ C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\System.Runtime.Compile
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\MySql.Data.xml
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\MySql.Data.EntityFramework.xml
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\MySql.Web.xml
+C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\obj\Debug\Adminiscar.csprojAssemblyReference.cache

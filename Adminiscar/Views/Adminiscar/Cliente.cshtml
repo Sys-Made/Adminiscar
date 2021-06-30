@@ -58,7 +58,7 @@
     <!--nome/cpf/cnpj/cnh-->
     <div class="col-12 text-white">
 
-        @using (Html.BeginForm("Cliente02", "Adminiscar", FormMethod.Post))
+        @using (Html.BeginForm("Cliente02", "Adminiscar", FormMethod.Post, new { onsubmit = "return validacaoCliente()" }))
         {
             <div class="form-row">
                 <div class="col mt-1 mb-2">
@@ -75,7 +75,7 @@
             <div class="form-row">
                 <div class="col mt-1 mb-2">
                     <label for="exampleInputCnpj1">CNPJ:</label>
-                    @Html.EditorFor(cli => cli.cnpjCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: 123.654.798 - 50", id = "inputCliCnpj", senha = "txtCnpjCli" } })
+                    @Html.EditorFor(cli => cli.cnpjCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: 000.000.000/0000", id = "inputCliCnpj", senha = "txtCnpjCli", value= "000.000.000/0000" } })
                 </div>
 
                 <div class="col mt-1 mb-2">

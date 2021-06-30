@@ -15,11 +15,11 @@ namespace Adminiscar.Dal
         //criando a funcao que vai ser o usuario existe
         public void LogarUsuario(LoginACS usuario) {
 
-            MySqlCommand cmd = new MySqlCommand("SELECT NOME_FUNC, SENHA, NIVEL_ACESSO FROM FUNCIONARIO INNER JOIN LOGIN_SYS ON COD_FUNC_FK = 1 AND SENHA = 123456789", con.MyConectorBd());
+            MySqlCommand cmd = new MySqlCommand("SELECT NOME_FUNC, NIVEL_ACESSO FROM FUNCIONARIO INNER JOIN LOGIN_SYS ON COD_FUNC_FK = COD_FUNC WHERE EMAIL = @usuario  AND SENHA = @Senha", con.MyConectorBd());
  
             //quando for pegar dados do usuario
-            /*cmd.Parameters.Add("@usuario", MySqlDbType.VarChar).Value = user.usuario;
-            cmd.Parameters.Add("@Senha", MySqlDbType.VarChar).Value = user.senha;*/
+            cmd.Parameters.Add("@usuario", MySqlDbType.VarChar).Value = usuario.user;
+            cmd.Parameters.Add("@Senha", MySqlDbType.VarChar).Value = usuario.pass;
 
             MySqlDataReader leitor; //preparando o comando sql
 
@@ -32,9 +32,9 @@ namespace Adminiscar.Dal
                 while (leitor.Read())
                 {
 
-                    usuario.user = Convert.ToString(leitor["NOME_FUNC"]);
-                    usuario.pass = Convert.ToString(leitor["SENHA"]);
-                    usuario.tipoUser = Convert.ToString(leitor["NIVEL_ACESSO"]);
+                    usuario.user = leitor.GetString("NOME_FUNC");
+                    //usuario.pass = leitor.GetString("SENHA");
+                    usuario.tipoUser = leitor.GetString("NIVEL_ACESSO");
 
                 }
 
