@@ -1,9 +1,8 @@
-﻿@{
-    Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
-}
+﻿@model IEnumerable<Adminiscar.Models.Locacao>
 
 @{
-    ViewBag.Title = "Adminiscar";
+    ViewBag.Title = "Devolução";
+    Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
 }
 
 <!--header-->
@@ -36,48 +35,50 @@
 <h2 class="text-center font-weight-bold text-white">Devolução</h2>
 
 <!--Consulta-->
-<section class="row justify-content-center my-4">
+<section class="row justify-content-center my-4 consultaSecao">
     <div class="col-12 p-3 bg-light">
 
         <h2 class="text-center my-2 text-roxo">Pesquisa</h2>
 
-        <form class="my-3">
+        @using (Html.BeginForm("BuscaLocacao", "Adminiscar", FormMethod.Post))
+        {
             <div class="row p-2 justify-content-center">
                 <div class="col-7">
-                    <input type="text" class="form-control col-12 boxShadow2" placeholder="">
+                    <input type="text" name="buscLocacao" class="form-control col-12 boxShadow2" placeholder="Usa o CPF do cliente: 556.000.000-56">
                 </div>
                 <div class="col-2">
-                    <button class="btn btn-secondary bg-branco rounded" type="reset">Buscar</button>
+                    <button class="btn btn-secondary rounded" type="submit">Buscar</button>
                 </div>
             </div>
 
             <div class="row p-2 justify-content-center text-roxo">
+
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <input class="form-check-input" name="cnhLoc" type="checkbox" id="inlineCheckbox2" value="CNH">
                     <label class="form-check-label" for="inlineCheckbox2">CNH</label>
                 </div>
 
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label" for="inlineCheckbox2">CPF</label>
+                    <input class="form-check-input" name="cpfLoc" type="checkbox" id="inlineCheckbox3" value="CPF">
+                    <label class="form-check-label" for="inlineCheckbox3">CPF</label>
                 </div>
 
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <input class="form-check-input" name="cnpjLoc" type="checkbox" id="inlineCheckbox3" value="CNPJ">
                     <label class="form-check-label" for="inlineCheckbox3">CNPJ</label>
                 </div>
 
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <input class="form-check-input" name="numPedLoc" type="checkbox" id="inlineCheckbox3" value="NUMEROPED">
                     <label class="form-check-label" for="inlineCheckbox3">Numero Do Pedido</label>
                 </div>
 
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <input class="form-check-input" name="placaLoc" type="checkbox" id="inlineCheckbox3" value="PLACA">
                     <label class="form-check-label" for="inlineCheckbox3">Placa</label>
                 </div>
             </div>
-        </form>
+        }
     </div>
 
     <div class="col-12 mt-4 pt-2">
@@ -85,109 +86,41 @@
             <thead class="thead-dark text-center">
                 <tr>
                     <th scope="col">Numero Do Pedido</th>
-                    <th scope="col">CPF</th>
+                    <th scope="col">Cpf</th>
                     <th scope="col">Placa</th>
                     <th scope="col">Modelo</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody class="text-center">
-                <tr>
-                    <td>000000000</td>
-                    <td>123.205.456-89</td>
-                    <td>KOP12356</td>
-                    <td>153.624.89910</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Dar Baixa</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.numPedLoc)</td>
+                        <td>@Html.DisplayFor(modelItem => item.cpfLoc)</td>
+                        <td>@Html.DisplayFor(modelItem => item.placCar)</td>
+                        <td>@Html.DisplayFor(modelItem => item.modeloLoc)</td>
+                        <td>
+                            @using (Html.BeginForm("DetalhesLocacao", "Adminiscar", FormMethod.Post, new { @class = "d-inline" }))
+                            {
+                                <input type="hidden" name="codPedido" value="@Html.DisplayFor(modelItem => item.numPedLoc)" />
+                                <button class="btn btn-primary my-1" type="submit">Detalhes</button>
+                            }
 
-                <tr>
-                    <td>000000000</td>
-                    <td>123.205.456-89</td>
-                    <td>KOP12356</td>
-                    <td>153.624.89910</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Dar Baixa</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>000000000</td>
-                    <td>123.205.456-89</td>
-                    <td>KOP12356</td>
-                    <td>153.624.89910</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Dar Baixa</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>000000000</td>
-                    <td>123.205.456-89</td>
-                    <td>KOP12356</td>
-                    <td>153.624.89910</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Dar Baixa</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>000000000</td>
-                    <td>123.205.456-89</td>
-                    <td>KOP12356</td>
-                    <td>153.624.89910</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Dar Baixa</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>000000000</td>
-                    <td>123.205.456-89</td>
-                    <td>KOP12356</td>
-                    <td>153.624.89910</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Dar Baixa</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
+                            @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "d-inline" }))
+                            {
+                                <input type="hidden" name="delCli" value="@Html.DisplayFor(modelItem => item.numPedLoc)" />
+                                <button class="btn btn-primary my-1" type="submit">Dar Baixa</button>
+                            }
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
-
-
-
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled text-roxo">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">1</a></li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">2</a></li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">3</a></li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">4</a></li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">5</a></li>
-                <li class="page-item">
-                    <a class="page-link text-roxo" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
 
     </div>
 </section>
 <!--fimConsulta-->
-
 <!--ModalInformações-->
 <!-- detalhesCarro -->
 <div class="modal fade" id="detalhe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

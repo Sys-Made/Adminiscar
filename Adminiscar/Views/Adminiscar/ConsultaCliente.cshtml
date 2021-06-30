@@ -119,19 +119,19 @@
                         @Html.DisplayFor(modelItem => item.tell2Cli)
                     </td>
                     <td>
-                        @using (Html.BeginForm("DetalhesCliente", "Adminiscar", FormMethod.Post))
+                        @using (Html.BeginForm("DetalhesCliente", "Adminiscar", FormMethod.Post, new { @class = "d-inline" }))
                         {
                             <input type="hidden" name="teste" value="@Html.DisplayFor(modelItem => item.codCli)" />
                             <button class="btn btn-primary my-1" type="submit">Detalhes</button>
                         }
 
-                        @using (Html.BeginForm("EditarCliente", "Adminiscar", FormMethod.Post))
+                        @using (Html.BeginForm("EditarCliente", "Adminiscar", FormMethod.Post, new { @class = "d-inline" }))
                         {
                             <input type="hidden" name="editarCli" value="@Html.DisplayFor(modelItem => item.codCli)" />
                             <button class="btn btn-primary my-1" type="submit">Editar</button>
                         }
 
-                        @using (Html.BeginForm("DeletarCliente", "Adminiscar", FormMethod.Post))
+                        @using (Html.BeginForm("DeletarCliente", "Adminiscar", FormMethod.Post, new { @class = "d-inline" }))
                         {
                             <input type="hidden" name="delCli" value="@Html.DisplayFor(modelItem => item.codCli)" />
                             <button class="btn btn-primary my-1" type="submit">Deletar</button>

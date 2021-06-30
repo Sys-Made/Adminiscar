@@ -287,7 +287,11 @@ namespace Adminiscar.Controllers
         public ActionResult Devolucao()
         {
 
-            return View();
+            acoesLoc acsLoc = new acoesLoc();
+
+            List<Locacao> listLocacao = acsLoc.consultaLocacaoLoc();    //retornando como lista
+
+            return View(listLocacao);
         }
         //fimDevolucao
 
@@ -384,6 +388,18 @@ namespace Adminiscar.Controllers
             List<Locacao> listLocacao = acsLoc.buscaLocacaoLoc(buscLocacao);    //retornando como lista
 
             return View(listLocacao);
+
+        }
+        //fimlocacao
+
+        /**
+         * 
+         * Manutenção
+         * 
+         * */
+        public ActionResult Manutencao() {
+
+            return View();
 
         }
     }

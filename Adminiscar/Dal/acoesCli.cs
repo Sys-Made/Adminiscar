@@ -266,11 +266,57 @@ namespace Adminiscar.Dal
                 listaClientes.Add(leitor.GetString("NOME_CLIENTE"));
                 listaClientes.Add(leitor.GetString("CPF_CNPJ"));
                 listaClientes.Add(leitor.GetString("CNH_CLIENTE"));
-                listaClientes.Add(leitor.GetString("LOGRADURO"));
-                listaClientes.Add(leitor.GetString("NUMERO"));
-                listaClientes.Add(leitor.GetString("BAIRRO"));
+                //listaClientes.Add(leitor.GetString("LOGRADURO"));
+
+                //rua não informada
+                if (leitor.IsDBNull(4))
+                {
+
+                    listaClientes.Add("Não foi informado a rua");
+
+                }
+                else {
+
+                    listaClientes.Add(leitor.GetString("LOGRADURO"));
+
+                }
+
+                //numero
+                if (leitor.IsDBNull(5)) {
+
+                    listaClientes.Add("Não foi informado o numero");
+
+                }
+                else {
+
+                    listaClientes.Add(leitor.GetString("NUMERO"));
+
+                }
+
+                //bairro
+                if (leitor.IsDBNull(6)) {
+
+                    listaClientes.Add("Não foi informado o Bairro");
+
+                }
+                else
+                {
+                    listaClientes.Add(leitor.GetString("BAIRRO"));
+                }
+
+                //cidade
+                if (leitor.IsDBNull(8)) {
+
+                    listaClientes.Add("Não foi informado a cidade");
+
+                }
+                else
+                {
+
+                    listaClientes.Add(leitor.GetString("CIDADE"));
+
+                }
                 //listaClientes.Add(leitor.GetString("CEP"));
-                listaClientes.Add(leitor.GetString("CIDADE"));
                 //listaClientes.Add(leitor.GetString("ESTADO"));
                 listaClientes.Add(leitor.GetString("TELL1"));
                 listaClientes.Add(leitor.GetString("TELL2"));

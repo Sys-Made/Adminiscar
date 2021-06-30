@@ -98,13 +98,13 @@
                         <td>@Html.DisplayFor(modelItem => item.placCar)</td>
                         <td>@Html.DisplayFor(modelItem => item.modeloLoc)</td>
                         <td>
-                            @using (Html.BeginForm("DetalhesLocacao", "Adminiscar", FormMethod.Post))
+                            @using (Html.BeginForm("DetalhesLocacao", "Adminiscar", FormMethod.Post, new { @class="d-inline"}))
                             {
                                 <input type="hidden" name="codPedido" value="@Html.DisplayFor(modelItem => item.numPedLoc)" />
                                 <button class="btn btn-primary my-1" type="submit">Detalhes</button>
                             }
 
-                            @using (Html.BeginForm(null, null, FormMethod.Post))
+                            @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "d-inline" }))
                             {
                                 <input type="hidden" name="delCli" value="@Html.DisplayFor(modelItem => item.numPedLoc)" />
                                 <button class="btn btn-primary my-1" type="submit">Cancelar</button>

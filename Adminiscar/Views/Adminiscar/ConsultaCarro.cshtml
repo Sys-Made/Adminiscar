@@ -92,7 +92,7 @@
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody class="text-center">
                 @foreach (var item in Model)
                 {
                     <tr>
@@ -112,19 +112,19 @@
                             @Html.DisplayFor(modelItem => item.modeloCar)
                         </td>
                         <td>
-                            @using (Html.BeginForm("DetalheCarro", "Adminiscar", FormMethod.Post))
+                            @using (Html.BeginForm("DetalheCarro", "Adminiscar", FormMethod.Post, new { @class = "d-inline" }))
                             {
                                 <input type="hidden" name="codCar" value="@Html.DisplayFor(modelItem => item.codCar)" />
                                 <button class="btn btn-primary my-1" type="submit">Detalhes</button>
                             }
 
-                            @using (Html.BeginForm("EditarCarro", "Adminiscar", FormMethod.Post))
+                            @using (Html.BeginForm("EditarCarro", "Adminiscar", FormMethod.Post, new { @class = "d-inline" }))
                             {
                                 <input type="hidden" name="editarCar" value="@Html.DisplayFor(modelItem => item.codCar)" />
                                 <button class="btn btn-primary my-1" type="submit">Editar</button>
                             }
 
-                            @using (Html.BeginForm("DeleteCarro", "Adminiscar", FormMethod.Post))
+                            @using (Html.BeginForm("DeleteCarro", "Adminiscar", FormMethod.Post, new { @class = "d-inline" }))
                             {
                                 <input type="hidden" name="deletarCar" value="@Html.DisplayFor(modelItem => item.codCar)" />
                                 <button class="btn btn-primary my-1" type="submit">Deletar</button>

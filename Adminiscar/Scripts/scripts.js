@@ -130,3 +130,10 @@ var NavegacaoCadCon = function (value) {
 
 };
 /*fimNavegacaoCadCon*/
+
+function teste() {
+
+    alert("funfou");
+
+
+}
