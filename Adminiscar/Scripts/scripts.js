@@ -50,7 +50,7 @@ var NavFuncao = function (valueHtml) {
             break;
 
         default:
-            alert("Pagina em Desenvolvimento Aguarde....");
+            alert("Pagina em Desenvolvimento (Em Breve)");
             break;
 
     }
