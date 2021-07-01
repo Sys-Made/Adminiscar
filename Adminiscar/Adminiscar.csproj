@@ -124,14 +124,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminiscarController.cs" />
+    <Compile Include="Dal\acoesCar.cs" />
     <Compile Include="Dal\acoesCli.cs" />
+    <Compile Include="Dal\acoesLoc.cs" />
     <Compile Include="Dal\acoesLogin.cs" />
     <Compile Include="Dal\Conexao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Carro.cs" />
     <Compile Include="Models\Cliente.cs" />
-    <Compile Include="Models\Codicao.cs" />
+    <Compile Include="Models\Locacao.cs" />
     <Compile Include="Models\LoginACS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -150,6 +153,7 @@
     <Content Include="Img\Icones\manutencao.png" />
     <Content Include="Img\Icones\useAvatar02.png" />
     <Content Include="Img\Icones\userAvatar.png" />
+    <Content Include="Img\Imagens\alerta.jpg" />
     <Content Include="Img\Imagens\Audi.jpg" />
     <Content Include="Img\Logo\adminiscar.jpg" />
     <Content Include="Scripts\bootstrap.js" />
@@ -179,12 +183,23 @@
     <Content Include="Views\Adminiscar\Index.cshtml" />
     <Content Include="Views\Shared\_HeaderAndFooter.cshtml" />
     <Content Include="Views\Adminiscar\Loadding.cshtml" />
-    <Content Include="Views\Adminiscar\MenuInicial.cshtml" />
     <Content Include="Views\Adminiscar\Cliente.cshtml" />
     <Content Include="Views\Adminiscar\Carro.cshtml" />
     <Content Include="Views\Adminiscar\Devolucao.cshtml" />
     <Content Include="Views\Adminiscar\Locacao.cshtml" />
-    <Content Include="Views\Adminiscar\ConsultCliente.cshtml" />
+    <Content Include="Views\Adminiscar\ConsultaCliente.cshtml" />
+    <Content Include="Views\Adminiscar\DetalhesCliente.cshtml" />
+    <Content Include="Views\Adminiscar\EditarCliente.cshtml" />
+    <Content Include="Views\Adminiscar\BuscaCliente.cshtml" />
+    <Content Include="Views\Adminiscar\ConsultaCarro.cshtml" />
+    <Content Include="Views\Adminiscar\DetalheCarro.cshtml" />
+    <Content Include="Views\Adminiscar\EditarCarro.cshtml" />
+    <Content Include="Views\Adminiscar\AlugarConfirLoc.cshtml" />
+    <Content Include="Views\Adminiscar\ConsultaLocacao.cshtml" />
+    <Content Include="Views\Adminiscar\DetalhesLocacao.cshtml" />
+    <Content Include="Views\Adminiscar\BuscaLocacao.cshtml" />
+    <Content Include="Views\Adminiscar\MenuInicial.cshtml" />
+    <Content Include="Views\Adminiscar\BuscaCarro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

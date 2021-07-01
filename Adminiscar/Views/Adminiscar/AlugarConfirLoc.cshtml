@@ -1,0 +1,155 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "Confirmar Locação";
+    Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
+}
+
+@if (Session["usuarioLog"] != null)
+{
+
+    <!--header-->
+    <header class="navInfo mb-3">
+
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="dataHora d-inline-block p-2 rounded">
+                    <!--<p>01/10/2020 13:50</p>-->
+                    <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+                </div>
+            </div>
+
+            <div class="col text-center">
+                <div class="logoConteinerSmall d-inline-block p-2 rounded bg-light boxShadow">
+                    <img class="logoSmall" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_empresa" />
+                </div>
+            </div>
+
+            <div class="col text-right" onclick="NavFuncao(7);">
+                <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
+                    <p>Voltar</p>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <!--fimHeader-->
+
+    <section class="row my-2 justify-content-around bg-light">
+
+        <div class="col-6 text-center">
+            <h1>Alugando Carro</h1>
+        </div>
+
+    </section>
+
+    <section class="row justify-content-center my-4 py-1">
+        <!--img do cliente
+        <div class="col-3">
+            <img src="~/Img/Imagens/Audi.jpg" class="img-thumbnail rounded my-2" />
+        </div>-->
+
+        <article class="col-9 rounded">
+            @using (Html.BeginForm("FinalizandoPedido", "Adminiscar", FormMethod.Post))
+            {
+                <!--Cliente-->
+                <div class="row justify-content-center rounded-top mt-2 mx-1 bg-light">
+                    <input type="hidden" name="nomeCli" value="@ViewBag.dadosLoc[0]" />
+                    <p class="col-5 m-2 border-bottom border-left rounded"><b>Nome Do Cliente:</b><br />@ViewBag.dadosLoc[0]</p>
+
+                    <input type="hidden" name="cpfCli" value="@ViewBag.dadosLoc[1]" />
+                    <p class="col-5 m-2 border-bottom border-left rounded"><b>CPF:</b><br />@ViewBag.dadosLoc[1]</p>
+                </div>
+
+                <div class="row justify-content-center rounded-bottom mb-2 mx-1 bg-light">
+                    <input type="hidden" name="cnpjCli" value="@ViewBag.dadosLoc[2]" />
+                    <p class="col-5 m-2 border-bottom border-left rounded"><b>CNPJ:</b><br />@ViewBag.dadosLoc[2]</p>
+
+                    <input type="hidden" name="cnhCli" value="@ViewBag.dadosLoc[3]" />
+                    <p class="col-5 m-2 border-bottom border-left rounded"><b>CNH:</b><br />@ViewBag.dadosLoc[3]</p>
+                </div>
+                <!--fimCLiente-->
+                <!--Carro-->
+                <div class="row justify-content-center rounded-top mt-2 mx-1 bg-light">
+                    <input type="hidden" name="codCar" value="@ViewBag.dadosLoc[4]" />
+                    <p class="col-5 m-2 border-bottom border-left rounded"><b>Veiculo:</b><br />@ViewBag.dadosLoc[5]</p>
+
+                    <input type="hidden" name="catCar" value="" />
+                    <p class="col-5 m-2 border-bottom border-left rounded"><b>Cartegoria:</b><br />Classico</p>
+                </div>
+
+                <div class="row justify-content-center rounded-bottom mb-2 mx-1 bg-light">
+                    <input type="hidden" name="somCar" value="@ViewBag.dadosLoc[6]" />
+                    <p class="col-5 m-2 border-bottom border-left rounded"><b>Som/Sombt:</b><br />@ViewBag.dadosLoc[6]</p>
+
+                    <input type="hidden" name="gpsCar" value="" />
+                    <p class="col-5 m-2 border-bottom border-left rounded"><b>Gps:</b><br />sim</p>
+                </div>
+                <!--fimCarro-->
+                <!--TelefoneContato-->
+                <div class="row justify-content-center rounded my-2 mx-1 bg-light">
+                    <input type="hidden" name="tellCli" value="@ViewBag.dadosLoc[8]" />
+                    <p class="col-5 border-bottom border-left rounded m-2"><b>Telefone:</b><br />@ViewBag.dadosLoc[8]</p>
+
+                    <input type="hidden" name="cellCli" value="@ViewBag.dadosLoc[7]" />
+                    <p class="col-5 border-bottom border-left rounded m-2"><b>Celular:</b><br />@ViewBag.dadosLoc[7]</p>
+                </div>
+
+                <div class="row justify-content-center rounded my-2 mx-1 bg-light">
+                    <p class="col-5 border-bottom border-left rounded m-2"><b>Data inicio:</b><br />@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</p>
+
+                    <input type="hidden" name="dateEnt" value="" />
+                    <p class="col-5 border-bottom border-left rounded m-2"><b>Data de entrega:</b><br />@ViewBag.dadosLoc[9]</p>
+                </div>
+                <!--fimContato-->
+                <!--Total e o dias que vai ficar-->
+                <div class="row justify-content-center rounded my-2 mx-1 bg-light">
+                    <input type="hidden" name="valorBs" value="@ViewBag.dadosLoc[10]" />
+                    <p class="col-3 border-bottom border-left rounded m-2 pt-2"><b>Valor base: R$</b>@ViewBag.dadosLoc[10]</p>
+
+                    <input type="hidden" name="valorTotal" value="@ViewBag.dadosLoc[12]" />
+                    <p class="col-3 border-bottom border-left rounded m-2 pt-2"><b>Valor total: R$</b>@ViewBag.dadosLoc[12]</p>
+
+                    <input type="hidden" name="totalDias" value="" />
+                    <p class="col-3 border-bottom border-left rounded m-2"><b>Total de dias:</b><br />@ViewBag.dadosLoc[11]</p>
+                </div>
+
+                <!--fimTotal-->
+
+                <!--Total e o dias que vai ficar-->
+                <div class="row justify-content-center rounded my-2 mx-1 bg-light">
+                    <p><b>Tipo De Pagamento:</b></p>
+                    <br /><br />
+                    <select class="col-3 my-1 custom-select" name="typePag">
+                        <option value="0" selected>Seleciona o tipo de pagamento</option>
+                        <option value="CDC">Cartão De Credito</option>
+                        <option value="CDD">Cãrtão De Debito</option>
+                        <option value="TB">Transferencia Bancaria</option>
+                    </select>
+                </div>
+                <!--fimTotal-->
+
+                <div class="row text-center mx-1 rounded bg-light">
+                    <!--Html.ActionLink("Confirmar", null, null, new { class = "btn btn-primary my-1 mx-auto" })-->
+                    <button class="btn btn-primary my-1 mx-auto" type="submit">Confirmar</button>
+                    @Html.ActionLink("Cancelar", null, null, new { @class = "btn btn-danger my-1 mx-auto" })
+                </div>
+            }
+        </article>
+
+
+    </section>
+}
+else
+{
+
+
+    <div class="row justify-content-center my-2 py-2">
+        <div class="col-10 mx-auto alert alert-danger text-center py-1"><img src="~/Img/Imagens/alerta.jpg" alt="alertaDeAcessoNegado" /></div>
+        <div class="col-10 mx-auto alert alert-danger text-center py-1">@Html.ActionLink("Voltar Login", "Index", "Adminiscar", new { @class = "btn btn-warning btn-lg font-weight-bold" })</div>
+        <div class="col-10 mx-auto alert alert-danger text-center rounded-bottom py-1 "><p class="text-center text-danger font-weight-bold">Você precisar ta logado para acessar essa pagina, volte a tela de login!!!</p></div>
+    </div>
+
+
+}

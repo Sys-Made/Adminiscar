@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -89,66 +90,276 @@ namespace Adminiscar.Dal
             con.MyCloseBd();
         }
 
-        /*public string[] consultaCli() {
-            //declarando uma array
-            string[] dtCliente = new string[] { };
-            string nomeCli, cpfCli, cnhCli, tellCli, cellCli;
+        //Update dos dados do cliente
+        public void EditarCli(Cliente cli, string cod) {
+            //convertendo o parametro
+            int codCli;
 
-            //fazendo a consulta no banco
-            MySqlCommand cmd = new MySqlCommand("SELECT cli.NOME_CLIENTE, cli.CPF_CNPJ, cli.CNH_CLIENTE, tell.TELL1, tell.TELL2 FROM cliente AS cli INNER JOIN telefone AS tell ON cli.COD_TELL_FK = tell.COD_TELL", con.MyConectorBd());
+            codCli = Convert.ToInt32(cod);
+
+            //comando sql alterando o cliente
+            MySqlCommand cmd = new MySqlCommand("UPDATE cliente SET NOME_CLIENTE=@nome, CPF_CNPJ=@cpf, CNH_CLIENTE=@cnh WHERE COD_CLIENTE = " + codCli, con.MyConectorBd());
+
+            //add parametro para o update
+            cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = cli.nomeCli;
+            cmd.Parameters.Add("@cpf", MySqlDbType.VarChar).Value = cli.cpfCli;
+            cmd.Parameters.Add("@cnh", MySqlDbType.VarChar).Value = cli.cnhCli;
+
+            cmd.ExecuteNonQuery();
+
+            //alterando o telefone
+            MySqlCommand slct = new MySqlCommand("SELECT cli.COD_TELL_FK, cli.COD_ENDERECO_FK, edn.COD_ENDERECO, tell.COD_TELL FROM Cliente AS cli INNER JOIN telefone AS tell ON cli.COD_TELL_FK = tell.COD_TELL INNER JOIN endereco AS edn ON cli.COD_ENDERECO_FK = edn.COD_ENDERECO WHERE cli.COD_CLIENTE = " + codCli, con.MyConectorBd());
 
             MySqlDataReader leitor;
 
-            leitor = cmd.ExecuteReader();
+            leitor = slct.ExecuteReader();
 
-            if (leitor.HasRows) {
+            //acessando o select
+            while (leitor.Read()) {
+
+                cli.codTellCli = Convert.ToInt32(leitor["COD_TELL"]);
+                cli.codEndCli = Convert.ToInt32(leitor["COD_ENDERECO"]);
+
+            }
+
+            con.MyCloseBd();    //fechando a conexao
+
+            //fazendo o Update
+            MySqlCommand updt = new MySqlCommand("UPDATE telefone SET TELL1=@tellfixo, TELL2=@cell WHERE COD_TELL = " + cli.codTellCli, con.MyConectorBd());
+
+            //add parametro para o update
+            updt.Parameters.Add("@tellFixo", MySqlDbType.VarChar).Value = cli.tellCli;
+            updt.Parameters.Add("@cell", MySqlDbType.VarChar).Value = cli.tell2Cli;
+
+            updt.ExecuteNonQuery();
+
+            con.MyCloseBd();    //fechando a conexao
+
+            //fazendo o update
+            MySqlCommand updtEdn = new MySqlCommand("UPDATE endereco SET LOGRADURO=@rua, NUMERO=@num, BAIRRO=@bairro, CEP=@cep, CIDADE=@cidade WHERE COD_ENDERECO = " + cli.codEndCli, con.MyConectorBd());
+
+            //add parametro para o update
+            updtEdn.Parameters.Add("@rua", MySqlDbType.VarChar).Value = cli.rualgCli;
+            updtEdn.Parameters.Add("@num", MySqlDbType.VarChar).Value = cli.numCli;
+            updtEdn.Parameters.Add("@bairro", MySqlDbType.VarChar).Value = cli.bairroCli;
+            updtEdn.Parameters.Add("@cep", MySqlDbType.VarChar).Value = cli.cepCli;
+            updtEdn.Parameters.Add("@cidade", MySqlDbType.VarChar).Value = cli.tell2Cli;
+
+            updtEdn.ExecuteNonQuery();
+
+        }
+
+        //Delete Cliente
+        public void DeleteCli(string cod) {
+            //variavel local e convertendo para int
+            int codCli;
+            int codTell = 0;
+            int codEnd = 0;
+
+            codCli = Convert.ToInt32(cod);
+
+            //comando sql
+            //pegando os codigos
+            MySqlCommand slct = new MySqlCommand("SELECT edn.COD_ENDERECO, tell.COD_TELL FROM Cliente AS cli INNER JOIN telefone AS tell ON cli.COD_TELL_FK = tell.COD_TELL INNER JOIN endereco AS edn ON cli.COD_ENDERECO_FK = edn.COD_ENDERECO WHERE cli.COD_CLIENTE = " + codCli, con.MyConectorBd());
+
+            MySqlDataReader leitor;
+
+            leitor = slct.ExecuteReader();
+
+            while (leitor.Read()) {
+
+                codTell = Convert.ToInt32(leitor["COD_TELL"]);
+                codEnd =  Convert.ToInt32(leitor["COD_ENDERECO"]);
+
+            }
+
+            con.MyCloseBd(); //fechando a conexao
+
+            //fazendo o delete telefone
+            MySqlCommand delTell = new MySqlCommand("DELETE FROM telefone WHERE COD_TELL = " + codTell, con.MyConectorBd());
+
+            delTell.ExecuteNonQuery();
+
+            //fazendo o delete endereco
+            MySqlCommand delEnd = new MySqlCommand("DELETE FROM endereco WHERE COD_ENDERECO = " + codEnd, con.MyConectorBd());
+
+            delEnd.ExecuteNonQuery();
+
+            //fazendo o delete endereco
+            MySqlCommand delCli = new MySqlCommand("DELETE FROM cliente WHERE COD_CLIENTE = " + codCli, con.MyConectorBd());
+
+            delEnd.ExecuteNonQuery();
+
+            con.MyCloseBd();
+        }
+
+        //Consulta dos Cliente
+        /*
+        *
+        * aqui estou fazendo um metodo que retorna
+        * list<objeto>
+        * 
+        **/
+        public static List<Cliente> consultaCli() {
+
+            //variaveis locais
+            List<Cliente> listaClientes = new List<Cliente>();
 
 
-                while (leitor.Read()) {
+            //Cliente cli = new Cliente();
+            Conexao con = new Conexao();
+
+            //comando sql
+            MySqlCommand cmdSlct = new MySqlCommand("SELECT cli.NOME_CLIENTE, cli.CPF_CNPJ, cli.CNH_CLIENTE, tell.TELL1, tell.TELL2, cli.COD_CLIENTE FROM cliente AS cli INNER JOIN telefone AS tell ON cli.COD_TELL_FK = tell.COD_TELL", con.MyConectorBd());
+
+            MySqlDataReader leitor; //preparando o select
+
+            leitor = cmdSlct.ExecuteReader();   //executando no banco
+
+            //verificando se vem algo
+
+            //passando por todos as busca e colocando no list<objeto>
+            while (leitor.Read()) {
+
+                listaClientes.Add(new Cliente
+                {
+                    codCli = leitor.GetString("COD_CLIENTE"),
+                    nomeCli = leitor.GetString("NOME_CLIENTE"),
+                    cpfCli = leitor.GetString("CPF_CNPJ"),
+                    cnhCli = leitor.GetString("CNH_CLIENTE"),
+                    tellCli = leitor.GetString("TELL1"),
+                    tell2Cli = leitor.GetString("TELL2")
+                });
+
+            }
+
+            con.MyCloseBd();
+
+            return listaClientes;
+
+        }
+
+        /*
+         * 
+         *Detalhes do cliente 
+         * 
+         * 
+         * */
+        public List<string> detalheCli(string cod) {
+            //criando a list local
+            List<string> listaClientes = new List<string>();
+            int codDtlhs;
+
+            //comando sql
+            codDtlhs = Convert.ToInt32(cod);
+            MySqlCommand cmd = new MySqlCommand("SELECT cli.COD_CLIENTE,cli.NOME_CLIENTE, cli.CPF_CNPJ, cli.CNH_CLIENTE, edn.LOGRADURO, NUMERO, BAIRRO, CEP, CIDADE, ESTADO, tell.TELL2, tell.TELL1 FROM cliente AS cli INNER JOIN telefone AS tell ON cli.COD_TELL_FK = tell.COD_TELL INNER JOIN endereco AS edn  ON cli.COD_ENDERECO_FK = edn.COD_ENDERECO WHERE cli.COD_CLIENTE = " + codDtlhs, con.MyConectorBd());
+
+            MySqlDataReader leitor; //preparando o select
+
+            leitor = cmd.ExecuteReader();   //executando no banco
 
 
-                    nomeCli = Convert.ToString(leitor[0]);
-                    cpfCli = Convert.ToString(leitor[1]);
-                    cnhCli = Convert.ToString(leitor[2]); 
-                    tellCli = Convert.ToString(leitor[3]);
-                    cellCli = Convert.ToString(leitor[4]);
+            //passando por todos as busca e colocando no list<objeto>
+            while (leitor.Read())
+            {
+                listaClientes.Add(leitor.GetString("COD_CLIENTE"));
+                listaClientes.Add(leitor.GetString("NOME_CLIENTE"));
+                listaClientes.Add(leitor.GetString("CPF_CNPJ"));
+                listaClientes.Add(leitor.GetString("CNH_CLIENTE"));
+                //listaClientes.Add(leitor.GetString("LOGRADURO"));
 
-                    dtCliente = new string[] {nomeCli, cpfCli, cnhCli, tellCli, cellCli};
+                //rua não informada
+                if (leitor.IsDBNull(4))
+                {
+
+                    listaClientes.Add("Não foi informado a rua");
+
+                }
+                else {
+
+                    listaClientes.Add(leitor.GetString("LOGRADURO"));
 
                 }
 
+                //numero
+                if (leitor.IsDBNull(5)) {
+
+                    listaClientes.Add("Não foi informado o numero");
+
+                }
+                else {
+
+                    listaClientes.Add(leitor.GetString("NUMERO"));
+
+                }
+
+                //bairro
+                if (leitor.IsDBNull(6)) {
+
+                    listaClientes.Add("Não foi informado o Bairro");
+
+                }
+                else
+                {
+                    listaClientes.Add(leitor.GetString("BAIRRO"));
+                }
+
+                //cidade
+                if (leitor.IsDBNull(8)) {
+
+                    listaClientes.Add("Não foi informado a cidade");
+
+                }
+                else
+                {
+
+                    listaClientes.Add(leitor.GetString("CIDADE"));
+
+                }
+                //listaClientes.Add(leitor.GetString("CEP"));
+                //listaClientes.Add(leitor.GetString("ESTADO"));
+                listaClientes.Add(leitor.GetString("TELL1"));
+                listaClientes.Add(leitor.GetString("TELL2"));
+
             }
-            else {
 
-                dtCliente = new string[] { "Deu erro" };
+            con.MyCloseBd();
+
+            return listaClientes;
+
+        }
+
+        public List<Cliente> buscaCli(string busc) {
+
+            //variaveis locais
+            List<Cliente> listaClientes = new List<Cliente>();
+
+            //comando sql
+            MySqlCommand slct = new MySqlCommand("SELECT cli.NOME_CLIENTE, cli.CPF_CNPJ, cli.CNH_CLIENTE, tell.TELL1, tell.TELL2, cli.COD_CLIENTE FROM cliente AS cli INNER JOIN telefone AS tell ON cli.COD_TELL_FK = tell.COD_TELL WHERE NOME_CLIENTE LIKE '%" + busc + "%'", con.MyConectorBd());
+
+            //preparando o comando
+            MySqlDataReader leitor;
+
+            leitor = slct.ExecuteReader();
+
+            //guardando o resultado
+            while (leitor.Read()) {
+
+                listaClientes.Add(new Cliente
+                {
+                    codCli = leitor.GetString("COD_CLIENTE"),
+                    nomeCli = leitor.GetString("NOME_CLIENTE"),
+                    cpfCli = leitor.GetString("CPF_CNPJ"),
+                    cnhCli = leitor.GetString("CNH_CLIENTE"),
+                    tellCli = leitor.GetString("TELL1"),
+                    tell2Cli = leitor.GetString("TELL2")
+                });
 
             }
 
-            return dtCliente;
-
-        }*/
-
-        /*public DataTable consultaCli() {
-
-            MySqlCommand cmd = new MySqlCommand("SELECT cli.NOME_CLIENTE, cli.CPF_CNPJ, cli.CNH_CLIENTE, tell.TELL1, tell.TELL2 FROM cliente AS cli INNER JOIN telefone AS tell ON cli.COD_TELL_FK = tell.COD_TELL", con.MyConectorBd()); //fazendo a consulta
-            MySqlDataAdapter data = new MySqlDataAdapter(cmd);
-            DataTable consultClint = new DataTable();
-            data.Fill(consultClint);
-            con.MyCloseBd();
-            return consultClint;
-
-        }*/
-        
-        public DataTable buscCli(Cliente clit) {
-
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM cliente WHERE COD_CLIENTE = @cod", con.MyConectorBd());  //comando sql copm a conexao
-            cmd.Parameters.AddWithValue("@cod", clit.codCli);   //adicionando o parametro do codigo cliente
-            MySqlDataAdapter data = new MySqlDataAdapter(cmd);
-            DataTable consultClint = new DataTable();
-            data.Fill(consultClint);
             con.MyCloseBd();
 
-            return consultClint;
+            return listaClientes;
 
         }
     }

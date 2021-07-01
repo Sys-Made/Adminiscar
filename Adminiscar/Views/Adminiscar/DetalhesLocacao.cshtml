@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "DetalhesLocacao";
+    Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
+}
+@if (Session["usuarioLog"] != null)
+{
+    <!--header-->
+    <header class="navInfo mb-3">
+
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="dataHora d-inline-block p-2 rounded">
+                    <!--<p>01/10/2020 13:50</p>-->
+                    <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+                </div>
+            </div>
+
+            <div class="col text-center">
+                <div class="logoConteinerSmall d-inline-block p-2 rounded bg-light boxShadow">
+                    <img class="logoSmall" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_empresa" />
+                </div>
+            </div>
+
+            <div class="col text-right" onclick="NavFuncao(7);">
+                <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
+                    <p>Voltar</p>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <!--fimHeader-->
+
+    <section class="row justify-content-center text-center">
+
+        <h2 class="col-12 bg-light py-3">Detalhes Da Locação</h2>
+
+    </section>
+
+    <section class="row justify-content-center my-4 py-1">
+        <!--img do cliente-->
+        <div class="col-3">
+            <img src="~/Img/Imagens/Audi.jpg" class="img-thumbnail rounded my-2" />
+        </div>
+
+        <article class="col-9 rounded">
+            <div class="row justify-content-center rounded my-2 mx-1 bg-light">
+                <p class="col-5 m-2 border-bottom border-left rounded"><b>Nome:</b><br />@ViewBag.dadosLoc[0]</p>
+                <p class="col-5 m-2 border-bottom border-left rounded"><b>CNH:</b><br />@ViewBag.dadosLoc[1]</p>
+            </div>
+            <div class="row justify-content-center rounded my-2 mx-1 bg-light">
+                <p class="col-5 m-2 border-bottom border-left rounded"><b>CPF:</b><br />@ViewBag.dadosLoc[2]</p>
+                <p class="col-5 m-2 border-bottom border-left rounded"><b>CNPJ:</b><br />@ViewBag.dadosLoc[3]</p>
+            </div>
+
+            <div class="row justify-content-center bg-light rounded my-2 mx-1">
+                <p class="col-4 border-bottom border-left rounded m-2"><b>Nome Do Carro:</b><br />@ViewBag.dadosLoc[4]</p>
+                <p class="col-3 border-bottom border-left rounded m-2"><b>Categoria:</b><br />@ViewBag.dadosLoc[6]</p>
+                <p class="col-3 border-bottom border-left rounded m-2"><b>Modelo:</b><br />@ViewBag.dadosLoc[7]</p>
+            </div>
+
+            <div class="row justify-content-center bg-light rounded my-2 mx-1">
+                <p class="col-3 border-bottom border-left rounded m-2"><b>Placa:</b><br />@ViewBag.dadosLoc[5]</p>
+                <p class="col-3 border-bottom border-left rounded m-2"><b>Situação:</b><br />@ViewBag.dadosLoc[8]</p>
+            </div>
+
+            <div class="row justify-content-center rounded my-2 mx-1 bg-light">
+                <p class="col-5 border-bottom border-left rounded m-2"><b>Numero Pedido:</b><br />@ViewBag.dadosLoc[9]</p>
+                <p class="col-5 border-bottom border-left rounded m-2"><b>Forma Pagamento:</b><br />@ViewBag.dadosLoc[12]</p>
+                <p class="col-5 m-2 border-bottom border-left rounded"><b>Valor Total:</b><br />Em segredo</p>
+            </div>
+
+            <div class="row justify-content-center rounded my-2 mx-1 bg-light">
+                <p class="col-5 border-bottom border-left rounded m-2"><b>Data De retirada:</b><br />@ViewBag.dadosLoc[10]</p>
+                <p class="col-5 border-bottom border-left rounded m-2"><b>Data De Devolução:</b><br />@ViewBag.dadosLoc[11]</p>
+            </div>
+
+        </article>
+
+    </section>
+}
+else
+{
+
+
+    <div class="row justify-content-center my-2 py-2">
+        <div class="col-10 mx-auto alert alert-danger text-center py-1"><img src="~/Img/Imagens/alerta.jpg" alt="alertaDeAcessoNegado" /></div>
+        <div class="col-10 mx-auto alert alert-danger text-center py-1">@Html.ActionLink("Voltar Login", "Index", "Adminiscar", new { @class = "btn btn-warning btn-lg font-weight-bold" })</div>
+        <div class="col-10 mx-auto alert alert-danger text-center rounded-bottom py-1 "><p class="text-center text-danger font-weight-bold">Você precisar ta logado para acessar essa pagina, volte a tela de login!!!</p></div>
+    </div>
+
+
+}
+

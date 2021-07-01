@@ -1,4 +1,6 @@
-﻿@{
+﻿@model  Adminiscar.Models.Carro
+
+@{
     Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
 }
 
@@ -6,325 +8,337 @@
     ViewBag.Title = "Adminiscar";
 }
 
-<!--header-->
-<header class="navInfo mb-3">
+@if (Session["usuarioLog"] != null)
+{
 
-    <div class="row justify-content-center">
-        <div class="col">
-            <div class="dataHora d-inline-block p-2 rounded">
-                <!--<p>01/10/2020 13:50</p>-->
-                <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+    <!--header-->
+    <header class="navInfo mb-3">
+
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="dataHora d-inline-block p-2 rounded">
+                    <!--<p>01/10/2020 13:50</p>-->
+                    <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+                </div>
+            </div>
+
+            <div class="col text-center">
+                <div class="logoConteinerSmall d-inline-block p-2 rounded bg-light boxShadow">
+                    <img class="logoSmall" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_empresa" />
+                </div>
+            </div>
+
+            <div class="col text-right" onclick="NavFuncao(7);">
+                <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
+                    <p>Voltar</p>
+                </div>
             </div>
         </div>
 
-        <div class="col text-center">
-            <div class="logoConteinerSmall d-inline-block p-2 rounded bg-light boxShadow">
-                <img class="logoSmall" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_empresa" />
-            </div>
+    </header>
+    <!--fimHeader-->
+    <!--navgacaoentreCadastrarAndConsultar-->
+    <section class="row justify-content-center p-2 bg-light">
+
+        <div class="col-12 my-3">
+            <h2 class="text-center font-weight-bold text-roxo">Carro</h2>
         </div>
 
-        <div class="col text-right" onclick="NavFuncao(7);">
-            <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
-                <p>Voltar</p>
-            </div>
+        <div class="col-6 my-3 p-3 text-center rounded" style="background-color: #955cfb;">
+            <button class="butaoMedian butao-version2 mx-2 botaoCadastro rounded butaoActive" type="button" onclick="NavegacaoCadCon(1);">Cadastrar</button>
+            @Html.ActionLink("Consultar", "ConsultaCarro", "Adminiscar", null, new { @class = "btn btn-primary" })
+            <!--<button class="butaoMedian butao-version2 bg-branco mx-2 botaoConsulta rounded" type="button" onclick="NavegacaoCadCon(2);">Consultar</button>-->
         </div>
-    </div>
 
-</header>
-<!--fimHeader-->
-<!--navgacaoentreCadastrarAndConsultar-->
-<section class="row justify-content-center p-2 bg-light">
+    </section>
+    <!--fimNavgacaoentreCadastrarAndConsultar-->
+    <!--Cadastro-->
+    <section class="row justify-content-center my-2 p-2 cadastroSecao">
 
-    <div class="col-12 my-3">
-        <h2 class="text-center font-weight-bold text-roxo">Carro</h2>
-    </div>
+        <div class="col-12 text-white">
 
-    <div class="col-6 my-3 p-3 text-center rounded" style="background-color: #955cfb;">
-        <button class="butaoMedian butao-version2 mx-2 botaoCadastro rounded butaoActive" type="button" onclick="NavegacaoCadCon(1);">Cadastrar</button>
+            @using (Html.BeginForm("CadastroCarro", "Adminiscar", FormMethod.Post))
+            {
+                <!--nomeVeiculo/modelo/renavam/combustivel-->
+                <div class="form-row">
 
-        <button class="butaoMedian butao-version2 bg-branco mx-2 botaoConsulta rounded" type="button" onclick="NavegacaoCadCon(2);">Consultar</button>
-    </div>
+                    <div class="col mt-1 mb-2">
+                        <label for="exampleInputEmail1">Nome Do veiculo:</label>
+                        @Html.EditorFor(car => car.nomeCar, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Toyota ", id = "inputCarNome", senha = "txtNomeCar", required = "required" } })
+                    </div>
 
-</section>
-<!--fimNavgacaoentreCadastrarAndConsultar-->
-<!--Cadastro-->
-<section class="row justify-content-center my-2 p-2 cadastroSecao">
-    <!--nome/cpf/cnpj/cnh-->
-    <div class="col-12 text-white">
-        <form>
-            <!--nomeVeiculo/modelo/renavam/combustivel-->
-            <div class="form-row">
+                    <div class="col mt-1 mb-2">
+                        <label for="exampleInputEmail1">Modelo:</label>
+                        @Html.EditorFor(car => car.modeloCar, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Modelo 2015", id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
+                    </div>
 
-                <div class="col mt-1 mb-2">
-                    <label for="exampleInputEmail1">Nome Do veiculo:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
                 </div>
 
-                <div class="col mt-1 mb-2">
-                    <label for="exampleInputEmail1">Modelo:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
+                <div class="form-row">
+
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Renavam:</label>
+                        @Html.EditorFor(car => car.renavCar, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Renavam 000000000000", id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
+                    </div>
+
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Combustivel:</label>
+                        @Html.EditorFor(car => car.combCar, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Gasolina ou Alchool", id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
+                    </div>
+
+                </div>
+                <!--fimNomeVeiculo/modelo/renavam/combustivel-->
+                <!--placaAndCartegoria-->
+                <div class="form-row border-top my-4">
+
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Placa:</label>
+                        @Html.EditorFor(car => car.placaCar, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: ddd0123", id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
+                    </div>
+
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Categoria:</label>
+                        @Html.EditorFor(car => car.categoriaCar, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: Esportivo", id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
+                    </div>
+
                 </div>
 
-            </div>
+                <div class="form-row my-4 justify-content-center">
 
-            <div class="form-row">
+                    <div class="row p-2 justify-content-center text-white">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <label class="form-check-label" for="inlineCheckbox1">SOMBT</label>
+                        </div>
 
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Renavam:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <label class="form-check-label" for="inlineCheckbox2">SOM</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                            <label class="form-check-label" for="inlineCheckbox3">GPS</label>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--fimPlacaAndCartegoria-->
+                <!--valores-->
+                <div class="form-row border-top border-bottom py-2 my-2">
+
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Valor Diario:</label>
+                        <input type="text" class="form-control col-10" placeholder="">
+                    </div>
+
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Valor Semanal:</label>
+                        @Html.EditorFor(car => car.vlsmanlCar, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: 250.00", id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
+                    </div>
+
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Valor Mensal:</label>
+                        @Html.EditorFor(car => car.vlmensCar, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: 1200.00", id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
+                    </div>
+                </div>
+                <!--fimValores-->
+
+                <div class="form-row justify-content-center my-5">
+                    <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="submit">Registrar</button>
+
+                    <button class="butaoMeidan bg-branco mx-2 my-2 rounded" type="reset">Limpar</button>
+                </div>
+            }
+        </div>
+
+    </section>
+    <!--fimCadastro-->
+    <!--Consulta-->
+    <section class="row justify-content-center my-4 consultaSecao noVisive">
+        <div class="col-12 p-3 bg-light">
+
+            <h2 class="text-center my-2 text-roxo">Pesquisa</h2>
+
+            <form class="my-3">
+                <div class="row p-2 justify-content-center">
+                    <div class="col-7">
+                        <input type="text" class="form-control col-12 boxShadow2" placeholder="">
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-secondary bg-branco rounded" type="reset">Buscar</button>
+                    </div>
                 </div>
 
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Combustivel:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
-                </div>
-
-            </div>
-            <!--fimNomeVeiculo/modelo/renavam/combustivel-->
-            <!--placaAndCartegoria-->
-            <div class="form-row border-top my-4">
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Placa:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
-                </div>
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Categoria:</label>
-                    <input type="text" class="form-control col-8" placeholder="">
-                </div>
-
-            </div>
-
-            <div class="form-row my-4 justify-content-center">
-
-                <div class="row p-2 justify-content-center text-white">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">Nome</label>
+                <div class="row p-2 justify-content-center text-roxo">
+                    <div class="my-1 mx-1">
+                        <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                            <option selected>Categoria</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
                     </div>
 
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">CPF</label>
+                        <label class="form-check-label" for="inlineCheckbox2">Situação</label>
                     </div>
 
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                        <label class="form-check-label" for="inlineCheckbox3">CNH</label>
+                        <label class="form-check-label" for="inlineCheckbox3">Placa</label>
                     </div>
 
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                        <label class="form-check-label" for="inlineCheckbox3">CNPJ</label>
+                        <label class="form-check-label" for="inlineCheckbox3">Extra Teste</label>
                     </div>
                 </div>
+            </form>
+        </div>
 
+        <div class="col-12 mt-4 pt-2">
+            <table class="table mt-2 bg-light rounded">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th scope="col">Nome Do Veiculo</th>
+                        <th scope="col">Renavam</th>
+                        <th scope="col">Placa</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr>
+                        <td>Fiat</td>
+                        <td>0000000000</td>
+                        <td>KOP12356</td>
+                        <td>153.624.899-10</td>
+                        <td>
+                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
+                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
+                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Fiat</td>
+                        <td>0000000000</td>
+                        <td>KOP12356</td>
+                        <td>153.624.899-10</td>
+                        <td>
+                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
+                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
+                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Fiat</td>
+                        <td>0000000000</td>
+                        <td>KOP12356</td>
+                        <td>153.624.899-10</td>
+                        <td>
+                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
+                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
+                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Fiat</td>
+                        <td>0000000000</td>
+                        <td>KOP12356</td>
+                        <td>153.624.899-10</td>
+                        <td>
+                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
+                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
+                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Fiat</td>
+                        <td>0000000000</td>
+                        <td>KOP12356</td>
+                        <td>153.624.899-10</td>
+                        <td>
+                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
+                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
+                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Fiat</td>
+                        <td>0000000000</td>
+                        <td>KOP12356</td>
+                        <td>153.624.899-10</td>
+                        <td>
+                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
+                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
+                            <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled text-roxo">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link text-roxo" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link text-roxo" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link text-roxo" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link text-roxo" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link text-roxo" href="#">5</a></li>
+                    <li class="page-item">
+                        <a class="page-link text-roxo" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </section>
+    <!--fimConsulta-->
+    <!--ModalInformações-->
+    <!-- detalhesCarro -->
+    <div class="modal fade" id="detalhe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Em Breve Dados</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h1 class="text-center">EM BREVE</h1>
+                </div>
+                <!--<div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>-->
             </div>
-            <!--fimPlacaAndCartegoria-->
-            <!--valores-->
-            <div class="form-row border-top border-bottom py-2 my-2">
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Valor Diario:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
-                </div>
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Valor Semanal:</label>
-                    <input type="text" class="form-control col-8" placeholder="">
-                </div>
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Valor Mensal:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
-                </div>
-            </div>
-            <!--fimValores-->
-
-            <div class="form-row justify-content-center my-5">
-                <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="button">Registrar</button>
-
-                <button class="butaoMeidan bg-branco mx-2 my-2 rounded" type="reset">Limpar</button>
-            </div>
-
-        </form>
-    </div>
-
-</section>
-<!--fimCadastro-->
-<!--Consulta-->
-<section class="row justify-content-center my-4 consultaSecao noVisive">
-    <div class="col-12 p-3 bg-light">
-
-        <h2 class="text-center my-2 text-roxo">Pesquisa</h2>
-
-        <form class="my-3">
-            <div class="row p-2 justify-content-center">
-                <div class="col-7">
-                    <input type="text" class="form-control col-12 boxShadow2" placeholder="">
-                </div>
-                <div class="col-2">
-                    <button class="btn btn-secondary bg-branco rounded" type="reset">Buscar</button>
-                </div>
-            </div>
-
-            <div class="row p-2 justify-content-center text-roxo">
-                <div class="my-1 mx-1">
-                    <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                        <option selected>Categoria</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label" for="inlineCheckbox2">Situação</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                    <label class="form-check-label" for="inlineCheckbox3">Placa</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                    <label class="form-check-label" for="inlineCheckbox3">Extra Teste</label>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <div class="col-12 mt-4 pt-2">
-        <table class="table mt-2 bg-light rounded">
-            <thead class="thead-dark text-center">
-                <tr>
-                    <th scope="col">Nome Do Veiculo</th>
-                    <th scope="col">Renavam</th>
-                    <th scope="col">Placa</th>
-                    <th scope="col">Modelo</th>
-                    <th scope="col">Ações</th>
-                </tr>
-            </thead>
-            <tbody class="text-center">
-                <tr>
-                    <td>Fiat</td>
-                    <td>0000000000</td>
-                    <td>KOP12356</td>
-                    <td>153.624.899-10</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Fiat</td>
-                    <td>0000000000</td>
-                    <td>KOP12356</td>
-                    <td>153.624.899-10</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Fiat</td>
-                    <td>0000000000</td>
-                    <td>KOP12356</td>
-                    <td>153.624.899-10</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Fiat</td>
-                    <td>0000000000</td>
-                    <td>KOP12356</td>
-                    <td>153.624.899-10</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Fiat</td>
-                    <td>0000000000</td>
-                    <td>KOP12356</td>
-                    <td>153.624.899-10</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Fiat</td>
-                    <td>0000000000</td>
-                    <td>KOP12356</td>
-                    <td>153.624.899-10</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-
-
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled text-roxo">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">1</a></li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">2</a></li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">3</a></li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">4</a></li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">5</a></li>
-                <li class="page-item">
-                    <a class="page-link text-roxo" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
-
-    </div>
-</section>
-<!--fimConsulta-->
-
-<!--ModalInformações-->
-<!-- detalhesCarro -->
-<div class="modal fade" id="detalhe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Em Breve Dados</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h1 class="text-center">EM BREVE</h1>
-            </div>
-            <!--<div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>-->
         </div>
     </div>
-</div>
-<!--fimDetalhesClientes-->
+    <!--fimDetalhesClientes-->
+}
+else
+{
+
+
+    <div class="row justify-content-center my-2 py-2">
+        <div class="col-10 mx-auto alert alert-danger text-center py-1"><img src="~/Img/Imagens/alerta.jpg" alt="alertaDeAcessoNegado" /></div>
+        <div class="col-10 mx-auto alert alert-danger text-center py-1">@Html.ActionLink("Voltar Login", "Index", "Adminiscar", new { @class = "btn btn-warning btn-lg font-weight-bold" })</div>
+        <div class="col-10 mx-auto alert alert-danger text-center rounded-bottom py-1 "><p class="text-center text-danger font-weight-bold">Você precisar ta logado para acessar essa pagina, volte a tela de login!!!</p></div>
+    </div>
+
+
+}

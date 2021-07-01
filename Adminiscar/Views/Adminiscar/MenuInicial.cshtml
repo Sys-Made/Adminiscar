@@ -3,82 +3,100 @@
 }
 
 @{
-   ViewBag.Title = "Adminiscar";
+    ViewBag.Title = "Adminiscar";
 }
 
-<div class="row p-3">
-    <!--nome/dateAndTime/lougot-->
-    <div class="col-12 my-2">
+@if (Session["usuarioLog"] != null)
+{
+    <div class="row p-3">
+        <!--nome/dateAndTime/lougot-->
+        <div class="col-12 my-2">
 
-        <div class="row justify-content-center">
+            <div class="row justify-content-center">
 
-            <div class="col">
-                <div class="dataHora d-inline-block p-2 rounded">
-                    <!--<p>01/10/2020 13:50</p>-->
-                    <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+                <div class="col">
+                    <div class="dataHora d-inline-block p-2 rounded">
+                        <!--<p>01/10/2020 13:50</p>-->
+                        <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col text-center">
-                <div class="nomeFuncInicial d-inline-block p-2 rounded">
-                    <h5 class="text-white text-shadow font-weight-bold">Nome Do Funcionario</h5>
+                <div class="col text-center">
+                    <div class="nomeFuncInicial d-inline-block p-2 rounded">
+                        <h5 class="text-white text-shadow font-weight-bold">@Session["usuarioLog"].ToString()</h5>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col text-right">
-                <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
-                    <p>Sair</p>
+                <div class="col text-right">
+                    <div class="butao butao-logout1 d-inline-block rounded text-center">
+                        @using (Html.BeginForm("Logout", "Adminiscar", FormMethod.Post, new { @class = "d-inline" }))
+                        {
+                            <button class="border-0 bg-light btn-lg" type="submit">Logout</button>
+                        }
+                    </div>
                 </div>
+
             </div>
 
         </div>
+        <!--fimNome/dateAndTime/lougot-->
+        <!--logo-->
+        <div class="col-12 my-2 text-center">
+            <!--<img class="rounded telaInicialLogo" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_adminiscar" />-->
+            <div class="divLogo p-2 d-inline-block rounded">
+                <img class="rounded telaInicialLogo" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_adminiscar" />
+            </div>
 
-    </div>
-    <!--fimNome/dateAndTime/lougot-->
-    <!--logo-->
-    <div class="col-12 my-2 text-center">
-        <!--<img class="rounded telaInicialLogo" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_adminiscar" />-->
-        <div class="divLogo p-2 d-inline-block rounded">
-            <img class="rounded telaInicialLogo" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_adminiscar" />
         </div>
+        <!--fimLogo-->
+        <!--NavegaçãoFunctions-->
+        <div class="col-12 my-2">
+            <nav class="text-center p-2 rounded bg-light shadow">
+                <div class="functNav d-inline-block m-2 rounded bg-light boxShadow p-2" onclick="NavFuncao(1);">
+                    <img class="iconeNav" src="~/Img/Icones/cliente.png" alt="menu_cliente" />
+                    <p>Cliente</p>
+                </div>
+
+                <div class="functNav d-inline-block m-2 rounded bg-light boxShadow p-2" onclick="NavFuncao(2);">
+                    <img class="iconeNav" src="~/Img/Icones/carro.png" alt="menu_carro" />
+                    <p>Carro</p>
+                </div>
+
+                <div class="functNav d-inline-block m-2 rounded bg-light boxShadow p-2" onclick="NavFuncao(3);">
+                    <img class="iconeNav" src="~/Img/Icones/chaves.png" alt="menu_locacoes" />
+                    <p>Locações</p>
+                </div>
+
+                <div class="functNav d-inline-block m-2 rounded bg-light boxShadow p-2" onclick="NavFuncao(4);">
+                    <img class="iconeNav" src="~/Img/Icones/Devolucao.png" alt="menu_devolucoes" />
+                    <p>Devoluções</p>
+                </div>
+
+                <div class="functNav d-inline-block m-2 rounded bg-light boxShadow p-2" onclick="NavFuncao(5);">
+                    <img class="iconeNav" src="~/Img/Icones/manutencao.png" alt="menu_manutencao" />
+                    <p>Manutencão</p>
+                </div>
+
+                <div class="functNav d-inline-block mx-2 rounded bg-light boxShadow p-2" onclick="NavFuncao(6);">
+                    <img class="iconeNav" src="~/Img/Icones/cliente.png" alt="menu_teste" />
+                    <p>Funcionario</p>
+                </div>
+            </nav>
+        </div>
+        <!--fimNavegaçãoFunctions-->
 
     </div>
-    <!--fimLogo-->
+}
+else
+{
 
-    <!--NavegaçãoFunctions-->
-    <div class="col-12 my-2">
-        <nav class="text-center p-2 rounded bg-light shadow">
-            <div class="functNav d-inline-block m-2 rounded bg-light boxShadow p-2" onclick="NavFuncao(1);">
-                <img class="iconeNav" src="~/Img/Icones/cliente.png" alt="menu_cliente" />
-                <p>Cliente</p>
-            </div>
 
-            <div class="functNav d-inline-block m-2 rounded bg-light boxShadow p-2" onclick="NavFuncao(2);">
-                <img class="iconeNav" src="~/Img/Icones/carro.png" alt="menu_carro" />
-                <p>Carro</p>
-            </div>
-
-            <div class="functNav d-inline-block m-2 rounded bg-light boxShadow p-2" onclick="NavFuncao(3);">
-                <img class="iconeNav" src="~/Img/Icones/chaves.png" alt="menu_locacoes" />
-                <p>Locações</p>
-            </div>
-
-            <div class="functNav d-inline-block m-2 rounded bg-light boxShadow p-2" onclick="NavFuncao(4);">
-                <img class="iconeNav" src="~/Img/Icones/Devolucao.png" alt="menu_devolucoes" />
-                <p>Devoluções</p>
-            </div>
-
-            <div class="functNav d-inline-block m-2 rounded bg-light boxShadow p-2" onclick="NavFuncao(5);">
-                <img class="iconeNav" src="~/Img/Icones/manutencao.png" alt="menu_manutencao" />
-                <p>Manutencão</p>
-            </div>
-
-            <div class="functNav d-inline-block mx-2 rounded bg-light boxShadow p-2" onclick="NavFuncao(6);">
-                <img class="iconeNav" src="~/Img/Icones/cliente.png" alt="menu_teste" />
-                <p>testeExtra</p>
-            </div>
-        </nav>
+    <div class="row justify-content-center my-2 py-2">
+        <div class="col-10 mx-auto alert alert-danger text-center py-1"><img src="~/Img/Imagens/alerta.jpg" alt="alertaDeAcessoNegado" /></div>
+        <div class="col-10 mx-auto alert alert-danger text-center py-1">@Html.ActionLink("Voltar Login", "Index", "Adminiscar", new { @class = "btn btn-warning btn-lg font-weight-bold" })</div>
+        <div class="col-10 mx-auto alert alert-danger text-center rounded-bottom py-1 "><p class="text-center text-danger font-weight-bold">Você precisar ta logado para acessar essa pagina, volte a tela de login!!!</p></div>
     </div>
-    <!--fimNavegaçãoFunctions-->
 
-</div>
+
+}
+

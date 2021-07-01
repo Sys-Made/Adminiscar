@@ -20,12 +20,12 @@ namespace Adminiscar.Controllers
          * indexInicio
          * 
          * */
+
         public ActionResult Index()
         {
             return View();
         }
 
-        //chamando o dal acoes do login
         acoesLogin acLg = new acoesLogin();
 
         [HttpPost]
@@ -69,28 +69,33 @@ namespace Adminiscar.Controllers
         }
         //indexFim
 
-        public ActionResult Loadding()
-        {
-
-            return View();
-
-
-        }
 
         public ActionResult MenuInicial()
         {
 
             return View();
 
+        }
 
+        [HttpPost]
+        public ActionResult Logout() {
+
+            Session["usuarioLog"] = null;
+            Session["senhaLogado"] = null;
+            Session["tipoLogado"] = null;
+            Session["tipoLogado1"] = null;
+
+            return RedirectToAction("Index", "Adminiscar");
         }
 
 
         /**
          * 
-         * ClienteInicio
+         * Cliente
          * 
          * */
+        List<Cliente> clientes = acoesCli.consultaCli();    //lista da consulta
+
         public ActionResult Cliente() {
 
             acoesCli acsCli = new acoesCli();    //chamando classe methods
@@ -109,33 +114,67 @@ namespace Adminiscar.Controllers
             ViewBag.UfType = items;
             //fimDroplist
 
-            //Consulta cliente
-            /*ViewBag.ArrayResult = acsCli.consultaCli();*/
-
-            //fimArray
-
             return View();  //retornando a view
         }
 
-        [HttpPost] //consulta cliente
-        public ActionResult ConsultCliente(Cliente cli) {
+        //consultaCliente
+        public ActionResult ConsultaCliente() {
 
-            acoesCli acsCli = new acoesCli();    //chamando classe methods
+            return View(clientes);
 
-            //Consulta do cliente
-            GridView dataGV = new GridView();   //Desenvolvendo instancia da tabela
-            dataGV.DataSource = acsCli.buscCli(cli); //Atribuir ao grid o resultado da consulta
-            dataGV.DataBind(); //confirmando o grid
-            StringWriter sw = new StringWriter();   //Comando para construção do Grid na tela
-            HtmlTextWriter htw = new HtmlTextWriter(sw);    //Comando para construção do Grid na tela
-            dataGV.RenderControl(htw);
-            ViewBag.GridViewString = sw.ToString(); //Comando para construção do Grid na tela
+        }
+
+        //detalhesCliente
+        [HttpPost]
+        public ActionResult DetalhesCliente(string teste) {
+
+            acoesCli acsCli = new acoesCli();    //chamando classe methods do cliente
+
+            //ViewBag.numeroDeIten = acsCli.detalheCli(cliente).Count();
+            ViewBag.dadosCli = acsCli.detalheCli(teste);
+            //ViewBag.testeCliente = teste;
 
             return View();
 
         }
 
-        [HttpPost]  //cadastro do cliente
+        //busca cliente
+        [HttpPost]
+        public ActionResult BuscaCliente(string buscaData) {
+
+            acoesCli acsCli = new acoesCli();    //chamando classe methods do cliente
+
+            List<Cliente> cliente = acsCli.buscaCli(buscaData);
+
+            return View(cliente);
+
+        }
+
+        //editarClienteView
+        [HttpPost]
+        public ActionResult EditarCliente(string editarCli) {
+            acoesCli acsCli = new acoesCli();    //chamando classe methods do cliente
+
+            ViewBag.codCli = editarCli;
+            ViewBag.dadosCli = acsCli.detalheCli(editarCli);
+
+            return View();
+
+        }
+
+        //fazendoEditandoDados
+        public ActionResult UpdateCliente(Cliente cliente, string codCli) {
+
+            acoesCli acoescli = new acoesCli();
+
+            acoescli.EditarCli(cliente, codCli);
+
+            return RedirectToAction("ConsultaCliente", "Adminiscar");
+
+        }
+
+        //cadastro do cliente
+        [HttpPost]
         public ActionResult Cliente02(Cliente cliente) {
 
             acoesCli acoescli = new acoesCli();
@@ -145,7 +184,21 @@ namespace Adminiscar.Controllers
             return RedirectToAction("Cliente", "Adminiscar");
 
         }
-        //clienteFim
+
+        //deletar o Cliente
+        [HttpPost]
+        public ActionResult DeletarCliente(string delCli) {
+
+            acoesCli acoescli = new acoesCli();
+
+            acoescli.DeleteCli(delCli);
+
+            return RedirectToAction("ConsultaCliente", "Adminiscar");
+
+        }
+        /**
+         * fimCliente
+         * */
 
 
         /**
@@ -158,6 +211,86 @@ namespace Adminiscar.Controllers
 
             return View();
         }
+
+        //Cadastro carro
+        [HttpPost]
+        public ActionResult CadastroCarro(Carro carro) {    //recebendo o objeto do cadastroCarro
+
+            acoesCar acoescar = new acoesCar();
+
+            acoescar.cadastroCar(carro);
+
+            return RedirectToAction("Carro", "Adminiscar");
+        }
+
+        //Consulta carro
+        public ActionResult ConsultaCarro()
+        {
+
+            List<Carro> listCarro = acoesCar.consultaCar();    //lista da consulta
+
+            return View(listCarro);
+
+        }
+
+        //busca carro
+        [HttpPost]
+        public ActionResult BuscaCarro(string buscaCar) {
+
+            acoesCar acsCar = new acoesCar();
+
+            List<Carro> carro = acsCar.buscaCar(buscaCar);
+
+            return View(carro);
+
+        }
+
+        //Detalhes carro
+        [HttpPost]
+        public ActionResult DetalheCarro(string codCar) {
+
+            acoesCar acsCar = new acoesCar();   //chamando o method
+
+            ViewBag.dadosCar = acsCar.detalheCar(codCar);
+
+            return View();
+
+        }
+
+        //Editar carro
+        public ActionResult EditarCarro(string editarCar) {
+
+            acoesCar acsCar = new acoesCar();   //chamando o method
+
+            ViewBag.codCar = editarCar; //codigo do car
+            ViewBag.dadosCar = acsCar.detalheCar(editarCar); //dados do carro
+
+            return View();
+
+        }
+        //editandoCarro
+        [HttpPost]
+        public ActionResult UpdateCarro(Carro car, string codCar) {
+
+            acoesCar acoescar = new acoesCar();
+
+            acoescar.updateCar(car, codCar);
+
+            return RedirectToAction("ConsultaCarro", "Adminiscar");
+
+        }
+
+        //delatando carro
+        public ActionResult DeleteCarro(string deletarCar) {
+
+            acoesCar acsCar = new acoesCar();
+
+            acsCar.deletarCar(deletarCar);
+
+            return RedirectToAction("ConsultaCarro", "Adminiscar");
+
+        }
+
         //carroFim
 
         /**
@@ -168,7 +301,11 @@ namespace Adminiscar.Controllers
         public ActionResult Devolucao()
         {
 
-            return View();
+            acoesLoc acsLoc = new acoesLoc();
+
+            List<Locacao> listLocacao = acsLoc.consultaLocacaoLoc();    //retornando como lista
+
+            return View(listLocacao);
         }
         //fimDevolucao
 
@@ -179,26 +316,105 @@ namespace Adminiscar.Controllers
          * */
         public ActionResult Locacao()
         {
+            //istaciando acoesLoc
+            acoesLoc acsLoc = new acoesLoc();
+
+            /*DropListas de veiculos*/
+            int QtdItens = acsLoc.listVeiculoLoc().Count();
+            var ListVec = acsLoc.listVeiculoLoc();
+            var ListCod = acsLoc.listCodVecLoc();
+
+            List<SelectListItem> itensVec = new List<SelectListItem>();
+
+            itensVec.Add(new SelectListItem { Text = "Veiculo", Value = "0", Selected = true });
+
+            var i = 0;
+
+            while (i <= QtdItens - 1) {
+
+                itensVec.Add(new SelectListItem { Text = ListVec[i], Value = ListCod[i] });
+
+                i++;
+
+            }
+            /*FimDropListVeiculo*/
+
+
+            ViewBag.Veiculos = itensVec;    //retornando na viewbag os dropList
 
             return View();
         }
-        /*public string Index() {
 
-            return "esse é minha pagina default action";
+        //pre Locacao do carro
+        [HttpPost]
+        public ActionResult AlugarConfirLoc(string clienteLoc, string cnpjLoc, string cpfLoc, string cnhLoc, string TellLoc, string cellLoc, string Veiculos, string som, string somBt, string gps, string dateLoc) {
 
-        }*/
+            //chamando a classe com os methods
+            acoesLoc acsLoc = new acoesLoc();
 
-        /*
-         * no Aps.net os parametros da URL funciona desse jeito
-         * nomeDoDominio/Controller/actionName/parametrosDeles
-         * no arquivo _start/RouteConfig.cs vc define as routas da url
+            //exibindo os valores
+            ViewBag.dadosLoc = acsLoc.listLoc(clienteLoc, cnpjLoc, cpfLoc, cnhLoc, TellLoc, cellLoc, Veiculos, som, somBt, gps, dateLoc);
+
+            return View();
+
+        }
+
+        //finalizando o pedido
+        [HttpPost]
+        public ActionResult FinalizandoPedido(string nomeCli, string cpfCli, string cnpjCli, string cnhCli, string codCar, string TellCli, string cellCli, string dateEnt, string valorTotal, string typePag) {
+            //chamando method locacao
+            acoesLoc acsLoc = new acoesLoc();
+
+            acsLoc.finPedidoLoc(nomeCli, cpfCli, cnpjCli, cnhCli, codCar, TellCli, cellCli, dateEnt, valorTotal, typePag);
+
+            return RedirectToAction("Locacao", "Adminiscar");
+
+        }
+
+        //Consulta Locacao
+        public ActionResult ConsultaLocacao() {
+
+            acoesLoc acsLoc = new acoesLoc();
+
+            List<Locacao> listLocacao = acsLoc.consultaLocacaoLoc();    //retornando como lista
+
+            return View(listLocacao);
+
+        }
+
+        //detalhes Locacao
+        public ActionResult DetalhesLocacao(string codPedido) {
+
+            acoesLoc acsLoc = new acoesLoc();   //chamando o method
+
+            ViewBag.dadosLoc = acsLoc.detalheLocacaoLoc(codPedido);
+
+            return View();
+
+        }
+
+        //buscaLocacao
+        [HttpPost]
+        public ActionResult BuscaLocacao(string buscLocacao) {
+
+            acoesLoc acsLoc = new acoesLoc();
+
+            List<Locacao> listLocacao = acsLoc.buscaLocacaoLoc(buscLocacao);    //retornando como lista
+
+            return View(listLocacao);
+
+        }
+        //fimlocacao
+
+        /**
          * 
-         **/
+         * Manutenção
+         * 
+         * */
+        public ActionResult Manutencao() {
 
-        /*public string Welcome() {
+            return View();
 
-            return "esse é meu method Welcome action";
-
-        }*/
+        }
     }
 }

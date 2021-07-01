@@ -6,6 +6,7 @@
 
 @{
     ViewBag.Title = "Adminiscar";
+
 }
 
 <!--header-->
@@ -34,6 +35,7 @@
 
 </header>
 <!--fimHeader-->
+
 <!--navgacaoentreCadastrarAndConsultar-->
 <section class="row justify-content-center p-2 bg-light">
 
@@ -42,48 +44,59 @@
     </div>
 
     <div class="col-6 my-3 p-3 text-center rounded" style="background-color: #955cfb;">
-        <button class="butaoMedian butao-version2 mx-2 botaoCadastro rounded butaoActive" type="button" onclick="NavegacaoCadCon(1);">Cadastrar</button>
-
-        <button class="butaoMedian butao-version2 bg-branco mx-2 botaoConsulta rounded" type="button" onclick="NavegacaoCadCon(2);">Consultar</button>
+        <button class="butaoMedian butao-version2 mx-2 botaoCadastro rounded butaoActive" type="button" onclick="NavegacaoCadCon(1);">Alugar</button>
+        @Html.ActionLink("Consultar", "ConsultaLocacao", "Adminiscar", null, new { @class = "btn btn-primary" })
+        <!--<button class="butaoMedian butao-version2 bg-branco mx-2 botaoConsulta rounded" type="button" onclick="NavegacaoCadCon(2);">Consultar</button>-->
     </div>
 
 </section>
 <!--fimNavgacaoentreCadastrarAndConsultar-->
+
 <!--Cadastro-->
 <section class="row justify-content-center my-2 p-2 cadastroSecao">
 
     <div class="col-12 text-white">
-        <form>
+        @using (Html.BeginForm("AlugarConfirLoc", "Adminiscar", FormMethod.Post))
+        {
             <!--nome/cpf/cnpj/cnh-->
             <div class="form-row">
 
                 <div class="col mt-1 mb-2">
-                    <label for="exampleInputEmail1">Numero Do Pedido:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
+                    <label for="exampleInputEmail1">Nome Do Cliente:</label>
+                    <input type="text" name="clienteLoc" class="form-control col-10" placeholder="" required>
                 </div>
 
-                <div class="col mt-1 mb-2">
-                    <label for="exampleInputEmail1">Nome Da Empresa:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">CNPJ:</label>
+                    <input type="text" name="cnpjLoc" class="form-control col-10" placeholder="">
                 </div>
 
             </div>
 
-            <div class="form-row">
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">CNPJ:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
-                </div>
+            <div class="form-row mb-2">
 
                 <div class="col my-1">
                     <label for="exampleInputEmail1">CPF:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
+                    <input type="text" name="cpfLoc" class="form-control col-10" placeholder="" required>
                 </div>
 
                 <div class="col my-1">
                     <label for="exampleInputEmail1">CNH:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
+                    <input type="text" name="cnhLoc" class="form-control col-10" placeholder="" required>
+                </div>
+
+            </div>
+
+            <div class="form-row border-top">
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Celular:</label>
+                    <input type="text" name="cellLoc" class="form-control col-10" placeholder="">
+                </div>
+
+                <div class="col my-1">
+                    <label for="exampleInputEmail1">Telefone:</label>
+                    <input type="text" name="TellLoc" class="form-control col-10" placeholder="">
                 </div>
 
             </div>
@@ -91,38 +104,26 @@
             <!--placaCarroNomeveiculo-->
             <div class="form-row border-top my-4">
 
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Nome Do Veiculo:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
+                <div class="col-5 my-1 mx-auto">
+                    <label for="inlineFormCustomSelect">Veiculo:</label>
+                    <br />
+                    <!--<h3>ViewBag.Qtd itens da lista</h3>-->
+                    @Html.DropDownList("Veiculos", null, new { @class = "custom-select col-10", id = "VeiculoSelect" })
                 </div>
 
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Categoria:</label>
-                    <input type="text" class="form-control col-8" placeholder="">
-                </div>
-
-            </div>
-
-            <div class="form-row my-4">
-
-                <div class="col-6 my-1">
-                    <label for="exampleInputEmail1">Placa Do Carro:</label>
-                    <input type="text" class="form-control col-8" placeholder="">
-                </div>
-
-                <div class="col py-4 align-content-center">
+                <div class="col-6 py-4 my-1 mx-auto text-center">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <input class="form-check-input" name="som" type="checkbox" id="inlineCheckbox1" value="sim">
                         <label class="form-check-label" for="inlineCheckbox1">Som</label>
                     </div>
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                        <input class="form-check-input" name="somBt" type="checkbox" id="inlineCheckbox2" value="sim">
                         <label class="form-check-label" for="inlineCheckbox2">Som com BT</label>
                     </div>
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                        <input class="form-check-input" name="gps" type="checkbox" id="inlineCheckbox3" value="sim">
                         <label class="form-check-label" for="inlineCheckbox3">GPS</label>
                     </div>
                 </div>
@@ -133,206 +134,32 @@
             <div class="form-row border-top border-bottom py-2 my-2">
 
                 <div class="col my-1">
-                    <label for="exampleInputEmail1">Valor Base:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
+                    <label for="exampleInputEmail1">Valor Diario:</label>
+                    <input type="text" class="form-control col-10 border-warning" placeholder="Em breve" disabled>
                 </div>
 
                 <div class="col my-1">
                     <label for="exampleInputEmail1">Quantidade De Tempo:</label>
-                    <input type="text" class="form-control col-8" placeholder="">
+                    <input type="Date" name="dateLoc" class="form-control col-8" placeholder="" required>
                 </div>
 
-                <div class="col my-1">
+                <!--<div class="col my-1">
                     <label for="exampleInputEmail1">Valor Total:</label>
                     <input type="text" class="form-control col-10" placeholder="">
-                </div>
+                </div>-->
             </div>
             <!--fimValores-->
 
             <div class="form-row justify-content-center my-5">
-                <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="button">Registrar</button>
+                <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="submit">Prosseguir</button>
 
                 <button class="butaoMeidan bg-branco mx-2 my-2 rounded" type="reset">Limpar</button>
             </div>
 
-        </form>
+        }
     </div>
 
 </section>
 <!--fimCadastro-->
-<!--Consulta-->
-<section class="row justify-content-center my-4 consultaSecao noVisive">
-    <div class="col-12 p-3 bg-light">
-
-        <h2 class="text-center my-2 text-roxo">Pesquisa</h2>
-
-        <form class="my-3">
-            <div class="row p-2 justify-content-center">
-                <div class="col-7">
-                    <input type="text" class="form-control col-12 boxShadow2" placeholder="">
-                </div>
-                <div class="col-2">
-                    <button class="btn btn-secondary bg-branco rounded" type="reset">Buscar</button>
-                </div>
-            </div>
-
-            <div class="row p-2 justify-content-center text-roxo">
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label" for="inlineCheckbox2">CNH</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                    <label class="form-check-label" for="inlineCheckbox3">CPF</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                    <label class="form-check-label" for="inlineCheckbox3">CNPJ</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                    <label class="form-check-label" for="inlineCheckbox3">Numero Do Pedido</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                    <label class="form-check-label" for="inlineCheckbox3">Placa</label>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <div class="col-12 mt-4 pt-2">
-        <table class="table mt-2 bg-light rounded">
-            <thead class="thead-dark text-center">
-                <tr>
-                    <th scope="col">Numero Do Pedido</th>
-                    <th scope="col">Cpf</th>
-                    <th scope="col">Placa</th>
-                    <th scope="col">Modelo</th>
-                    <th scope="col">Ações</th>
-                </tr>
-            </thead>
-            <tbody class="text-center">
-                <tr>
-                    <td>000000000</td>
-                    <td>000.000.123-55</td>
-                    <td>KOP12356</td>
-                    <td>153.624.899-10</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>000000000</td>
-                    <td>000.000.123-55</td>
-                    <td>KOP12356</td>
-                    <td>153.624.899-10</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>000000000</td>
-                    <td>000.000.123-55</td>
-                    <td>KOP12356</td>
-                    <td>153.624.899-10</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>000000000</td>
-                    <td>000.000.123-55</td>
-                    <td>KOP12356</td>
-                    <td>153.624.899-10</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>000000000</td>
-                    <td>000.000.123-55</td>
-                    <td>KOP12356</td>
-                    <td>153.624.899-10</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>000000000</td>
-                    <td>000.000.123-55</td>
-                    <td>KOP12356</td>
-                    <td>153.624.899-10</td>
-                    <td>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Detalhe</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Deletar</button>
-                        <button class="btn btn-primary my-1" data-toggle="modal" data-target="#detalhe">Alterar</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
 
 
-
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled text-roxo">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">1</a></li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">2</a></li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">3</a></li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">4</a></li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">5</a></li>
-                <li class="page-item">
-                    <a class="page-link text-roxo" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
-
-    </div>
-</section>
-<!--fimConsulta-->
-
-<!--ModalInformações-->
-<!-- detalhesLocacao -->
-<div class="modal fade" id="detalhe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Em Breve Dados</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h1 class="text-center">EM BREVE</h1>
-            </div>
-            <!--<div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>-->
-        </div>
-    </div>
-</div>
-<!--fimDetalhesLocacao-->

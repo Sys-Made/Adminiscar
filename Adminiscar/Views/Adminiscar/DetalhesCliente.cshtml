@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Adminiscar";
+    Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
+}
+
+@if (Session["usuarioLog"] != null)
+{
+    <!--header-->
+    <header class="navInfo mb-3">
+
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="dataHora d-inline-block p-2 rounded">
+                    <!--<p>01/10/2020 13:50</p>-->
+                    <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+                </div>
+            </div>
+
+            <div class="col text-center">
+                <div class="logoConteinerSmall d-inline-block p-2 rounded bg-light boxShadow">
+                    <img class="logoSmall" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_empresa" />
+                </div>
+            </div>
+
+            <div class="col text-right" onclick="NavFuncao(7);">
+                <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
+                    <p>Voltar</p>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <!--fimHeader-->
+
+    <section class="row justify-content-center text-center">
+
+        <h2 class="col-12 bg-light py-3">Detalhes Do Cliente</h2>
+
+    </section>
+
+    <section class="row justify-content-center my-4 py-1">
+        <!--img do cliente-->
+        <div class="col-3">
+            <img src="~/Img/Imagens/Audi.jpg" class="img-thumbnail rounded my-2" />
+        </div>
+
+        <article class="col-9 rounded">
+            <div class="row justify-content-center rounded my-2 mx-1 bg-light">
+                <p class="col-3 m-2 border-bottom border-left rounded"><b>Nome:</b><br />@ViewBag.dadosCli[1]</p>
+                <p class="col-3 m-2 border-bottom border-left rounded"><b>CPF:</b><br />@ViewBag.dadosCli[2]</p>
+                <p class="col-3 m-2 border-bottom border-left rounded"><b>CNH:</b><br />@ViewBag.dadosCli[3]</p>
+            </div>
+
+            <div class="row justify-content-center bg-light rounded my-2 mx-1">
+                <p class="col-5 border-bottom border-left rounded m-2"><b>Endereço:</b><br />@ViewBag.dadosCli[4]</p>
+                <p class="col-2 border-bottom border-left rounded m-2"><b>Numero:</b><br />@ViewBag.dadosCli[5]</p>
+                <p class="col-2 border-bottom border-left rounded m-2"><b>Bairro:</b><br />@ViewBag.dadosCli[6]</p>
+                <p class="col-3 border-bottom border-left rounded m-2"><b>Cidade:</b><br />@ViewBag.dadosCli[7]</p>
+                <p class="col-3 border-bottom border-left rounded m-2"><b>CEP:</b><br />00000-789</p>
+                <p class="col-3 border-bottom border-left rounded m-2"><b>UF:</b><br />SP</p>
+            </div>
+
+            <div class="row justify-content-center rounded my-2 mx-1 bg-light">
+                <p class="col-5 border-bottom border-left rounded m-2"><b>Telefone:</b><br />@ViewBag.dadosCli[8]</p>
+                <p class="col-5 border-bottom border-left rounded m-2"><b>Celular:</b><br />@ViewBag.dadosCli[9]</p>
+            </div>
+
+            <div class="row text-center mx-1 rounded bg-light">
+                @using (Html.BeginForm("EditarCliente", "Adminiscar", FormMethod.Post, new { @class = "col-6 mx-auto" }))
+                {
+                    <input type="hidden" name="editarCli" value="@ViewBag.dadosCli[0]" />
+                    <button class="btn btn-primary my-1" type="submit">Editar</button>
+                }
+            </div>
+        </article>
+
+    </section>
+}
+else
+{
+
+
+    <div class="row justify-content-center my-2 py-2">
+        <div class="col-10 mx-auto alert alert-danger text-center py-1"><img src="~/Img/Imagens/alerta.jpg" alt="alertaDeAcessoNegado" /></div>
+        <div class="col-10 mx-auto alert alert-danger text-center py-1">@Html.ActionLink("Voltar Login", "Index", "Adminiscar", new { @class = "btn btn-warning btn-lg font-weight-bold" })</div>
+        <div class="col-10 mx-auto alert alert-danger text-center rounded-bottom py-1 "><p class="text-center text-danger font-weight-bold">Você precisar ta logado para acessar essa pagina, volte a tela de login!!!</p></div>
+    </div>
+
+
+}
+
