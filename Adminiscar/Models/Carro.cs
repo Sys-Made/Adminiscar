@@ -18,6 +18,7 @@ namespace Adminiscar.Models
         public string statusCar { get; set; }
         public string vlmensCar { get; set; }
         public string vlsmanlCar { get; set; }
+        public string vldiaCar { get; set; }
         public string somCar { get; set; }
         public string somBwCar { get; set; }
         public string gpsCar { get; set; }

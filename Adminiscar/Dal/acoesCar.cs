@@ -17,7 +17,7 @@ namespace Adminiscar.Dal
         public void cadastroCar(Carro carro) {
 
             //cadastro do veiculo
-            MySqlCommand cmd = new MySqlCommand("INSERT INTO Carro(NOME_CAR, PLACA, RENAVAM, MODELO, CATEGORIA, COMBUTIVEL, QUILOMETRAGEM, SITUACAO, VALOR_SEMANAL, VALOR_MENSAL, SOM, SOM_BT)VALUES(@nomecar, @placa, @renavam, @modelo, @cart, @comb, @khm, 'normal', @vls, @vlm, 'n', 'n')", conect.MyConectorBd());
+            MySqlCommand cmd = new MySqlCommand("INSERT INTO Carro(NOME_CAR, PLACA, RENAVAM, MODELO, CATEGORIA, COMBUTIVEL, QUILOMETRAGEM, SITUACAO, VALOR_SEMANAL, VALOR_MENSAL, SOM, SOM_BT, VALOR_DIARIO)VALUES(@nomecar, @placa, @renavam, @modelo, @cart, @comb, @khm, 'normal', @vls, @vlm, 'n', 'n', @vld)", conect.MyConectorBd());
             cmd.Parameters.Add("@nomecar", MySqlDbType.VarChar).Value = carro.nomeCar;
             cmd.Parameters.Add("@placa", MySqlDbType.VarChar).Value = carro.placaCar;
             cmd.Parameters.Add("@renavam", MySqlDbType.VarChar).Value = carro.renavCar;
@@ -25,7 +25,7 @@ namespace Adminiscar.Dal
             cmd.Parameters.Add("@cart", MySqlDbType.VarChar).Value = carro.categoriaCar;
             cmd.Parameters.Add("@comb", MySqlDbType.VarChar).Value = carro.combCar;
             cmd.Parameters.Add("@khm", MySqlDbType.VarChar).Value = carro.KmhCar;
-            //cmd.Parameters.Add("@sts", MySqlDbType.VarChar).Value = carro.statusCar;
+            cmd.Parameters.Add("@vld", MySqlDbType.VarChar).Value = Convert.ToDouble(carro.vldiaCar);
             cmd.Parameters.Add("@vls", MySqlDbType.VarChar).Value = Convert.ToDouble(carro.vlsmanlCar);
             cmd.Parameters.Add("@vlm", MySqlDbType.VarChar).Value = Convert.ToDouble(carro.vlmensCar);
 
@@ -138,6 +138,17 @@ namespace Adminiscar.Dal
                 listaCarro.Add(leitor.GetString("VALOR_MENSAL"));
                 listaCarro.Add(leitor.GetString("SOM"));
                 listaCarro.Add(leitor.GetString("SOM_BT"));
+                if (leitor.IsDBNull(14))
+                {
+
+                    listaCarro.Add("Valor não especificado");
+
+                }
+                else {
+
+                    listaCarro.Add(leitor.GetString("VALOR_DIARIO"));
+
+                }
 
             }
 

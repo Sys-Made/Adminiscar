@@ -97,3 +97,7 @@ C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\obj\Debug\Adminiscar.cspro
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\obj\Debug\Adminiscar.csproj.CopyComplete
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\obj\Debug\Adminiscar.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\obj\Debug\Adminiscar.pdb
+<<<<<<< HEAD
+=======
+C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\obj\Debug\Adminiscar.csprojAssemblyReference.cache
+>>>>>>> TesteFront
