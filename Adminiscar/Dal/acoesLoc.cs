@@ -223,7 +223,19 @@ namespace Adminiscar.Dal
             while (leitor.Read()) {
 
                 nomeVeiculo = leitor.GetString("NOME_CAR");
-                valorBs = leitor.GetFloat("VALOR_DIARIO");
+
+                if (leitor.IsDBNull(2))
+                {
+
+                    valorBs = 100;
+
+                }
+                else {
+
+                    valorBs = leitor.GetFloat("VALOR_DIARIO");
+
+                }
+                
                 valorSm = leitor.GetFloat("VALOR_SEMANAL");
                 valorMs = leitor.GetFloat("VALOR_MENSAL");
 
