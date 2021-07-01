@@ -1,6 +1,8 @@
 ﻿@{
+                /**/
 
-    Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
+
+                Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
 
 }
 
@@ -8,158 +10,171 @@
     ViewBag.Title = "Adminiscar";
 
 }
+@if (Session["usuarioLog"] != null)
+{
+    <!--header-->
+    <header class="navInfo mb-3">
 
-<!--header-->
-<header class="navInfo mb-3">
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="dataHora d-inline-block p-2 rounded">
+                    <!--<p>01/10/2020 13:50</p>-->
+                    <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+                </div>
+            </div>
 
-    <div class="row justify-content-center">
-        <div class="col">
-            <div class="dataHora d-inline-block p-2 rounded">
-                <!--<p>01/10/2020 13:50</p>-->
-                <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+            <div class="col text-center">
+                <div class="logoConteinerSmall d-inline-block p-2 rounded bg-light boxShadow">
+                    <img class="logoSmall" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_empresa" />
+                </div>
+            </div>
+
+            <div class="col text-right" onclick="NavFuncao(7);">
+                <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
+                    <p>Voltar</p>
+                </div>
             </div>
         </div>
 
-        <div class="col text-center">
-            <div class="logoConteinerSmall d-inline-block p-2 rounded bg-light boxShadow">
-                <img class="logoSmall" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_empresa" />
-            </div>
+    </header>
+    <!--fimHeader-->
+
+    <!--navgacaoentreCadastrarAndConsultar-->
+    <section class="row justify-content-center p-2 bg-light">
+
+        <div class="col-12 my-3">
+            <h2 class="text-center font-weight-bold text-roxo">Locação</h2>
         </div>
 
-        <div class="col text-right" onclick="NavFuncao(7);">
-            <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
-                <p>Voltar</p>
-            </div>
+        <div class="col-6 my-3 p-3 text-center rounded" style="background-color: #955cfb;">
+            <button class="butaoMedian butao-version2 mx-2 botaoCadastro rounded butaoActive" type="button" onclick="NavegacaoCadCon(1);">Alugar</button>
+            @Html.ActionLink("Consultar", "ConsultaLocacao", "Adminiscar", null, new { @class = "btn btn-primary" })
+            <!--<button class="butaoMedian butao-version2 bg-branco mx-2 botaoConsulta rounded" type="button" onclick="NavegacaoCadCon(2);">Consultar</button>-->
         </div>
-    </div>
 
-</header>
-<!--fimHeader-->
+    </section>
+    <!--fimNavgacaoentreCadastrarAndConsultar-->
 
-<!--navgacaoentreCadastrarAndConsultar-->
-<section class="row justify-content-center p-2 bg-light">
+    <!--Cadastro-->
+    <section class="row justify-content-center my-2 p-2 cadastroSecao">
 
-    <div class="col-12 my-3">
-        <h2 class="text-center font-weight-bold text-roxo">Locação</h2>
-    </div>
+        <div class="col-12 text-white">
+            @using (Html.BeginForm("AlugarConfirLoc", "Adminiscar", FormMethod.Post))
+            {
+                <!--nome/cpf/cnpj/cnh-->
+                <div class="form-row">
 
-    <div class="col-6 my-3 p-3 text-center rounded" style="background-color: #955cfb;">
-        <button class="butaoMedian butao-version2 mx-2 botaoCadastro rounded butaoActive" type="button" onclick="NavegacaoCadCon(1);">Alugar</button>
-        @Html.ActionLink("Consultar", "ConsultaLocacao", "Adminiscar", null, new { @class = "btn btn-primary" })
-        <!--<button class="butaoMedian butao-version2 bg-branco mx-2 botaoConsulta rounded" type="button" onclick="NavegacaoCadCon(2);">Consultar</button>-->
-    </div>
-
-</section>
-<!--fimNavgacaoentreCadastrarAndConsultar-->
-
-<!--Cadastro-->
-<section class="row justify-content-center my-2 p-2 cadastroSecao">
-
-    <div class="col-12 text-white">
-        @using (Html.BeginForm("AlugarConfirLoc", "Adminiscar", FormMethod.Post))
-        {
-            <!--nome/cpf/cnpj/cnh-->
-            <div class="form-row">
-
-                <div class="col mt-1 mb-2">
-                    <label for="exampleInputEmail1">Nome Do Cliente:</label>
-                    <input type="text" name="clienteLoc" class="form-control col-10" placeholder="" required>
-                </div>
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">CNPJ:</label>
-                    <input type="text" name="cnpjLoc" class="form-control col-10" placeholder="">
-                </div>
-
-            </div>
-
-            <div class="form-row mb-2">
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">CPF:</label>
-                    <input type="text" name="cpfLoc" class="form-control col-10" placeholder="" required>
-                </div>
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">CNH:</label>
-                    <input type="text" name="cnhLoc" class="form-control col-10" placeholder="" required>
-                </div>
-
-            </div>
-
-            <div class="form-row border-top">
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Celular:</label>
-                    <input type="text" name="cellLoc" class="form-control col-10" placeholder="">
-                </div>
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Telefone:</label>
-                    <input type="text" name="TellLoc" class="form-control col-10" placeholder="">
-                </div>
-
-            </div>
-            <!--fimNome/cpf/cnpj/cnh-->
-            <!--placaCarroNomeveiculo-->
-            <div class="form-row border-top my-4">
-
-                <div class="col-5 my-1 mx-auto">
-                    <label for="inlineFormCustomSelect">Veiculo:</label>
-                    <br />
-                    <!--<h3>ViewBag.Qtd itens da lista</h3>-->
-                    @Html.DropDownList("Veiculos", null, new { @class = "custom-select col-10", id = "VeiculoSelect" })
-                </div>
-
-                <div class="col-6 py-4 my-1 mx-auto text-center">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" name="som" type="checkbox" id="inlineCheckbox1" value="sim">
-                        <label class="form-check-label" for="inlineCheckbox1">Som</label>
+                    <div class="col mt-1 mb-2">
+                        <label for="exampleInputEmail1">Nome Do Cliente:</label>
+                        <input type="text" name="clienteLoc" class="form-control col-10" placeholder="" required>
                     </div>
 
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" name="somBt" type="checkbox" id="inlineCheckbox2" value="sim">
-                        <label class="form-check-label" for="inlineCheckbox2">Som com BT</label>
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">CNPJ:</label>
+                        <input type="text" name="cnpjLoc" class="form-control col-10" placeholder="">
                     </div>
 
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" name="gps" type="checkbox" id="inlineCheckbox3" value="sim">
-                        <label class="form-check-label" for="inlineCheckbox3">GPS</label>
+                </div>
+
+                <div class="form-row mb-2">
+
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">CPF:</label>
+                        <input type="text" name="cpfLoc" class="form-control col-10" placeholder="" required>
                     </div>
+
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">CNH:</label>
+                        <input type="text" name="cnhLoc" class="form-control col-10" placeholder="" required>
+                    </div>
+
                 </div>
 
-            </div>
-            <!--fimPlacaCarroNomeveiculo-->
-            <!--valores/qtdTempo/VlBase-->
-            <div class="form-row border-top border-bottom py-2 my-2">
+                <div class="form-row border-top">
 
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Valor Diario:</label>
-                    <input type="text" class="form-control col-10 border-warning" placeholder="Em breve" disabled>
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Celular:</label>
+                        <input type="text" name="cellLoc" class="form-control col-10" placeholder="">
+                    </div>
+
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Telefone:</label>
+                        <input type="text" name="TellLoc" class="form-control col-10" placeholder="">
+                    </div>
+
+                </div>
+                <!--fimNome/cpf/cnpj/cnh-->
+                <!--placaCarroNomeveiculo-->
+                <div class="form-row border-top my-4">
+
+                    <div class="col-5 my-1 mx-auto">
+                        <label for="inlineFormCustomSelect">Veiculo:</label>
+                        <br />
+                        <!--<h3>ViewBag.Qtd itens da lista</h3>-->
+                        @Html.DropDownList("Veiculos", null, new { @class = "custom-select col-10", id = "VeiculoSelect" })
+                    </div>
+
+                    <div class="col-6 py-4 my-1 mx-auto text-center">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="som" type="checkbox" id="inlineCheckbox1" value="sim">
+                            <label class="form-check-label" for="inlineCheckbox1">Som</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="somBt" type="checkbox" id="inlineCheckbox2" value="sim">
+                            <label class="form-check-label" for="inlineCheckbox2">Som com BT</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="gps" type="checkbox" id="inlineCheckbox3" value="sim">
+                            <label class="form-check-label" for="inlineCheckbox3">GPS</label>
+                        </div>
+                    </div>
+
+                </div>
+                <!--fimPlacaCarroNomeveiculo-->
+                <!--valores/qtdTempo/VlBase-->
+                <div class="form-row border-top border-bottom py-2 my-2">
+
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Valor Diario:</label>
+                        <input type="text" class="form-control col-10 border-warning" placeholder="Em breve" disabled>
+                    </div>
+
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Quantidade De Tempo:</label>
+                        <input type="Date" name="dateLoc" class="form-control col-8" placeholder="" required>
+                    </div>
+
+                    <!--<div class="col my-1">
+                        <label for="exampleInputEmail1">Valor Total:</label>
+                        <input type="text" class="form-control col-10" placeholder="">
+                    </div>-->
+                </div>
+                <!--fimValores-->
+
+                <div class="form-row justify-content-center my-5">
+                    <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="submit">Prosseguir</button>
+
+                    <button class="butaoMeidan bg-branco mx-2 my-2 rounded" type="reset">Limpar</button>
                 </div>
 
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Quantidade De Tempo:</label>
-                    <input type="Date" name="dateLoc" class="form-control col-8" placeholder="" required>
-                </div>
+            }
+        </div>
 
-                <!--<div class="col my-1">
-                    <label for="exampleInputEmail1">Valor Total:</label>
-                    <input type="text" class="form-control col-10" placeholder="">
-                </div>-->
-            </div>
-            <!--fimValores-->
+    </section>
+    <!--fimCadastro-->
+}
+else
+{
 
-            <div class="form-row justify-content-center my-5">
-                <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="submit">Prosseguir</button>
 
-                <button class="butaoMeidan bg-branco mx-2 my-2 rounded" type="reset">Limpar</button>
-            </div>
-
-        }
+    <div class="row justify-content-center my-2 py-2">
+        <div class="col-10 mx-auto alert alert-danger text-center py-1"><img src="~/Img/Imagens/alerta.jpg" alt="alertaDeAcessoNegado" /></div>
+        <div class="col-10 mx-auto alert alert-danger text-center py-1">@Html.ActionLink("Voltar Login", "Index", "Adminiscar", new { @class = "btn btn-warning btn-lg font-weight-bold" })</div>
+        <div class="col-10 mx-auto alert alert-danger text-center rounded-bottom py-1 "><p class="text-center text-danger font-weight-bold">Você precisar ta logado para acessar essa pagina, volte a tela de login!!!</p></div>
     </div>
 
-</section>
-<!--fimCadastro-->
 
+}
 
