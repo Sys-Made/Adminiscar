@@ -1,3 +1,4 @@
+C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\WebGrease.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\Adminiscar.dll.config
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\Adminiscar.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\Adminiscar.pdb
@@ -61,7 +62,6 @@ C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\System.Web.Razor.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\System.Web.WebPages.Deployment.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\System.Web.WebPages.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\System.Web.WebPages.Razor.dll
-C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\WebGrease.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\Google.Protobuf.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\Zstandard.Net.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\K4os.Compression.LZ4.Streams.dll
