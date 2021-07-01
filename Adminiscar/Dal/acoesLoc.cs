@@ -111,7 +111,7 @@ namespace Adminiscar.Dal
             codPd = Convert.ToInt32(codPed);
 
             //comando sql
-            MySqlCommand cmd = new MySqlCommand("SELECT cli.NOME_CLIENTE, cli.CPF_CNPJ, cli.CNH_CLIENTE, cli.CNPJ_CLI, car.NOME_CAR, car.PLACA, car.MODELO, car.CATEGORIA, car.SITUACAO, pag.COD_CRED_FK, pag.COD_DEB_FK, pag.COD_TRANSFERENCIA_FL, ped.DATA_RETIRADA, ped.DATA_DEVOLUCAO FROM pedido AS ped INNER JOIN cliente AS cli ON ped.COD_CLI_FK = cli.COD_CLIENTE INNER JOIN carro AS car ON ped.COD_CAR_FK = car.COD_CAR INNER JOIN pagamento AS pag ON ped.COD_PAG_FK = pag.COD_PAG WHERE ped.COD_PEDIDO = " + codPd, conect.MyConectorBd());
+            MySqlCommand cmd = new MySqlCommand("SELECT cli.NOME_CLIENTE, cli.CPF_CNPJ, cli.CNH_CLIENTE, cli.CNPJ_CLI, car.NOME_CAR, car.PLACA, car.MODELO, car.CATEGORIA, car.SITUACAO, pag.COD_CRED_FK, pag.COD_DEB_FK, pag.COD_TRANSFERENCIA_FL, ped.DATA_RETIRADA, ped.DATA_DEVOLUCAO, ped.VALOR FROM pedido AS ped INNER JOIN cliente AS cli ON ped.COD_CLI_FK = cli.COD_CLIENTE INNER JOIN carro AS car ON ped.COD_CAR_FK = car.COD_CAR INNER JOIN pagamento AS pag ON ped.COD_PAG_FK = pag.COD_PAG WHERE ped.COD_PEDIDO = " + codPd, conect.MyConectorBd());
             MySqlDataReader leitor;
             leitor = cmd.ExecuteReader();
 
@@ -159,6 +159,8 @@ namespace Adminiscar.Dal
                 }
 
             }
+
+            listaDetalhe.Add(leitor.GetString("VALOR"));
 
             conect.MyCloseBd();
 
