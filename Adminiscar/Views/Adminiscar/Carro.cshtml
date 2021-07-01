@@ -130,7 +130,7 @@
 
                     <div class="col my-1">
                         <label for="exampleInputEmail1">Valor Diario:</label>
-                        <input type="text" class="form-control col-10" placeholder="">
+                        @Html.EditorFor(car => car.vldiaCar, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: 100.00", id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
                     </div>
 
                     <div class="col my-1">
