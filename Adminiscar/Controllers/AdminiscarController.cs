@@ -233,6 +233,18 @@ namespace Adminiscar.Controllers
 
         }
 
+        //busca carro
+        [HttpPost]
+        public ActionResult BuscaCarro(string buscaCar) {
+
+            acoesCar acsCar = new acoesCar();
+
+            List<Carro> carro = acsCar.buscaCar(buscaCar);
+
+            return View(carro);
+
+        }
+
         //Detalhes carro
         [HttpPost]
         public ActionResult DetalheCarro(string codCar) {

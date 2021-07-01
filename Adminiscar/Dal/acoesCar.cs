@@ -78,6 +78,36 @@ namespace Adminiscar.Dal
 
         }
 
+        //busca
+        public List<Carro> buscaCar(string busc) {
+
+            //variavel Local
+            List<Carro> listBuscCar = new List<Carro>();
+
+            //comando sql
+            MySqlCommand cmd = new MySqlCommand("select COD_CAR, NOME_CAR, RENAVAM, PLACA, MODELO from carro WHERE PLACA LIKE '%" + busc + "%'", conect.MyConectorBd());
+            MySqlDataReader leitor;
+            leitor = cmd.ExecuteReader();
+
+            while (leitor.Read()) {
+
+                listBuscCar.Add(new Carro
+                {
+                    codCar = leitor.GetString("COD_CAR"),
+                    nomeCar = leitor.GetString("NOME_CAR"),
+                    renavCar = leitor.GetString("RENAVAM"),
+                    placaCar = leitor.GetString("PLACA"),
+                    modeloCar = leitor.GetString("MODELO")
+                });
+
+            }
+
+            conect.MyCloseBd();
+
+            return listBuscCar;
+
+        }
+
         //detalhe carro
         public List<string> detalheCar(string cod) {
 

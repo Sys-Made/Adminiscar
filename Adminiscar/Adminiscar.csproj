@@ -199,6 +199,7 @@
     <Content Include="Views\Adminiscar\DetalhesLocacao.cshtml" />
     <Content Include="Views\Adminiscar\BuscaLocacao.cshtml" />
     <Content Include="Views\Adminiscar\MenuInicial.cshtml" />
+    <Content Include="Views\Adminiscar\BuscaCarro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
