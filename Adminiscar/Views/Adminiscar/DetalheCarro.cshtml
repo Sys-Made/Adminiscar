@@ -75,7 +75,11 @@
             </div>
 
             <div class="row text-center mx-1 rounded bg-light">
-                @Html.ActionLink("Editar", null, null, new { @class = "btn btn-primary my-1 mx-auto btn-lg" })
+                @using (Html.BeginForm("EditarCarro", "Adminiscar", FormMethod.Post, new { @class = "col-6 mx-auto" }))
+                {
+                    <input type="hidden" name="editarCar" value="@ViewBag.dadosCar[0]" />
+                    <button class="btn btn-primary my-1" type="submit">Editar</button>
+                }
             </div>
         </article>
 
