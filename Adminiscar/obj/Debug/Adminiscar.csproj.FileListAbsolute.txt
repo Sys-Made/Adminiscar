@@ -1,17 +1,17 @@
-C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\WebGrease.dll
+C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\csc.exe
+C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\System.Collections.Immutable.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\Adminiscar.dll.config
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\Adminiscar.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\Adminiscar.pdb
-C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\csc.exe
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\csc.exe.config
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\csc.rsp
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\csi.exe
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\csi.exe.config
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\csi.rsp
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\Microsoft.CodeAnalysis.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\Microsoft.CSharp.Core.targets
@@ -20,7 +20,6 @@ C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\Microsoft.DiaSy
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\Microsoft.Managed.Core.targets
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\Microsoft.VisualBasic.Core.targets
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\System.AppContext.dll
-C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\System.Collections.Immutable.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\System.Console.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\roslyn\System.Diagnostics.StackTrace.dll
@@ -62,6 +61,7 @@ C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\System.Web.Razor.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\System.Web.WebPages.Deployment.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\System.Web.WebPages.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\System.Web.WebPages.Razor.dll
+C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\WebGrease.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\Google.Protobuf.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\Zstandard.Net.dll
 C:\Users\Patri_000\source\repos\Adminiscar\Adminiscar\bin\K4os.Compression.LZ4.Streams.dll
