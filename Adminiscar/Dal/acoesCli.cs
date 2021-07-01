@@ -266,7 +266,7 @@ namespace Adminiscar.Dal
                 listaClientes.Add(leitor.GetString("NOME_CLIENTE"));
                 listaClientes.Add(leitor.GetString("CPF_CNPJ"));
                 listaClientes.Add(leitor.GetString("CNH_CLIENTE"));
-                //listaClientes.Add(leitor.GetString("LOGRADURO"));
+                
 
                 //rua não informada
                 if (leitor.IsDBNull(4))
@@ -320,6 +320,18 @@ namespace Adminiscar.Dal
                 //listaClientes.Add(leitor.GetString("ESTADO"));
                 listaClientes.Add(leitor.GetString("TELL1"));
                 listaClientes.Add(leitor.GetString("TELL2"));
+
+                if (leitor.IsDBNull(7))
+                {
+
+                    listaClientes.Add("Não informado");
+
+                }
+                else {
+
+                    listaClientes.Add(leitor.GetString("CEP"));
+
+                }
 
             }
 
