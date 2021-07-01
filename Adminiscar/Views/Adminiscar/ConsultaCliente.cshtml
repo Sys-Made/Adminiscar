@@ -5,165 +5,178 @@
     Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
 }
 
-<!--header-->
-<header class="navInfo mb-3">
+@if (Session["usuarioLog"] != null)
+{
+    <!--header-->
+    <header class="navInfo mb-3">
 
-    <div class="row justify-content-center">
-        <div class="col">
-            <div class="dataHora d-inline-block p-2 rounded">
-                <!--<p>01/10/2020 13:50</p>-->
-                <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="dataHora d-inline-block p-2 rounded">
+                    <!--<p>01/10/2020 13:50</p>-->
+                    <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+                </div>
+            </div>
+
+            <div class="col text-center">
+                <div class="logoConteinerSmall d-inline-block p-2 rounded bg-light boxShadow">
+                    <img class="logoSmall" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_empresa" />
+                </div>
+            </div>
+
+            <div class="col text-right" onclick="NavFuncao(7);">
+                <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
+                    <p>Voltar</p>
+                </div>
             </div>
         </div>
 
-        <div class="col text-center">
-            <div class="logoConteinerSmall d-inline-block p-2 rounded bg-light boxShadow">
-                <img class="logoSmall" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_empresa" />
+    </header>
+    <!--fimHeader-->
+
+    <!--Consulta-->
+    <section class="row justify-content-center my-4 consultaSecao">
+
+        <div class="col-12 p-3 bg-light">
+
+            <h2 class="text-center my-2 text-roxo">Pesquisa</h2>
+
+            <!--Busca-->
+            <div class="row p-2 justify-content-center">
+                <div class="col-8">
+                    @using (Html.BeginForm("BuscaCliente", "Adminiscar", FormMethod.Post))
+                    {
+                        <input class="form-control col-10 mx-auto boxShadow2" name="buscaData" type="text" placeholder="Exemplo: Ana Clara Caroline" id="buscCliNome" />
+
+                        <div class="col-4 my-3 mx-auto text-center">
+                            <button class="btn btn-secondary rounded" type="submit">Buscar</button>
+                        </div>
+                    }
+
+                </div>
+
             </div>
+
+            <div class="row p-2 justify-content-center text-roxo">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">Nome</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox2">CPF</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <label class="form-check-label" for="inlineCheckbox3">CNH</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <label class="form-check-label" for="inlineCheckbox3">CNPJ</label>
+                </div>
+            </div>
+            <!--Fim-->
+
         </div>
 
-        <div class="col text-right" onclick="NavFuncao(7);">
-            <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
-                <p>Voltar</p>
+        <div class="col-12 mt-4 pt-2">
+            <table class="table mt-2 bg-light rounded text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Cod</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">CNH</th>
+                        <th scope="col">Telefone</th>
+                        <th scope="col">Celular</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.codCli)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nomeCli)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.cpfCli)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.cnhCli)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tellCli)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tell2Cli)
+                            </td>
+                            <td>
+                                @using (Html.BeginForm("DetalhesCliente", "Adminiscar", FormMethod.Post, new { @class = "d-inline" }))
+                                {
+                                    <input type="hidden" name="teste" value="@Html.DisplayFor(modelItem => item.codCli)" />
+                                    <button class="btn btn-primary my-1" type="submit">Detalhes</button>
+                                }
+
+                                @using (Html.BeginForm("EditarCliente", "Adminiscar", FormMethod.Post, new { @class = "d-inline" }))
+                                {
+                                    <input type="hidden" name="editarCli" value="@Html.DisplayFor(modelItem => item.codCli)" />
+                                    <button class="btn btn-primary my-1" type="submit">Editar</button>
+                                }
+
+                                @using (Html.BeginForm("DeletarCliente", "Adminiscar", FormMethod.Post, new { @class = "d-inline" }))
+                                {
+                                    <input type="hidden" name="delCli" value="@Html.DisplayFor(modelItem => item.codCli)" />
+                                    <button class="btn btn-primary my-1" type="submit">Deletar</button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </section>
+
+    <!--ModalInformações-->
+    <!-- detalhesCliente -->
+    <div class="modal fade" id="detalhe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Em Breve Dados</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h1 class="text-center">EM BREVE</h1>
+                </div>
+                <!--<div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>-->
             </div>
         </div>
     </div>
+    <!--fimDetalhesClientes-->
+}
+else
+{
 
-</header>
-<!--fimHeader-->
 
-
-
-<!--Consulta-->
-<section class="row justify-content-center my-4 consultaSecao">
-
-    <div class="col-12 p-3 bg-light">
-
-        <h2 class="text-center my-2 text-roxo">Pesquisa</h2>
-
-        <!--Busca-->
-        <div class="row p-2 justify-content-center">
-            <div class="col-8">
-                @using (Html.BeginForm("BuscaCliente", "Adminiscar", FormMethod.Post))
-                {
-                    <input class="form-control col-10 mx-auto boxShadow2" name="buscaData" type="text" placeholder="Exemplo: Ana Clara Caroline" id="buscCliNome" />
-                    
-                    <div class="col-4 my-3 mx-auto text-center">
-                        <button class="btn btn-secondary rounded" type="submit">Buscar</button>
-                    </div>
-                }
-
-            </div>
-
-        </div>
-
-        <div class="row p-2 justify-content-center text-roxo">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                <label class="form-check-label" for="inlineCheckbox1">Nome</label>
-            </div>
-
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                <label class="form-check-label" for="inlineCheckbox2">CPF</label>
-            </div>
-
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                <label class="form-check-label" for="inlineCheckbox3">CNH</label>
-            </div>
-
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                <label class="form-check-label" for="inlineCheckbox3">CNPJ</label>
-            </div>
-        </div>
-        <!--Fim-->
-
+    <div class="row justify-content-center my-2 py-2">
+        <div class="col-10 mx-auto alert alert-danger text-center py-1"><img src="~/Img/Imagens/alerta.jpg" alt="alertaDeAcessoNegado" /></div>
+        <div class="col-10 mx-auto alert alert-danger text-center py-1">@Html.ActionLink("Voltar Login", "Index", "Adminiscar", new { @class = "btn btn-warning btn-lg font-weight-bold" })</div>
+        <div class="col-10 mx-auto alert alert-danger text-center rounded-bottom py-1 "><p class="text-center text-danger font-weight-bold">Você precisar ta logado para acessar essa pagina, volte a tela de login!!!</p></div>
     </div>
 
-    <div class="col-12 mt-4 pt-2">
-        <table class="table mt-2 bg-light rounded text-center">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Cod</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">CPF</th>
-                    <th scope="col">CNH</th>
-                    <th scope="col">Telefone</th>
-                    <th scope="col">Celular</th>
-                    <th scope="col">Ações</th>
-                </tr>
-            </thead>
 
-            <tbody>
-                @foreach (var item in Model)
-                {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.codCli)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.nomeCli)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.cpfCli)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.cnhCli)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tellCli)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tell2Cli)
-                    </td>
-                    <td>
-                        @using (Html.BeginForm("DetalhesCliente", "Adminiscar", FormMethod.Post, new { @class = "d-inline" }))
-                        {
-                            <input type="hidden" name="teste" value="@Html.DisplayFor(modelItem => item.codCli)" />
-                            <button class="btn btn-primary my-1" type="submit">Detalhes</button>
-                        }
-
-                        @using (Html.BeginForm("EditarCliente", "Adminiscar", FormMethod.Post, new { @class = "d-inline" }))
-                        {
-                            <input type="hidden" name="editarCli" value="@Html.DisplayFor(modelItem => item.codCli)" />
-                            <button class="btn btn-primary my-1" type="submit">Editar</button>
-                        }
-
-                        @using (Html.BeginForm("DeletarCliente", "Adminiscar", FormMethod.Post, new { @class = "d-inline" }))
-                        {
-                            <input type="hidden" name="delCli" value="@Html.DisplayFor(modelItem => item.codCli)" />
-                            <button class="btn btn-primary my-1" type="submit">Deletar</button>
-                        }
-                    </td>
-                </tr>
-                }
-            </tbody>
-
-        </table>
-    </div>
-</section>
-
-<!--ModalInformações-->
-<!-- detalhesCliente -->
-<div class="modal fade" id="detalhe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Em Breve Dados</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h1 class="text-center">EM BREVE</h1>
-            </div>
-            <!--<div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>-->
-        </div>
-    </div>
-</div>
-<!--fimDetalhesClientes-->
+}

@@ -28,8 +28,11 @@
                 </div>
 
                 <div class="col text-right">
-                    <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
-                        <p>Sair</p>
+                    <div class="butao butao-logout1 d-inline-block rounded text-center">
+                        @using (Html.BeginForm("Logout", "Adminiscar", FormMethod.Post, new { @class = "d-inline" }))
+                        {
+                            <button class="border-0 bg-light btn-lg" type="submit">Logout</button>
+                        }
                     </div>
                 </div>
 
@@ -90,7 +93,7 @@ else
 
     <div class="row justify-content-center my-2 py-2">
         <div class="col-10 mx-auto alert alert-danger text-center py-1"><img src="~/Img/Imagens/alerta.jpg" alt="alertaDeAcessoNegado" /></div>
-        <div class="col-10 mx-auto alert alert-danger text-center py-1">@Html.ActionLink("Voltar Login", "Index", "Adminiscar",new { @class= "btn btn-warning btn-lg font-weight-bold" })</div>
+        <div class="col-10 mx-auto alert alert-danger text-center py-1">@Html.ActionLink("Voltar Login", "Index", "Adminiscar", new { @class = "btn btn-warning btn-lg font-weight-bold" })</div>
         <div class="col-10 mx-auto alert alert-danger text-center rounded-bottom py-1 "><p class="text-center text-danger font-weight-bold">Você precisar ta logado para acessar essa pagina, volte a tela de login!!!</p></div>
     </div>
 

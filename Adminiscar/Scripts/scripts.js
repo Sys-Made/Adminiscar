@@ -50,7 +50,7 @@ var NavFuncao = function (valueHtml) {
             break;
 
         default:
-            alert("Error01!! NA FUNÇÃO -> NavFuncao() Ou essa Pagina não existe");
+            alert("Pagina em Desenvolvimento Aguarde....");
             break;
 
     }

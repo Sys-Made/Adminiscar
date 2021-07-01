@@ -1,6 +1,8 @@
 ﻿@model  Adminiscar.Models.Cliente
 
 @{
+    /**/
+
 
     Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
 }
@@ -10,144 +12,160 @@
     ViewBag.Title = "Adminiscar";
 }
 
-<!--header-->
-<header class="navInfo mb-3">
+@if (Session["usuarioLog"] != null)
+{
 
-    <div class="row justify-content-center">
-        <div class="col">
-            <div class="dataHora d-inline-block p-2 rounded">
-                <!--<p>01/10/2020 13:50</p>-->
-                <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+    <!--header-->
+    <header class="navInfo mb-3">
+
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="dataHora d-inline-block p-2 rounded">
+                    <!--<p>01/10/2020 13:50</p>-->
+                    <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+                </div>
+            </div>
+
+            <div class="col text-center">
+                <div class="logoConteinerSmall d-inline-block p-2 rounded bg-light boxShadow">
+                    <img class="logoSmall" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_empresa" />
+                </div>
+            </div>
+
+            <div class="col text-right" onclick="NavFuncao(7);">
+                <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
+                    <p>Voltar</p>
+                </div>
             </div>
         </div>
 
-        <div class="col text-center">
-            <div class="logoConteinerSmall d-inline-block p-2 rounded bg-light boxShadow">
-                <img class="logoSmall" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_empresa" />
-            </div>
+    </header>
+    <!--fimHeader-->
+    <!--navgacaoentreCadastrarAndConsultar-->
+    <section class="row justify-content-center p-2 bg-light">
+
+        <div class="col-12 my-3">
+            <h2 class="text-center font-weight-bold text-roxo">Cliente</h2>
         </div>
 
-        <div class="col text-right" onclick="NavFuncao(7);">
-            <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
-                <p>Voltar</p>
-            </div>
+        <div class="col-6 my-3 p-3 text-center rounded" style="background-color: #955cfb;">
+            <button class="butaoMedian butao-version2 mx-2 rounded botaoCadastro butaoActive" type="button" onclick="NavegacaoCadCon(1);">Cadastrar</button>
+            @Html.ActionLink("Consultar", "ConsultaCliente", "Adminiscar", null, new { @class = "btn btn-primary" })
+
+            <!--<button class="butaoMedian butao-version2 bg-branco mx-2 rounded botaoConsulta" type="button" onclick="NavegacaoCadCon(2);">Consultar</button>-->
         </div>
+
+    </section>
+    <!--fimNavgacaoentreCadastrarAndConsultar-->
+
+    <!--Cadastro-->
+    <section class="row justify-content-center my-2 p-2 cadastroSecao">
+        <!--nome/cpf/cnpj/cnh-->
+        <div class="col-12 text-white">
+
+            @using (Html.BeginForm("Cliente02", "Adminiscar", FormMethod.Post, new { onsubmit = "return validacaoCliente()" }))
+            {
+                <div class="form-row">
+                    <div class="col mt-1 mb-2">
+                        <label for="exampleInputEmail1">Nome:</label>
+                        @Html.EditorFor(cli => cli.nomeCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Ana Clara Caroline", id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
+                    </div>
+
+                    <div class="col mt-1 mb-2">
+                        <label for="exampleInputEmail1">CPF:</label>
+                        @Html.EditorFor(cli => cli.cpfCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: 123.654.798 - 50", id = "inputCliCpf", senha = "txtCpfCli", required = "required" } })
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col mt-1 mb-2">
+                        <label for="exampleInputCnpj1">CNPJ:</label>
+                        @Html.EditorFor(cli => cli.cnpjCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: 000.000.000/0000", id = "inputCliCnpj", senha = "txtCnpjCli", value = "000.000.000/0000" } })
+                    </div>
+
+                    <div class="col mt-1 mb-2">
+                        <label for="exampleInputCnpj1">CNH:</label>
+                        @Html.EditorFor(cli => cli.cnhCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Seu CNH", id = "inputCliCnh", senha = "txtCnhCli", required = "required" } })
+                    </div>
+
+                </div>
+
+                <div class="form-row my-2">
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Endereço:</label>
+                        @Html.EditorFor(cli => cli.rualgCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Rua consorte da conceição", id = "inputCliRualg", senha = "txtRualgCli", required = "required" } })
+                    </div>
+
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Numero:</label>
+                        @Html.EditorFor(cli => cli.numCli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: 14 ou 14ºA", id = "inputCliNum", senha = "txtNumCli", required = "required" } })
+                    </div>
+
+                </div>
+
+                <div class="form-row my-2">
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Bairro:</label>
+                        @Html.EditorFor(cli => cli.bairroCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Pirituba", id = "inputCliBairro", senha = "txtBairroCli", required = "required" } })
+                    </div>
+
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Cidade:</label>
+                        @Html.EditorFor(cli => cli.cidCli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: São Paulo", id = "inputCliCid", senha = "txtCidCli", required = "required" } })
+                    </div>
+
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Cep:</label>
+                        @Html.EditorFor(cli => cli.cepCli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: 00000-000", id = "inputCliCep", senha = "txtCepCli", required = "required" } })
+                    </div>
+
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Uf:</label>
+                        <br />
+                        @Html.DropDownList("UfType", null, new { @class = "custom-select col-6", id = "inlineFormCustomSelect" })
+                    </div>
+                </div>
+
+                <div class="form-row my-2">
+
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Celular:</label>
+                        @Html.EditorFor(cli => cli.tellCli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: 11 98755 - 6321 ", id = "inputCliTell", senha = "txtTellCli", required = "required" } })
+                    </div>
+
+                    <div class="col my-1">
+                        <label for="exampleInputEmail1">Telefone Fixo:</label>
+                        @Html.EditorFor(cli => cli.tell2Cli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: 11 9875 - 6321 ", id = "inputCliTell2", senha = "txtTell2Cli", required = "required" } })
+                    </div>
+
+                </div>
+
+                <div class="form-row justify-content-center my-3">
+                    <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="submit">Registrar</button>
+
+                    <button class="butaoMeidan bg-branco mx-2 my-2 rounded border-0" type="reset">Limpar</button>
+                </div>
+
+            }
+        </div>
+
+    </section>
+    <!--fimCadastro-->
+
+    <!--Consulta-->
+    <!--fimConsulta-->
+}
+else
+{
+
+
+    <div class="row justify-content-center my-2 py-2">
+        <div class="col-10 mx-auto alert alert-danger text-center py-1"><img src="~/Img/Imagens/alerta.jpg" alt="alertaDeAcessoNegado" /></div>
+        <div class="col-10 mx-auto alert alert-danger text-center py-1">@Html.ActionLink("Voltar Login", "Index", "Adminiscar", new { @class = "btn btn-warning btn-lg font-weight-bold" })</div>
+        <div class="col-10 mx-auto alert alert-danger text-center rounded-bottom py-1 "><p class="text-center text-danger font-weight-bold">Você precisar ta logado para acessar essa pagina, volte a tela de login!!!</p></div>
     </div>
 
-</header>
-<!--fimHeader-->
-<!--navgacaoentreCadastrarAndConsultar-->
-<section class="row justify-content-center p-2 bg-light">
 
-    <div class="col-12 my-3">
-        <h2 class="text-center font-weight-bold text-roxo">Cliente</h2>
-    </div>
-
-    <div class="col-6 my-3 p-3 text-center rounded" style="background-color: #955cfb;">
-        <button class="butaoMedian butao-version2 mx-2 rounded botaoCadastro butaoActive" type="button" onclick="NavegacaoCadCon(1);">Cadastrar</button>
-        @Html.ActionLink("Consultar", "ConsultaCliente", "Adminiscar", null, new { @class= "btn btn-primary" })
-
-        <!--<button class="butaoMedian butao-version2 bg-branco mx-2 rounded botaoConsulta" type="button" onclick="NavegacaoCadCon(2);">Consultar</button>-->
-    </div>
-
-</section>
-<!--fimNavgacaoentreCadastrarAndConsultar-->
-
-<!--Cadastro-->
-<section class="row justify-content-center my-2 p-2 cadastroSecao">
-    <!--nome/cpf/cnpj/cnh-->
-    <div class="col-12 text-white">
-
-        @using (Html.BeginForm("Cliente02", "Adminiscar", FormMethod.Post, new { onsubmit = "return validacaoCliente()" }))
-        {
-            <div class="form-row">
-                <div class="col mt-1 mb-2">
-                    <label for="exampleInputEmail1">Nome:</label>
-                    @Html.EditorFor(cli => cli.nomeCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Ana Clara Caroline", id = "inputCliNome", senha = "txtNomeCli", required = "required" } })
-                </div>
-
-                <div class="col mt-1 mb-2">
-                    <label for="exampleInputEmail1">CPF:</label>
-                    @Html.EditorFor(cli => cli.cpfCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: 123.654.798 - 50", id = "inputCliCpf", senha = "txtCpfCli", required = "required" } })
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="col mt-1 mb-2">
-                    <label for="exampleInputCnpj1">CNPJ:</label>
-                    @Html.EditorFor(cli => cli.cnpjCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: 000.000.000/0000", id = "inputCliCnpj", senha = "txtCnpjCli", value= "000.000.000/0000" } })
-                </div>
-
-                <div class="col mt-1 mb-2">
-                    <label for="exampleInputCnpj1">CNH:</label>
-                    @Html.EditorFor(cli => cli.cnhCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Seu CNH", id = "inputCliCnh", senha = "txtCnhCli", required = "required" } })
-                </div>
-
-            </div>
-
-            <div class="form-row my-2">
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Endereço:</label>
-                    @Html.EditorFor(cli => cli.rualgCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Rua consorte da conceição", id = "inputCliRualg", senha = "txtRualgCli", required = "required" } })
-                </div>
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Numero:</label>
-                    @Html.EditorFor(cli => cli.numCli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: 14 ou 14ºA", id = "inputCliNum", senha = "txtNumCli", required = "required" } })
-                </div>
-
-            </div>
-
-            <div class="form-row my-2">
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Bairro:</label>
-                    @Html.EditorFor(cli => cli.bairroCli, new { htmlAttributes = new { @class = "form-control col-10", type = "text", placeholder = "Exemplo: Pirituba", id = "inputCliBairro", senha = "txtBairroCli", required = "required" } })
-                </div>
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Cidade:</label>
-                    @Html.EditorFor(cli => cli.cidCli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: São Paulo", id = "inputCliCid", senha = "txtCidCli", required = "required" } })
-                </div>
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Cep:</label>
-                    @Html.EditorFor(cli => cli.cepCli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: 00000-000", id = "inputCliCep", senha = "txtCepCli", required = "required" } })
-                </div>
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Uf:</label>
-                    <br />
-                    @Html.DropDownList("UfType", null, new { @class = "custom-select col-6", id = "inlineFormCustomSelect" })
-                </div>
-            </div>
-
-            <div class="form-row my-2">
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Celular:</label>
-                    @Html.EditorFor(cli => cli.tellCli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: 11 98755 - 6321 ", id = "inputCliTell", senha = "txtTellCli", required = "required" } })
-                </div>
-
-                <div class="col my-1">
-                    <label for="exampleInputEmail1">Telefone Fixo:</label>
-                    @Html.EditorFor(cli => cli.tell2Cli, new { htmlAttributes = new { @class = "form-control col-8", type = "text", placeholder = "Exemplo: 11 9875 - 6321 ", id = "inputCliTell2", senha = "txtTell2Cli", required = "required" } })
-                </div>
-
-            </div>
-
-            <div class="form-row justify-content-center my-3">
-                <button class="butaoMedian bg-branco mx-2 my-2 rounded" type="submit">Registrar</button>
-
-                <button class="butaoMeidan bg-branco mx-2 my-2 rounded border-0" type="reset">Limpar</button>
-            </div>
-
-        }
-    </div>
-
-</section>
-<!--fimCadastro-->
-
-<!--Consulta-->
-<!--fimConsulta-->
+}
 
 

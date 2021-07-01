@@ -5,134 +5,133 @@
     Layout = "~/Views/Shared/_HeaderAndFooter.cshtml";
 }
 
-<!--header-->
-<header class="navInfo mb-3">
+@if (Session["usuarioLog"] != null)
+{
 
-    <div class="row justify-content-center">
-        <div class="col">
-            <div class="dataHora d-inline-block p-2 rounded">
-                <!--<p>01/10/2020 13:50</p>-->
-                <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+    <!--header-->
+    <header class="navInfo mb-3">
+
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="dataHora d-inline-block p-2 rounded">
+                    <!--<p>01/10/2020 13:50</p>-->
+                    <p>@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year @DateTime.Now.Hour:@DateTime.Now.Minute</p>
+                </div>
+            </div>
+
+            <div class="col text-center">
+                <div class="logoConteinerSmall d-inline-block p-2 rounded bg-light boxShadow">
+                    <img class="logoSmall" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_empresa" />
+                </div>
+            </div>
+
+            <div class="col text-right" onclick="NavFuncao(7);">
+                <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
+                    <p>Voltar</p>
+                </div>
             </div>
         </div>
 
-        <div class="col text-center">
-            <div class="logoConteinerSmall d-inline-block p-2 rounded bg-light boxShadow">
-                <img class="logoSmall" src="~/Img/Logo/adminiscar.jpg" alt="logo_da_empresa" />
-            </div>
+    </header>
+    <!--fimHeader-->
+    <!--Consulta-->
+    <section class="row justify-content-center my-4 consultaSecao">
+        <div class="col-12 p-3 bg-light">
+
+            <h2 class="text-center my-2 text-roxo">Pesquisa</h2>
+
+            @using (Html.BeginForm("BuscaLocacao", "Adminiscar", FormMethod.Post))
+            {
+                <div class="row p-2 justify-content-center">
+                    <div class="col-7">
+                        <input type="text" name="buscLocacao" class="form-control col-12 boxShadow2" placeholder="Usa o CPF do cliente: 556.000.000-56">
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-secondary rounded" type="submit">Buscar</button>
+                    </div>
+                </div>
+
+                <div class="row p-2 justify-content-center text-roxo">
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" name="cnhLoc" type="checkbox" id="inlineCheckbox2" value="CNH">
+                        <label class="form-check-label" for="inlineCheckbox2">CNH</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" name="cpfLoc" type="checkbox" id="inlineCheckbox3" value="CPF">
+                        <label class="form-check-label" for="inlineCheckbox3">CPF</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" name="cnpjLoc" type="checkbox" id="inlineCheckbox3" value="CNPJ">
+                        <label class="form-check-label" for="inlineCheckbox3">CNPJ</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" name="numPedLoc" type="checkbox" id="inlineCheckbox3" value="NUMEROPED">
+                        <label class="form-check-label" for="inlineCheckbox3">Numero Do Pedido</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" name="placaLoc" type="checkbox" id="inlineCheckbox3" value="PLACA">
+                        <label class="form-check-label" for="inlineCheckbox3">Placa</label>
+                    </div>
+                </div>
+            }
         </div>
 
-        <div class="col text-right" onclick="NavFuncao(7);">
-            <div class="butao butao-logout1 d-inline-block p-2 rounded text-center">
-                <p>Voltar</p>
-            </div>
-        </div>
-    </div>
-
-</header>
-<!--fimHeader-->
-<!--Consulta-->
-<section class="row justify-content-center my-4 consultaSecao">
-    <div class="col-12 p-3 bg-light">
-
-        <h2 class="text-center my-2 text-roxo">Pesquisa</h2>
-
-        @using (Html.BeginForm("BuscaLocacao", "Adminiscar", FormMethod.Post))
-        {
-            <div class="row p-2 justify-content-center">
-                <div class="col-7">
-                    <input type="text" name="buscLocacao" class="form-control col-12 boxShadow2" placeholder="Usa o CPF do cliente: 556.000.000-56">
-                </div>
-                <div class="col-2">
-                    <button class="btn btn-secondary rounded" type="submit">Buscar</button>
-                </div>
-            </div>
-
-            <div class="row p-2 justify-content-center text-roxo">
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" name="cnhLoc" type="checkbox" id="inlineCheckbox2" value="CNH">
-                    <label class="form-check-label" for="inlineCheckbox2">CNH</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" name="cpfLoc" type="checkbox" id="inlineCheckbox3" value="CPF">
-                    <label class="form-check-label" for="inlineCheckbox3">CPF</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" name="cnpjLoc" type="checkbox" id="inlineCheckbox3" value="CNPJ">
-                    <label class="form-check-label" for="inlineCheckbox3">CNPJ</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" name="numPedLoc" type="checkbox" id="inlineCheckbox3" value="NUMEROPED">
-                    <label class="form-check-label" for="inlineCheckbox3">Numero Do Pedido</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" name="placaLoc" type="checkbox" id="inlineCheckbox3" value="PLACA">
-                    <label class="form-check-label" for="inlineCheckbox3">Placa</label>
-                </div>
-            </div>
-        }
-    </div>
-
-    <div class="col-12 mt-4 pt-2">
-        <table class="table mt-2 bg-light rounded">
-            <thead class="thead-dark text-center">
-                <tr>
-                    <th scope="col">Numero Do Pedido</th>
-                    <th scope="col">Cpf</th>
-                    <th scope="col">Placa</th>
-                    <th scope="col">Modelo</th>
-                    <th scope="col">Ações</th>
-                </tr>
-            </thead>
-            <tbody class="text-center">
-                @foreach (var item in Model)
-                {
+        <div class="col-12 mt-4 pt-2">
+            <table class="table mt-2 bg-light rounded">
+                <thead class="thead-dark text-center">
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.numPedLoc)</td>
-                        <td>@Html.DisplayFor(modelItem => item.cpfLoc)</td>
-                        <td>@Html.DisplayFor(modelItem => item.placCar)</td>
-                        <td>@Html.DisplayFor(modelItem => item.modeloLoc)</td>
-                        <td>
-                            @using (Html.BeginForm("DetalhesLocacao", "Adminiscar", FormMethod.Post, new { @class="d-inline"}))
-                            {
-                                <input type="hidden" name="codPedido" value="@Html.DisplayFor(modelItem => item.numPedLoc)" />
-                                <button class="btn btn-primary my-1" type="submit">Detalhes</button>
-                            }
-
-                            @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "d-inline" }))
-                            {
-                                <input type="hidden" name="delCli" value="@Html.DisplayFor(modelItem => item.numPedLoc)" />
-                                <button class="btn btn-primary my-1" type="submit">Cancelar</button>
-                            }
-                        </td>
+                        <th scope="col">Numero Do Pedido</th>
+                        <th scope="col">Cpf</th>
+                        <th scope="col">Placa</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Ações</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody class="text-center">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.numPedLoc)</td>
+                            <td>@Html.DisplayFor(modelItem => item.cpfLoc)</td>
+                            <td>@Html.DisplayFor(modelItem => item.placCar)</td>
+                            <td>@Html.DisplayFor(modelItem => item.modeloLoc)</td>
+                            <td>
+                                @using (Html.BeginForm("DetalhesLocacao", "Adminiscar", FormMethod.Post, new { @class = "d-inline" }))
+                                {
+                                    <input type="hidden" name="codPedido" value="@Html.DisplayFor(modelItem => item.numPedLoc)" />
+                                    <button class="btn btn-primary my-1" type="submit">Detalhes</button>
+                                }
+
+                                @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "d-inline" }))
+                                {
+                                    <input type="hidden" name="delCli" value="@Html.DisplayFor(modelItem => item.numPedLoc)" />
+                                    <button class="btn btn-primary my-1" type="submit">Cancelar</button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+    <!--fimConsulta-->
+}
+else
+{
 
 
-
-        <!--<nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled text-roxo">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">1</a></li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">2</a></li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">3</a></li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">4</a></li>
-                <li class="page-item"><a class="page-link text-roxo" href="#">5</a></li>
-                <li class="page-item">
-                    <a class="page-link text-roxo" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>-->
-
+    <div class="row justify-content-center my-2 py-2">
+    <div class="col-10 mx-auto alert alert-danger text-center py-1"><img src="~/Img/Imagens/alerta.jpg" alt="alertaDeAcessoNegado" /></div>
+    <div class="col-10 mx-auto alert alert-danger text-center py-1">@Html.ActionLink("Voltar Login", "Index", "Adminiscar", new { @class = "btn btn-warning btn-lg font-weight-bold" })</div>
+    <div class="col-10 mx-auto alert alert-danger text-center rounded-bottom py-1 "><p class="text-center text-danger font-weight-bold">Você precisar ta logado para acessar essa pagina, volte a tela de login!!!</p></div>
     </div>
-</section>
-<!--fimConsulta-->
+
+
+}
+

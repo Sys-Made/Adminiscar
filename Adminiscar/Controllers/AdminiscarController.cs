@@ -77,6 +77,17 @@ namespace Adminiscar.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult Logout() {
+
+            Session["usuarioLog"] = null;
+            Session["senhaLogado"] = null;
+            Session["tipoLogado"] = null;
+            Session["tipoLogado1"] = null;
+
+            return RedirectToAction("Index", "Adminiscar");
+        }
+
 
         /**
          * 
