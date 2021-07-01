@@ -144,7 +144,7 @@ namespace Adminiscar.Dal
                 listaDetalhe.Add(leitor.GetString("DATA_DEVOLUCAO"));
                 if (leitor.IsDBNull(9) && leitor.IsDBNull(10)) {
 
-                    listaDetalhe.Add(leitor.GetString("transferencia bancaria"));
+                    listaDetalhe.Add("transferencia bancaria");
 
                 }
                 if (leitor.IsDBNull(10) && leitor.IsDBNull(11)) {
@@ -154,7 +154,7 @@ namespace Adminiscar.Dal
                 }
                 if (leitor.IsDBNull(11) && leitor.IsDBNull(9)) {
 
-                    listaDetalhe.Add(leitor.GetString("Cartão de debito"));
+                    listaDetalhe.Add("Cartão de debito");
 
                 }
 
