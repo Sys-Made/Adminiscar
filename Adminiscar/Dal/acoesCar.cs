@@ -138,6 +138,17 @@ namespace Adminiscar.Dal
                 listaCarro.Add(leitor.GetString("VALOR_MENSAL"));
                 listaCarro.Add(leitor.GetString("SOM"));
                 listaCarro.Add(leitor.GetString("SOM_BT"));
+                if (leitor.IsDBNull(14))
+                {
+
+                    listaCarro.Add("Valor não especificado");
+
+                }
+                else {
+
+                    listaCarro.Add(leitor.GetString("VALOR_DIARIO"));
+
+                }
 
             }
 
