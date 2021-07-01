@@ -153,6 +153,7 @@
     <Content Include="Img\Icones\manutencao.png" />
     <Content Include="Img\Icones\useAvatar02.png" />
     <Content Include="Img\Icones\userAvatar.png" />
+    <Content Include="Img\Imagens\alerta.jpg" />
     <Content Include="Img\Imagens\Audi.jpg" />
     <Content Include="Img\Logo\adminiscar.jpg" />
     <Content Include="Scripts\bootstrap.js" />
